@@ -84,3 +84,4 @@ l = column(desc, row(inputs, p), sizing_mode="scale_both")
 update()  # initial load of the data
 curdoc().add_root(l)
 curdoc().title = "Players"
+# show(l)
