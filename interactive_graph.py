@@ -2,7 +2,7 @@
 This example shows the ability of Bokeh to create a dashboard with different
 sorting options based on a given dataset.
 '''
-
+import bokeh.protocol.messages.server_info_reply
 import pandas as pd
 from bokeh.io import curdoc
 from bokeh.layouts import column, row
@@ -10,11 +10,13 @@ from bokeh.models import ColumnDataSource, Div, Select, Slider
 from bokeh.io import show
 from bokeh.plotting import figure
 from os.path import dirname, join
+import os
 
 csv = 'data/data.csv'
 players = pd.read_csv(csv)
-positions = {'Goalkeeper': ' hotpink', 'Defender': 'salmon', 'Midfielder': 'teal', 'Forward': 'turquoise'}
-players["color"] = players["Position"].map(positions)
+colours = {'Goalkeeper': ' hotpink', 'Defender': 'salmon', 'Midfielder': 'teal', 'Forward': 'turquoise'}
+positions = list(colours.keys())
+players["color"] = players["Position"].map(colours)
 
 axis_map = {
     "Minutes": "minutes",
@@ -26,7 +28,7 @@ axis_map = {
 
 desc = Div(text=open(join(dirname(__file__), "description.html")).read(), sizing_mode="stretch_width")
 minutes = Slider(title="Minimum number of minutes", value=0, start=0, end=34000, step=10)
-position = Select(title="Position", value="All", options=list(positions.keys()))
+position = Select(title="Position", value="All", options=positions)
 x_axis = Select(title="X Axis", options=sorted(axis_map.keys()), value="Minutes")
 y_axis = Select(title="Y Axis", options=sorted(axis_map.keys()), value="Total Mistakes")
 
@@ -41,8 +43,9 @@ TOOLTIPS=[
 ]
 
 p = figure(height=600, width=700, title="", toolbar_location=None, tooltips=TOOLTIPS, sizing_mode="scale_both")
-p.circle(x="x", y="y", source=source, size=5, color="color", line_color=None) # fill_alpha="alpha"
-
+p.circle(x="x", y="y", source=source, size=5, color="color", line_color=None)
+p.legend.location = "top_left"
+p.legend.click_policy="hide"
 
 def select_movies():
     position_val = position.value
