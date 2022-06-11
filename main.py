@@ -2,7 +2,6 @@
 This example shows the ability of Bokeh to create a dashboard with different
 sorting options based on a given dataset.
 '''
-import bokeh.protocol.messages.server_info_reply
 import pandas as pd
 from bokeh.io import curdoc
 from bokeh.layouts import column, row
@@ -10,7 +9,6 @@ from bokeh.models import ColumnDataSource, Div, Select, Slider
 from bokeh.io import show
 from bokeh.plotting import figure
 from os.path import dirname, join
-import os
 
 csv = 'data/data.csv'
 players = pd.read_csv(csv)
@@ -84,6 +82,5 @@ inputs = column(*controls, width=250)
 l = column(desc, row(inputs, p), sizing_mode="scale_both")
 
 update()  # initial load of the data
-# curdoc().add_root(l)
+curdoc().add_root(l)
 curdoc().title = "Players"
-show(l)
