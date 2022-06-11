@@ -4,7 +4,7 @@ seasons = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
 directories = ['minutes', 'redcards', 'errors', 'pensconceded']
 
 # main dataframe
-df = pd.read_csv('/Users/tom/Documents/Personal/Errors/names/names.csv')
+df = pd.read_csv('/names/names.csv')
 for directory in directories:
     # temporary dataframe for each directory
     dfx = pd.DataFrame({'PlayerID' : []})
