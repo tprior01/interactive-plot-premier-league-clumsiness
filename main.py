@@ -20,7 +20,7 @@ axis_map = {
 }
 
 desc = Div(text=open(join(dirname(__file__), "my-application/description.html")).read(), sizing_mode="stretch_width")
-minutes = Slider(title="Minimum number of minutes", value=0, start=0, end=round(players['minutes'].max()/10)*10, step=10)
+minutes = Slider(title="Minimum number of minutes", value=0, start=0, end=round(players['minutes'].max(),-1), step=10)
 position = Select(title="Position", value="All", options=positions)
 x_axis = Select(title="X Axis", options=sorted(axis_map.keys()), value="Minutes")
 y_axis = Select(title="Y Axis", options=sorted(axis_map.keys()), value="Total Mistakes")
