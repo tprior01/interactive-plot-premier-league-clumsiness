@@ -12,7 +12,7 @@ from os.path import dirname, join
 
 csv = 'data/data.csv'
 players = pd.read_csv(csv)
-colours = {'Goalkeeper': ' hotpink', 'Defender': 'salmon', 'Midfielder': 'teal', 'Forward': 'turquoise'}
+colours = {'Goalkeeper': ' hotpink', 'Defender': 'salmon', 'Midfielder': 'teal', 'Forward': 'turquoise', 'All':''}
 positions = list(colours.keys())
 players["color"] = players["Position"].map(colours)
 
@@ -84,4 +84,3 @@ l = column(desc, row(inputs, p), sizing_mode="scale_both")
 update()  # initial load of the data
 curdoc().add_root(l)
 curdoc().title = "Players"
-# show(l)
