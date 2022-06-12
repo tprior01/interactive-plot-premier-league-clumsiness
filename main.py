@@ -1,12 +1,7 @@
-''' An interactivate categorized chart based on a movie dataset.
-This example shows the ability of Bokeh to create a dashboard with different
-sorting options based on a given dataset.
-'''
 import pandas as pd
 from bokeh.io import curdoc
 from bokeh.layouts import column, row
 from bokeh.models import ColumnDataSource, Div, Select, Slider
-from bokeh.io import show
 from bokeh.plotting import figure
 from os.path import dirname, join
 
@@ -25,7 +20,7 @@ axis_map = {
 }
 
 desc = Div(text=open(join(dirname(__file__), "my-application/description.html")).read(), sizing_mode="stretch_width")
-minutes = Slider(title="Minimum number of minutes", value=0, start=0, end=34000, step=10)
+minutes = Slider(title="Minimum number of minutes", value=0, start=0, end=round(players['minutes'].max()/10)*10, step=10)
 position = Select(title="Position", value="All", options=positions)
 x_axis = Select(title="X Axis", options=sorted(axis_map.keys()), value="Minutes")
 y_axis = Select(title="Y Axis", options=sorted(axis_map.keys()), value="Total Mistakes")
@@ -45,7 +40,7 @@ p.circle(x="x", y="y", source=source, size=5, color="color", line_color=None)
 p.legend.location = "top_left"
 p.legend.click_policy="hide"
 
-def select_movies():
+def select_players():
     position_val = position.value
     selected = players[
         (players.minutes >= minutes.value)
@@ -56,7 +51,7 @@ def select_movies():
 
 
 def update():
-    df = select_movies()
+    df = select_players()
     x_name = axis_map[x_axis.value]
     y_name = axis_map[y_axis.value]
 
