@@ -80,10 +80,10 @@ def update():
         pensconceded=df['pensconceded'],
         errors=df['errors']
     )
-    highlight.data = dict(
-        x=df2[x_name],
-        y=df2[y_name]
-    )
+    # highlight.data = dict(
+    #     x=df2[x_name],
+    #     y=df2[y_name]
+    # )
 
 controls = [minutes, position, x_axis, y_axis, highlight_name]
 for control in controls:
