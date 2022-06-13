@@ -42,9 +42,8 @@ p = figure(height=600, width=700, title='', toolbar_location=None, tooltips=TOOL
 p.circle(x='x', y='y', source=source, size=6, color='color', line_color=None, legend_field='position')
 p.circle(x='x', y='y', source=highlight, size=10, line_color='black', fill_alpha=0, line_width=2)
 p.legend.location = "top_left"
-# labels = LabelSet(x='x', y='y', text='PlayerName',
-#               x_offset=5, y_offset=5, source=highlight, render_mode='canvas')
-# p.add_layout(labels)
+labels = LabelSet(x='x', y='y', text='PlayerName', x_offset=5, y_offset=5, source=highlight)
+p.add_layout(labels)
 
 def select_players():
     selected = players[
