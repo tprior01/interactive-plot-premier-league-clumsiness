@@ -1,7 +1,7 @@
 import pandas as pd
 from bokeh.io import curdoc
 from bokeh.layouts import column, row
-from bokeh.models import ColumnDataSource, Div, Select, Slider, LegendItem, Legend
+from bokeh.models import ColumnDataSource, Div, Select, RangeSlider, LegendItem, Legend
 from bokeh.plotting import figure
 from os.path import dirname, join
 
@@ -20,7 +20,7 @@ axis_map = {
 }
 
 desc = Div(text=open(join(dirname(__file__), 'my-application/description.html')).read(), sizing_mode="stretch_width")
-minutes = Slider(title='Minimum number of minutes', value=0, start=0, end=round(players['minutes'].max(),-1), step=10)
+minutes = RangeSlider(title='Minimum number of minutes', value=(0,round(players['minutes'].max(),-1)), start=0, end=round(players['minutes'].max(),-1), step=10)
 position = Select(title='Position', value="All", options=positions)
 x_axis = Select(title='X Axis', options=sorted(axis_map.keys()), value='Minutes')
 y_axis = Select(title='Y Axis', options=sorted(axis_map.keys()), value='Total Mistakes')
