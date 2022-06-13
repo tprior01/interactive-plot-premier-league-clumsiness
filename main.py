@@ -23,11 +23,13 @@ axis_map = {
 desc = Div(text=open(join(dirname(__file__), 'my-application/description.html')).read(), sizing_mode="stretch_width")
 minutes = RangeSlider(title='Minimum number of minutes', value=(0, max_mins), start=0, end=max_mins, step=10)
 position = Select(title='Position', value="All", options=positions)
+highlight_name = TextInput(title='Highlight player name containing', value='Xhaka')
 x_axis = Select(title='X Axis', options=sorted(axis_map.keys()), value='Minutes')
 y_axis = Select(title='Y Axis', options=sorted(axis_map.keys()), value='Total Mistakes')
 
 # Create Column Data Source that will be used by the plot
 source = ColumnDataSource(data=dict(x=[], y=[], position=[], color=[], redcards=[], pensconceded=[], errors=[], alpha=[]))
+highlight = ColumnDataSource(data=dict(x=[], y=[]))
 
 TOOLTIPS=[
     ('Name', '@name'),
@@ -39,10 +41,10 @@ TOOLTIPS=[
 
 p = figure(height=600, width=700, title='', toolbar_location=None, tooltips=TOOLTIPS, sizing_mode='scale_both')
 p.circle(x='x', y='y', source=source, size=6, color='color', line_color=None, legend_field='position')
-p.circle(x=[players.loc[players['PlayerName'] == 'Granit Xhaka', axis_map[x_axis.value]].item()],
-               y=[players.loc[players['PlayerName'] == 'Granit Xhaka', axis_map[y_axis.value]].item()],
-               size=9, line_color='black', fill_alpha=0, line_width=1)
-
+# p.circle(x=[players.loc[players['PlayerName'] == 'Granit Xhaka', axis_map[x_axis.value]].item()],
+#                y=[players.loc[players['PlayerName'] == 'Granit Xhaka', axis_map[y_axis.value]].item()],
+#                size=9, line_color='black', fill_alpha=0, line_width=1)
+p.circle(x='x', y='y', source=highlight, size=9, line_color='black', fill_alpha=0, line_width=1)
 p.legend.location = "top_left"
 
 
@@ -55,8 +57,18 @@ def select_players():
         selected = selected[selected['Position'] == position.value]
     return selected
 
+def highlight_players():
+    if (highlight_name != ""):
+        selected = players[
+            (players.minutes >= minutes.value[0]) &
+            (players.minutes <= minutes.value[1])
+            ]
+        selected = selected[selected[selected.Director.str.contains(highlight_name) is True]]
+    return selected
+
 def update():
     df = select_players()
+    df2 = highlight_players()
     x_name = axis_map[x_axis.value]
     y_name = axis_map[y_axis.value]
     p.xaxis.axis_label = x_axis.value
@@ -71,6 +83,10 @@ def update():
         redcards=df['redcards'],
         pensconceded=df['pensconceded'],
         errors=df['errors']
+    )
+    highlight.data = dict(
+        x=df2[x_name],
+        y=df2[y_name]
     )
 
 controls = [minutes, position, x_axis, y_axis]
