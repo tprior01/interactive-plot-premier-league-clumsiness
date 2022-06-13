@@ -104,6 +104,6 @@ curdoc().title = 'Players'
 
 # players = players[players['PlayerName'].str.contains('Xhaka')]
 # print(players)
-print('here')
-print(highlight_name.value)
-print('here')
+# print('here')
+# print(highlight_name.value)
+# print('here')
