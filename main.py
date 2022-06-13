@@ -44,7 +44,7 @@ p.circle(x='x', y='y', source=source, size=6, color='color', line_color=None, le
 # p.circle(x=[players.loc[players['PlayerName'] == 'Granit Xhaka', axis_map[x_axis.value]].item()],
 #                y=[players.loc[players['PlayerName'] == 'Granit Xhaka', axis_map[y_axis.value]].item()],
 #                size=9, line_color='black', fill_alpha=0, line_width=1)
-p.circle(x='x', y='y', source=highlight, size=9, line_color='black', fill_alpha=0, line_width=1)
+# p.circle(x='x', y='y', source=highlight, size=9, line_color='black', fill_alpha=0, line_width=1)
 p.legend.location = "top_left"
 
 
