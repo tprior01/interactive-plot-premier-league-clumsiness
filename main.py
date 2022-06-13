@@ -21,7 +21,7 @@ axis_map = {
 
 desc = Div(text=open(join(dirname(__file__), 'my-application/description.html')).read(), sizing_mode="stretch_width")
 # minutes = Slider(title='Minimum number of minutes', value=0, start=0, end=round(players['minutes'].max(),-1), step=10)
-minutes = RangeSlider(title='Minimum number of minutes', value=(0, round(players['minutes'].max(),-1)), start=0, end=round(players['minutes'].max(),-1), step=10)
+minutes = RangeSlider(title='Minimum number of minutes', value=(0, round(players['minutes'].max(), -1)), start=0, end=round(players['minutes'].max(), -1), step=10)
 
 position = Select(title='Position', value="All", options=positions)
 x_axis = Select(title='X Axis', options=sorted(axis_map.keys()), value='Minutes')
@@ -50,9 +50,9 @@ p.legend.location = "top_left"
 
 def select_players():
     selected = players[
-        (players.minutes >= minutes.value[0]),
+        (players.minutes >= minutes.value[0]) &
         (players.minutes <= minutes.value[1])
-    ]
+        ]
     if position.value != 'All':
         selected = selected[selected['Position'] == position.value]
     return selected
