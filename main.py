@@ -29,7 +29,7 @@ y_axis = Select(title='Y Axis', options=sorted(axis_map.keys()), value='Total Mi
 
 # Create Column Data Source that will be used by the plot
 source = ColumnDataSource(data=dict(x=[], y=[], position=[], color=[], redcards=[], pensconceded=[], errors=[], alpha=[]))
-# highlight = ColumnDataSource(data=dict(x=[], y=[]))
+highlight = ColumnDataSource(data=dict(x=[], y=[]))
 
 TOOLTIPS=[
     ('Name', '@name'),
@@ -38,13 +38,12 @@ TOOLTIPS=[
     ('Errors leading to a goal', '@errors')
 ]
 
-
 p = figure(height=600, width=700, title='', toolbar_location=None, tooltips=TOOLTIPS, sizing_mode='scale_both')
 p.circle(x='x', y='y', source=source, size=6, color='color', line_color=None, legend_field='position')
 # p.circle(x=[players.loc[players['PlayerName'] == 'Granit Xhaka', axis_map[x_axis.value]].item()],
 #                y=[players.loc[players['PlayerName'] == 'Granit Xhaka', axis_map[y_axis.value]].item()],
 #                size=9, line_color='black', fill_alpha=0, line_width=1)
-# p.circle(x='x', y='y', source=highlight, size=9, line_color='black', fill_alpha=0, line_width=1)
+p.circle(x='x', y='y', source=highlight, size=9, line_color='black', fill_alpha=0, line_width=1)
 p.legend.location = "top_left"
 
 
@@ -57,14 +56,14 @@ def select_players():
         selected = selected[selected['Position'] == position.value]
     return selected
 
-# def highlight_players(selected):
-#     if (highlight_name != ""):
-#         selected = selected[selected['PlayerName'].str.contains(highlight_name)]
-#     return selected
+def highlight_players(selected):
+    if (highlight_name != ""):
+        selected = selected[selected['PlayerName'].str.contains(highlight_name.value.strip())]
+    return selected
 
 def update():
     df = select_players()
-    # df2 = highlight_players(df)
+    df2 = highlight_players(df)
     x_name = axis_map[x_axis.value]
     y_name = axis_map[y_axis.value]
     p.xaxis.axis_label = x_axis.value
@@ -80,10 +79,10 @@ def update():
         pensconceded=df['pensconceded'],
         errors=df['errors']
     )
-    # highlight.data = dict(
-    #     x=df2[x_name],
-    #     y=df2[y_name]
-    # )
+    highlight.data = dict(
+        x=df2[x_name],
+        y=df2[y_name]
+    )
 
 controls = [minutes, position, x_axis, y_axis, highlight_name]
 for control in controls:
@@ -96,3 +95,6 @@ l = column(desc, row(inputs, p), sizing_mode='scale_both')
 update()  # initial load of the data
 curdoc().add_root(l)
 curdoc().title = 'Players'
+
+# players = players[players['PlayerName'].str.contains('Xhaka')]
+# print(players)
