@@ -1,7 +1,7 @@
 import pandas as pd
 from bokeh.io import curdoc
 from bokeh.layouts import column, row
-from bokeh.models import ColumnDataSource, Div, Select, LabelSet, Label, RangeSlider, TextInput
+from bokeh.models import ColumnDataSource, Div, Select, AutocompleteInput, LabelSet, Label, RangeSlider, TextInput
 from bokeh.plotting import figure
 from os.path import dirname, join
 
@@ -23,7 +23,8 @@ axis_map = {
 desc = Div(text=open(join(dirname(__file__), 'my-application/description.html')).read(), sizing_mode="stretch_width")
 minutes = RangeSlider(title='Number of minutes', value=(0, max_mins), start=0, end=max_mins, step=10)
 position = Select(title='Position', value="All", options=positions)
-highlight_name = TextInput(title='Highlight player name containing', value='Xhaka')
+# highlight_name = TextInput(title='Highlight player', value='Xhaka')
+highlight_name = AutocompleteInput(name='Highlight player', options=players['PlayerName'])
 x_axis = Select(title='X Axis', options=sorted(axis_map.keys()), value='Minutes')
 y_axis = Select(title='Y Axis', options=sorted(axis_map.keys()), value='Total Mistakes')
 
@@ -99,10 +100,3 @@ l = column(desc, row(inputs, p), sizing_mode='scale_both')
 update()  # initial load of the data
 curdoc().add_root(l)
 curdoc().title = 'Players'
-
-# players = players[players['PlayerName'].str.contains('Xhaka')]
-# print(players)
-# print('here')
-# print(highlight_name.value == "")
-# print(highlight_name.value)
-# print('here')
