@@ -20,16 +20,17 @@ axis_map = {
     'Errors leading to a goal': 'errors'
 }
 
-names = players['PlayerName'].values.tolist()
-for i in range(len(names)):
-    names[i] = (names[i].rsplit(' ', 1)[-1], names[i])
-print(names)
+full_names = players['PlayerName'].values.tolist()
+last_names = list()
+for i in range(len(full_names)):
+    last_names.append(full_names[i].rsplit(' ', 1)[-1])
+names = last_names + full_names
 
 desc = Div(text=open(join(dirname(__file__), 'my-application/description.html')).read(), sizing_mode="stretch_width")
 minutes = RangeSlider(title='Number of minutes', value=(0, max_mins), start=0, end=max_mins, step=10)
 position = Select(title='Position', value="All", options=positions)
 # highlight_name = TextInput(title='Highlight player', value='Xhaka')
-highlight_name = AutocompleteInput(title='Highlight player', value='Xhaka',completions=players['PlayerName'].values.tolist(),
+highlight_name = AutocompleteInput(title='Highlight player', value='Xhaka',completions=names,
                                    restrict=False, case_sensitive=False)
 x_axis = Select(title='X Axis', options=sorted(axis_map.keys()), value='Minutes')
 y_axis = Select(title='Y Axis', options=sorted(axis_map.keys()), value='Total Mistakes')
