@@ -38,12 +38,12 @@ TOOLTIPS=[
 p = figure(height=600, width=700, title="", toolbar_location=None, tooltips=TOOLTIPS, sizing_mode="scale_both")
 p.circle(x="x", y="y", source=source, size=6, color="color", line_color=None)
 
-# legend
-legend_items = []
-for position, colour in colours:
-    l = LegendItem(label = position, color=colour)
-legend = Legend(items=legend_items, location='top_left')
-p.add_layout(legend)
+# # legend
+# legend_items = []
+# for position, colour in colours:
+#     l = LegendItem(label = position, color=colour)
+# legend = Legend(items=legend_items, location='top_left')
+# p.add_layout(legend)
 
 def select_players():
     selected = players[(players.minutes >= minutes.value)]
