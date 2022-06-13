@@ -51,7 +51,6 @@ def update():
     df = select_players()
     x_name = axis_map[x_axis.value]
     y_name = axis_map[y_axis.value]
-
     p.xaxis.axis_label = x_axis.value
     p.yaxis.axis_label = y_axis.value
     p.title.text = "%d players selected" % len(df)
