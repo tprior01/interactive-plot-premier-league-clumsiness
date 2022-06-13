@@ -42,7 +42,7 @@ p.legend.click_policy="hide"
 
 def select_players():
     if position.value == 'All':
-        selected = players[(players.minutes >= minutes.value)]
+        selected = players[players[(players.minutes >= minutes.value)]]
     else:
         selected = players[players['Position'] == position.value]
     return selected
