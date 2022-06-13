@@ -1,7 +1,7 @@
 import pandas as pd
 from bokeh.io import curdoc
 from bokeh.layouts import column, row
-from bokeh.models import ColumnDataSource, Div, Select, Circle, RangeSlider, TextInput
+from bokeh.models import ColumnDataSource, Div, Select, LabelSet, Label, RangeSlider, TextInput
 from bokeh.plotting import figure
 from os.path import dirname, join
 
@@ -42,7 +42,9 @@ p = figure(height=600, width=700, title='', toolbar_location=None, tooltips=TOOL
 p.circle(x='x', y='y', source=source, size=6, color='color', line_color=None, legend_field='position')
 p.circle(x='x', y='y', source=highlight, size=9, line_color='black', fill_alpha=0, line_width=1)
 p.legend.location = "top_left"
-
+labels = LabelSet(x='x', y='y', text='PlayerName',
+              x_offset=5, y_offset=5, source=highlight, render_mode='canvas')
+p.add_layout(labels)
 
 def select_players():
     selected = players[
