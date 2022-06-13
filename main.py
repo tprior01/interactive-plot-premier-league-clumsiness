@@ -22,7 +22,7 @@ axis_map = {
 
 desc = Div(text=open(join(dirname(__file__), 'my-application/description.html')).read(), sizing_mode="stretch_width")
 minutes = RangeSlider(title='Number of minutes', value=(0, max_mins), start=0, end=max_mins, step=10)
-position = Select(title='Position', value="All", options=positions)
+# position = Select(title='Position', value="All", options=positions)
 highlight_name = TextInput(title='Highlight player name containing', value='Xhaka')
 x_axis = Select(title='X Axis', options=sorted(axis_map.keys()), value='Minutes')
 y_axis = Select(title='Y Axis', options=sorted(axis_map.keys()), value='Total Mistakes')
@@ -55,8 +55,6 @@ def select_players():
         (players.minutes >= minutes.value[0]) &
         (players.minutes <= minutes.value[1])
         ]
-    if position.value != 'All':
-        selected = selected[selected['Position'] == position.value]
     return selected
 
 def update():
@@ -78,7 +76,7 @@ def update():
         errors=df[df['Position'] == position]['errors']
     )
 
-controls = [minutes, position, x_axis, y_axis, highlight_name]
+controls = [minutes, x_axis, y_axis, highlight_name]
 for control in controls:
     control.on_change('value', lambda attr, old, new: update())
 
