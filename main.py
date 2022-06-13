@@ -24,7 +24,7 @@ full_names = players['PlayerName'].values.tolist()
 last_names = list()
 for i in range(len(full_names)):
     last_names.append(full_names[i].rsplit(' ', 1)[-1])
-names = last_names + full_names
+names = list(set(last_names + full_names))
 
 desc = Div(text=open(join(dirname(__file__), 'my-application/description.html')).read(), sizing_mode="stretch_width")
 minutes = RangeSlider(title='Number of minutes', value=(0, max_mins), start=0, end=max_mins, step=10)
