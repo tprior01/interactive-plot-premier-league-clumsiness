@@ -46,7 +46,8 @@ def select_players():
         (players.minutes >= minutes.value)
     ]
     if (position_val != "All"):
-         selected = selected[selected.Position.str.contains(position_val) is True]
+         # selected = selected[selected.Position.str.contains(position_val) is True]
+        selected = selected['Position'] == position.value
     return selected
 
 
