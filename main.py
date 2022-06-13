@@ -21,9 +21,9 @@ axis_map = {
 }
 
 desc = Div(text=open(join(dirname(__file__), 'my-application/description.html')).read(), sizing_mode="stretch_width")
-minutes = RangeSlider(title='Minimum number of minutes', value=(0, max_mins), start=0, end=max_mins, step=10)
+minutes = RangeSlider(title='Number of minutes', value=(0, max_mins), start=0, end=max_mins, step=10)
 position = Select(title='Position', value="All", options=positions)
-highlight_name = TextInput(title='Highlight player name containing')
+highlight_name = TextInput(title='Highlight player name containing', value='Xhaka')
 x_axis = Select(title='X Axis', options=sorted(axis_map.keys()), value='Minutes')
 y_axis = Select(title='Y Axis', options=sorted(axis_map.keys()), value='Total Mistakes')
 
@@ -40,9 +40,6 @@ TOOLTIPS=[
 
 p = figure(height=600, width=700, title='', toolbar_location=None, tooltips=TOOLTIPS, sizing_mode='scale_both')
 p.circle(x='x', y='y', source=source, size=6, color='color', line_color=None, legend_field='position')
-# p.circle(x=[players.loc[players['PlayerName'] == 'Granit Xhaka', axis_map[x_axis.value]].item()],
-#                y=[players.loc[players['PlayerName'] == 'Granit Xhaka', axis_map[y_axis.value]].item()],
-#                size=9, line_color='black', fill_alpha=0, line_width=1)
 p.circle(x='x', y='y', source=highlight, size=9, line_color='black', fill_alpha=0, line_width=1)
 p.legend.location = "top_left"
 
@@ -105,5 +102,6 @@ curdoc().title = 'Players'
 # players = players[players['PlayerName'].str.contains('Xhaka')]
 # print(players)
 # print('here')
+# print(highlight_name.value == "")
 # print(highlight_name.value)
 # print('here')
