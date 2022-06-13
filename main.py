@@ -23,7 +23,7 @@ axis_map = {
 desc = Div(text=open(join(dirname(__file__), 'my-application/description.html')).read(), sizing_mode="stretch_width")
 minutes = RangeSlider(title='Minimum number of minutes', value=(0, max_mins), start=0, end=max_mins, step=10)
 position = Select(title='Position', value="All", options=positions)
-highlight_name = TextInput(title='Highlight player name containing', value='Xhaka')
+highlight_name = TextInput(title='Highlight player name containing')
 x_axis = Select(title='X Axis', options=sorted(axis_map.keys()), value='Minutes')
 y_axis = Select(title='Y Axis', options=sorted(axis_map.keys()), value='Total Mistakes')
 
