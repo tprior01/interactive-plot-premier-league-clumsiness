@@ -41,16 +41,19 @@ p.legend.location = "top_left"
 p.legend.click_policy="hide"
 
 def select_players():
-    if position.value == 'All':
-        selected = players[players[(players.minutes >= minutes.value)]]
+    position_val = position.value
+    if position_val == 'All':
+        selected = players[(players.minutes >= minutes.value)]
     else:
         selected = players[players['Position'] == position.value]
     return selected
+
 
 def update():
     df = select_players()
     x_name = axis_map[x_axis.value]
     y_name = axis_map[y_axis.value]
+
     p.xaxis.axis_label = x_axis.value
     p.yaxis.axis_label = y_axis.value
     p.title.text = "%d players selected" % len(df)
