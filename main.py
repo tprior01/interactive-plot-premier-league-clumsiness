@@ -41,7 +41,7 @@ p = figure(height=600, width=700, title='', toolbar_location=None, tooltips=TOOL
 p.circle(x='x', y='y', source=source, size=6, color='color', line_color=None, legend_field='position')
 p.circle(x=[players.loc[players['PlayerName'] == 'Granit Xhaka', axis_map[x_axis.value]].item()],
                y=[players.loc[players['PlayerName'] == 'Granit Xhaka', axis_map[y_axis.value]].item()],
-               size=7, line_color="#3288bd", fill_alpha=0, line_width=1)
+               size=7, line_color='black', fill_alpha=0, line_width=1)
 
 p.legend.location = "top_left"
 
