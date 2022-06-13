@@ -63,7 +63,7 @@ def highlight_players():
             (players.minutes >= minutes.value[0]) &
             (players.minutes <= minutes.value[1])
             ]
-        selected = selected[selected[selected.Director.str.contains(highlight_name) is True]]
+        selected = selected[selected['PlayerName'].str.contains(highlight_name)]
     return selected
 
 def update():
