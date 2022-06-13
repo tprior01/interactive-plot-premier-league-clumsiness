@@ -57,18 +57,14 @@ def select_players():
         selected = selected[selected['Position'] == position.value]
     return selected
 
-def highlight_players():
+def highlight_players(selected):
     if (highlight_name != ""):
-        selected = players[
-            (players.minutes >= minutes.value[0]) &
-            (players.minutes <= minutes.value[1])
-            ]
         selected = selected[selected['PlayerName'].str.contains(highlight_name)]
     return selected
 
 def update():
     df = select_players()
-    df2 = highlight_players()
+    df2 = highlight_players(df)
     x_name = axis_map[x_axis.value]
     y_name = axis_map[y_axis.value]
     p.xaxis.axis_label = x_axis.value
