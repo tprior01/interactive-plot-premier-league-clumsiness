@@ -1,7 +1,7 @@
 import pandas as pd
 from bokeh.io import curdoc
 from bokeh.layouts import column, row
-from bokeh.models import ColumnDataSource, Div, Select, Slider
+from bokeh.models import ColumnDataSource, Div, Select, Slider, LegendItem, Legend
 from bokeh.plotting import figure
 from os.path import dirname, join
 
@@ -36,9 +36,14 @@ TOOLTIPS=[
 ]
 
 p = figure(height=600, width=700, title="", toolbar_location=None, tooltips=TOOLTIPS, sizing_mode="scale_both")
-p.circle(x="x", y="y", source=source, size=5, color="color", line_color=None)
-p.legend.location = "top_left"
-p.legend.click_policy="hide"
+p.circle(x="x", y="y", source=source, size=6, color="color", line_color=None)
+
+# legend
+legend_items = []
+for position, colour in colours:
+    l = LegendItem(label = position, color=colour)
+legend = Legend(items=legend_items, location='top_left')
+p.add_layout(legend)
 
 def select_players():
     selected = players[(players.minutes >= minutes.value)]
@@ -46,12 +51,10 @@ def select_players():
         selected = selected[selected['Position'] == position.value]
     return selected
 
-
 def update():
     df = select_players()
     x_name = axis_map[x_axis.value]
     y_name = axis_map[y_axis.value]
-
     p.xaxis.axis_label = x_axis.value
     p.yaxis.axis_label = y_axis.value
     p.title.text = "%d players selected" % len(df)
