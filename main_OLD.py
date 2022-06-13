@@ -28,12 +28,8 @@ x_axis = Select(title='X Axis', options=sorted(axis_map.keys()), value='Minutes'
 y_axis = Select(title='Y Axis', options=sorted(axis_map.keys()), value='Total Mistakes')
 
 # Create Column Data Source that will be used by the plot
-position_data = {
-    'Goalkeeper': ColumnDataSource(data=dict(x=[], y=[])),
-    'Defender': ColumnDataSource(data=dict(x=[], y=[])),
-    'Midfielder': ColumnDataSource(data=dict(x=[], y=[])),
-    'Forward': ColumnDataSource(data=dict(x=[], y=[]))
-}
+source = ColumnDataSource(data=dict(x=[], y=[], position=[], color=[])) #, redcards=[], pensconceded=[], errors=[], alpha=[]))
+highlight = ColumnDataSource(data=dict(x=[], y=[]))
 
 TOOLTIPS=[
     ('Name', '@name'),
@@ -43,12 +39,11 @@ TOOLTIPS=[
 ]
 
 p = figure(height=600, width=700, title='', toolbar_location=None, tooltips=TOOLTIPS, sizing_mode='scale_both')
-p.circle(x='x', y='y', source=position_data['Goalkeeper'], size=6, color='hotpink', line_color=None, legend_label='Goalkeeper')
-p.circle(x='x', y='y', source=position_data['Defender'], size=6, color='salmon', line_color=None, legend_label='Defender')
-p.circle(x='x', y='y', source=position_data['Midfielder'], size=6, color='teal', line_color=None, legend_label='Midfielder')
-p.circle(x='x', y='y', source=position_data['Forward'], size=6, color='cyan', line_color=None, legend_label='Forward')
+p.circle(x='x', y='y', source=source, size=6, color='color', line_color=None, legend_field='position')
+p.circle(x='x', y='y', source=highlight, size=10, line_color='black', fill_alpha=0, line_width=2)
 p.legend.location = "top_left"
-p.legend.click_policy="hide"
+# labels = LabelSet(x='x', y='y', text='PlayerName', x_offset=5, y_offset=5, source=highlight)
+# p.add_layout(labels)
 
 def select_players():
     selected = players[
@@ -59,23 +54,38 @@ def select_players():
         selected = selected[selected['Position'] == position.value]
     return selected
 
+def highlight_players(selected):
+    if (highlight_name != ""):
+        selected = selected[selected['PlayerName'].str.contains(highlight_name.value.strip(), case=False)]
+    else:
+        selected = pd.DataFrame()
+    return selected
+
 def update():
     df = select_players()
+    df2 = highlight_players(df)
     x_name = axis_map[x_axis.value]
     y_name = axis_map[y_axis.value]
     p.xaxis.axis_label = x_axis.value
     p.yaxis.axis_label = y_axis.value
     p.title.text = '%d players selected' % len(df)
-    for position, data in position_data:
-        data.data = dict(
-        x=df[df['Position'] == position][x_name],
-        y=df[df['Position'] == position][y_name],
-        color=df[df['Position'] == position]['color'],
-        position=df[df['Position'] == position]['Position'],
-        name=df[df['Position'] == position]['PlayerName'],
-        redcards=df[df['Position'] == position]['redcards'],
-        pensconceded=df[df['Position'] == position]['pensconceded'],
-        errors=df[df['Position'] == position]['errors']
+    source.data = dict(
+        x=df[x_name],
+        y=df[y_name],
+        color=df['color'],
+        position=df['Position'],
+        name=df['PlayerName'],
+        redcards=df['redcards'],
+        pensconceded=df['pensconceded'],
+        errors=df['errors']
+    )
+    highlight.data = dict(
+        x=df2[x_name],
+        y=df2[y_name],
+        name=df2['PlayerName'],
+        redcards=df2['redcards'],
+        pensconceded=df2['pensconceded'],
+        errors=df2['errors']
     )
 
 controls = [minutes, position, x_axis, y_axis, highlight_name]
@@ -89,3 +99,10 @@ l = column(desc, row(inputs, p), sizing_mode='scale_both')
 update()  # initial load of the data
 curdoc().add_root(l)
 curdoc().title = 'Players'
+
+# players = players[players['PlayerName'].str.contains('Xhaka')]
+# print(players)
+# print('here')
+# print(highlight_name.value == "")
+# print(highlight_name.value)
+# print('here')
