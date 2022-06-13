@@ -28,7 +28,7 @@ x_axis = Select(title='X Axis', options=sorted(axis_map.keys()), value='Minutes'
 y_axis = Select(title='Y Axis', options=sorted(axis_map.keys()), value='Total Mistakes')
 
 # Create Column Data Source that will be used by the plot
-source = ColumnDataSource(data=dict(x=[], y=[], position=[], color=[], redcards=[], pensconceded=[], errors=[], alpha=[]))
+source = ColumnDataSource(data=dict(x=[], y=[], position=[], color=[])) #, redcards=[], pensconceded=[], errors=[], alpha=[]))
 highlight = ColumnDataSource(data=dict(x=[], y=[]))
 
 TOOLTIPS=[
@@ -58,7 +58,7 @@ def select_players():
 
 def highlight_players(selected):
     if (highlight_name != ""):
-        selected = selected[selected['PlayerName'].str.contains(highlight_name.value.strip())]
+        selected = selected[selected['PlayerName'].str.contains(highlight_name.value.strip(), case=False)]
     else:
         selected = pd.DataFrame()
     return selected
@@ -83,7 +83,11 @@ def update():
     )
     highlight.data = dict(
         x=df2[x_name],
-        y=df2[y_name]
+        y=df2[y_name],
+        name=df2['PlayerName'],
+        redcards=df2['redcards'],
+        pensconceded=df2['pensconceded'],
+        errors=df2['errors']
     )
 
 controls = [minutes, position, x_axis, y_axis, highlight_name]
