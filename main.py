@@ -29,7 +29,7 @@ desc = Div(text=open(join(dirname(__file__), 'my-application/description.html'))
 minutes = RangeSlider(title='Number of minutes', value=(0, max_mins), start=0, end=max_mins, step=10)
 position = Select(title='Position', value="All", options=positions)
 # highlight_name = TextInput(title='Highlight player', value='Xhaka')
-highlight_name = AutocompleteInput(name='Highlight player', placeholder='Highlight player', options=names,
+highlight_name = AutocompleteInput(name='Highlight player', placeholder='Highlight player', options=names, completions=players['PlayerName'].values.tolist(),
                                    restrict=False, case_sensitive=False)
 x_axis = Select(title='X Axis', options=sorted(axis_map.keys()), value='Minutes')
 y_axis = Select(title='Y Axis', options=sorted(axis_map.keys()), value='Total Mistakes')
