@@ -7,9 +7,7 @@ from os.path import dirname, join
 
 csv = 'data/data.csv'
 players = pd.read_csv(csv)
-colours = {'All':'','Goalkeeper': ' hotpink', 'Defender': 'salmon', 'Midfielder': 'teal', 'Forward': 'turquoise'}
-positions = list(colours.keys())
-players['color'] = players['Position'].map(colours)
+colours = ['hotpink', 'salmon', 'teal', 'turquoise']
 max_mins = round(players['minutes'].max(), -1)
 
 axis_map = {
@@ -22,7 +20,6 @@ axis_map = {
 
 desc = Div(text=open(join(dirname(__file__), 'my-application/description.html')).read(), sizing_mode="stretch_width")
 minutes = RangeSlider(title='Number of minutes', value=(0, max_mins), start=0, end=max_mins, step=10)
-# position = Select(title='Position', value="All", options=positions)
 highlight_name = TextInput(title='Highlight player name containing', value='Xhaka')
 x_axis = Select(title='X Axis', options=sorted(axis_map.keys()), value='Minutes')
 y_axis = Select(title='Y Axis', options=sorted(axis_map.keys()), value='Total Mistakes')
@@ -43,10 +40,8 @@ TOOLTIPS=[
 ]
 
 p = figure(height=600, width=700, title='', toolbar_location=None, tooltips=TOOLTIPS, sizing_mode='scale_both')
-p.circle(x='x', y='y', source=position_data['Goalkeeper'], size=6, color='hotpink', line_color=None, legend_label='Goalkeeper')
-p.circle(x='x', y='y', source=position_data['Defender'], size=6, color='salmon', line_color=None, legend_label='Defender')
-p.circle(x='x', y='y', source=position_data['Midfielder'], size=6, color='teal', line_color=None, legend_label='Midfielder')
-p.circle(x='x', y='y', source=position_data['Forward'], size=6, color='cyan', line_color=None, legend_label='Forward')
+for position, data, colour in zip(position_data.keys(), position_data.values(), colours):
+    p.circle(x='x', y='y', source=position_data[position], size=6, color=colour, line_color=None, legend_label=position)
 p.legend.location = "top_left"
 p.legend.click_policy="hide"
 
@@ -64,11 +59,10 @@ def update():
     p.xaxis.axis_label = x_axis.value
     p.yaxis.axis_label = y_axis.value
     p.title.text = '%d players selected' % len(df)
-    for position, data in position_data:
+    for position, data in position_data.items():
         data.data = dict(
         x=df[df['Position'] == position][x_name],
         y=df[df['Position'] == position][y_name],
-        color=df[df['Position'] == position]['color'],
         position=df[df['Position'] == position]['Position'],
         name=df[df['Position'] == position]['PlayerName'],
         redcards=df[df['Position'] == position]['redcards'],
