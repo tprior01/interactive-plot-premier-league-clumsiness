@@ -41,12 +41,15 @@ p.legend.location = "top_left"
 p.legend.click_policy="hide"
 
 def select_players():
-    position_val = position.value
+    # position_val = position.value
     selected = players[
-        (players.minutes >= minutes.value)
+        (players.minutes >= minutes.value),
+        (players.position == position.value)
     ]
-    if (position_val != "All"):
-         selected = selected[selected.Position.str.contains(position_val) is True]
+    # if (position_val != "All"):
+    #      # selected = selected[selected.Position.str.contains(position_val) is True]
+    #     selected = selected[selected.Position.str.contains(position_val) is True]
+
     return selected
 
 
