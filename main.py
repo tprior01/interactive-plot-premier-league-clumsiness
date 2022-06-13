@@ -7,7 +7,7 @@ from os.path import dirname, join
 
 csv = 'data/data.csv'
 players = pd.read_csv(csv)
-colours = {'Goalkeeper': ' hotpink', 'Defender': 'salmon', 'Midfielder': 'teal', 'Forward': 'turquoise', 'All':''}
+colours = {'All':'','Goalkeeper': ' hotpink', 'Defender': 'salmon', 'Midfielder': 'teal', 'Forward': 'turquoise'}
 positions = list(colours.keys())
 players["color"] = players["Position"].map(colours)
 
@@ -47,7 +47,7 @@ def select_players():
     ]
     if (position_val != "All"):
          # selected = selected[selected.Position.str.contains(position_val) is True]
-        selected = selected['Position'] == position.value
+        selected = selected[selected['Position'] == position.value]
     return selected
 
 
