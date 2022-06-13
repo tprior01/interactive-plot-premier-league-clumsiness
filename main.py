@@ -41,12 +41,9 @@ p.legend.location = "top_left"
 p.legend.click_policy="hide"
 
 def select_players():
-    position_val = position.value
-    minutes_val = minutes.value
-    if position_val == 'All':
-        selected = players[(players.minutes >= minutes_val)]
-    else:
-        selected = players[players['Position'] == position.value]
+    selected = players[(players.minutes >= minutes.value)]
+    if position.value != 'All':
+        selected = selected[selected['Position'] == position.value]
     return selected
 
 
