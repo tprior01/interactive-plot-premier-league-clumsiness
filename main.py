@@ -29,7 +29,7 @@ y_axis = Select(title='Y Axis', options=sorted(axis_map.keys()), value='Total Mi
 
 # Create Column Data Source that will be used by the plot
 source = ColumnDataSource(data=dict(x=[], y=[], position=[], color=[], redcards=[], pensconceded=[], errors=[], alpha=[]))
-highlight = ColumnDataSource(data=dict(x=[], y=[]))
+# highlight = ColumnDataSource(data=dict(x=[], y=[]))
 
 TOOLTIPS=[
     ('Name', '@name'),
@@ -57,14 +57,14 @@ def select_players():
         selected = selected[selected['Position'] == position.value]
     return selected
 
-def highlight_players(selected):
-    if (highlight_name != ""):
-        selected = selected[selected['PlayerName'].str.contains(highlight_name)]
-    return selected
+# def highlight_players(selected):
+#     if (highlight_name != ""):
+#         selected = selected[selected['PlayerName'].str.contains(highlight_name)]
+#     return selected
 
 def update():
     df = select_players()
-    df2 = highlight_players(df)
+    # df2 = highlight_players(df)
     x_name = axis_map[x_axis.value]
     y_name = axis_map[y_axis.value]
     p.xaxis.axis_label = x_axis.value
