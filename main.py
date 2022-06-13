@@ -31,6 +31,7 @@ position_data = {
     'Midfielder': ColumnDataSource(data=dict(x=[], y=[])),
     'Forward': ColumnDataSource(data=dict(x=[], y=[]))
 }
+highlight = ColumnDataSource(data=dict(x=[], y=[]))
 
 TOOLTIPS=[
     ('Name', '@name'),
@@ -42,8 +43,10 @@ TOOLTIPS=[
 p = figure(height=600, width=700, title='', toolbar_location=None, tooltips=TOOLTIPS, sizing_mode='scale_both')
 for position, data, colour in zip(position_data.keys(), position_data.values(), colours):
     p.circle(x='x', y='y', source=position_data[position], size=6, color=colour, line_color=None, legend_label=position)
+p.circle(x='x', y='y', source=highlight, size=10, line_color='black', fill_alpha=0, line_width=2)
 p.legend.location = "top_left"
 p.legend.click_policy="hide"
+
 
 def select_players():
     selected = players[
@@ -52,8 +55,14 @@ def select_players():
         ]
     return selected
 
+def highlight_players(selected):
+    if (highlight_name != ""):
+        highlighted = selected[selected['PlayerName'].str.contains(highlight_name.value.strip(), case=False)]
+    return highlighted
+
 def update():
     df = select_players()
+    df2 = select_players(df)
     x_name = axis_map[x_axis.value]
     y_name = axis_map[y_axis.value]
     p.xaxis.axis_label = x_axis.value
@@ -68,6 +77,14 @@ def update():
         redcards=df[df['Position'] == position]['redcards'],
         pensconceded=df[df['Position'] == position]['pensconceded'],
         errors=df[df['Position'] == position]['errors']
+    )
+    highlight.data = dict(
+        x=df2[x_name],
+        y=df2[y_name],
+        name=df2['PlayerName'],
+        redcards=df2['redcards'],
+        pensconceded=df2['pensconceded'],
+        errors=df2['errors']
     )
 
 controls = [minutes, x_axis, y_axis, highlight_name]
