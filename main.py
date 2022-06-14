@@ -52,15 +52,6 @@ p.circle(x='x', y='y', source=highlight, size=11, line_color='black', fill_alpha
 p.legend.location = "top_left"
 p.hover.renderers = [r]
 
-# determine best fit line
-if (source.data['x'] != []):
-    par = np.polyfit(source.data['x'], source.data['y'], 1, full=True)
-    slope = par[0][0]
-    intercept = par[0][1]
-    y_predicted = [slope * i + intercept for i in source.data['x']]
-    p.line(source.data['x'], y_predicted, color='red',
-           legend='y='+str(round(slope,2))+'x+'+str(round(intercept,2)))
-
 def select_players():
     selected = players[
         (players.minutes >= minutes.value[0]) &
@@ -109,5 +100,13 @@ inputs = column(*controls, width=250)
 l = column(desc, row(inputs, p), sizing_mode='scale_both')
 
 update()  # initial load of the data
+
+par = np.polyfit(source.data['x'], source.data['y'], 1, full=True)
+slope = par[0][0]
+intercept = par[0][1]
+y_predicted = [slope * i + intercept for i in source.data['x']]
+p.line(source.data['x'], y_predicted, color='red',
+       legend='y=' + str(round(slope, 2)) + 'x+' + str(round(intercept, 2)))
+
 curdoc().add_root(l)
 curdoc().title = 'Players'
