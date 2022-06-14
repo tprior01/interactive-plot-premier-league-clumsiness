@@ -77,6 +77,7 @@ def highlight_players(selected):
         selected = selected[selected['PlayerName'] == None]
     return selected
 
+
 def updatebarchart(selected):
     if (highlight_name.value != ""):
         print(highlight_name.value)
