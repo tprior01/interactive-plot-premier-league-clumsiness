@@ -1,11 +1,11 @@
 import pandas as pd
-from bokeh.io import curdoc
+from bokeh.io import curdoc, show
 from bokeh.layouts import column, row
-from bokeh.models import ColumnDataSource, Div, Select, AutocompleteInput, LabelSet, Label, RangeSlider, TextInput
+from bokeh.models import ColumnDataSource, Div, Select, AutocompleteInput, RangeSlider, Range1d, FactorRange
 from bokeh.plotting import figure
 from os.path import dirname, join
-import numpy as np
 
+directories = ['redcards', 'errors', 'pensconceded']
 csv = 'data/data.csv'
 players = pd.read_csv(csv)
 colours = {'All':'','Goalkeeper': ' hotpink', 'Defender': 'salmon', 'Midfielder': 'teal', 'Forward': 'turquoise'}
@@ -37,8 +37,11 @@ x_axis = Select(title='X Axis', options=sorted(axis_map.keys()), value='Minutes'
 y_axis = Select(title='Y Axis', options=sorted(axis_map.keys()), value='Total Mistakes')
 
 # Create Column Data Source that will be used by the plot
-source = ColumnDataSource(data=dict(x=[], y=[], position=[], color=[])) #, redcards=[], pensconceded=[], errors=[], alpha=[]))
+source = ColumnDataSource(data=dict(x=[], y=[], position=[], color=[]))
 highlight = ColumnDataSource(data=dict(x=[], y=[]))
+seasonal = ColumnDataSource(data=dict(seasons=[], redcards=[], mpensconceded=[], errors=[]))
+bar_colours = ["hotpink", "teal", "salmon"]
+categories = ['Red Cards', 'Errors Leading to a Goal', 'Penalties Conceded']
 
 TOOLTIPS=[
     ('Name', '@name'),
@@ -46,12 +49,25 @@ TOOLTIPS=[
     ('Penalties Conceded', '@pensconceded'),
     ('Errors leading to a goal', '@errors')
 ]
-
+season_names = ['07/08','08/09','09/10','10/11','11/12','12/13','13/14','14/15','15/16','16/17','17/18','18/19','19/20','20/21','21/22']
 p = figure(height=600, width=700, title='', toolbar_location=None, tooltips=TOOLTIPS, sizing_mode='scale_both')
 r = p.circle(x='x', y='y', source=source, size=6, color='color', line_color=None, legend_field='position')
 p.circle(x='x', y='y', source=highlight, size=11, line_color='black', fill_alpha=0, line_width=1)
 p.legend.location = "top_left"
 p.hover.renderers = [r]
+
+# data2 = {'seasons': ['16/17', '17/18', '18/19', '19/20', '20/21', '21/22'], 'redcards': [2, 0, 0, 0, 1, 1], 'pensconceded': [2, 0, 2, 1, 0, 1], 'errors': [2, 3, 2, 0, 2, 0]}
+
+test=['16/17', '17/18', '18/19', '19/20', '20/21', '21/22']
+q = figure(x_range=seasonal.data['seasons'], title="Mistakes by year",height=250, toolbar_location=None, tools="")
+q.vbar_stack(directories, x='seasons', width=0.2, color=bar_colours, source=seasonal.data, legend_label=categories)
+q.y_range.start = 0
+q.xgrid.grid_line_color = None
+q.axis.minor_tick_line_color = None
+q.outline_line_color = None
+q.legend.location = "top_right"
+# q.legend.orientation = "horizontal"
+
 
 def select_players():
     selected = players[
@@ -65,9 +81,35 @@ def select_players():
 def highlight_players(selected):
     if (highlight_name.value != ""):
         selected = selected[selected['PlayerName'].str.contains(highlight_name.value.strip(), case=False)]
+        if (selected['PlayerID'].count() == 1):
+            playerid = selected['PlayerID'][0]
+            datax = {
+                'redcards': [],
+                'pensconceded': [],
+                'errors': []
+            }
+            seasons=[]
+            for i in range(8,23):
+                df = pd.read_csv(f"minutes/{i}.csv")
+                if (df[df['PlayerID'] == playerid]['PlayerID'].count() == 1):
+                    seasons.append(f'{str(i-1).zfill(2)}/{str(i).zfill(2)}')
+                    for directory in directories:
+                        dfx = pd.read_csv(f"{directory}/{i}.csv")
+                        if (dfx[dfx['PlayerID'] == playerid][directory].count() == 1):
+                            datax[directory].append(dfx[dfx['PlayerID'] == playerid][directory].iloc[0])
+                        else:
+                            datax[directory].append(0)
+            seasonal.data = dict(
+                seasons=seasons,
+                redcards=datax['redcards'],
+                pensconceded=datax['pensconceded'],
+                errors=datax['errors']
+            )
     else:
         selected = selected[selected['PlayerName'] == None]
     return selected
+
+
 
 def update():
     df = select_players()
@@ -103,8 +145,12 @@ for control in controls:
 
 inputs = column(*controls, width=250)
 
-l = column(desc, row(inputs, p), sizing_mode='scale_both')
+l = column(desc, row(inputs, p), q, sizing_mode='scale_both')
 
+q.add_layout(q.legend[0],'right')
 update()  # initial load of the data
 curdoc().add_root(l)
 curdoc().title = 'Players'
+
+print(seasonal.data)
+show(l)
