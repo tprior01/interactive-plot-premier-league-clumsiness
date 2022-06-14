@@ -98,10 +98,6 @@ def update():
     highlight.data = dict(
         x=df2[x_name],
         y=df2[y_name],
-        name=df2['PlayerName'],
-        redcards=df2['redcards'],
-        pensconceded=df2['pensconceded'],
-        errors=df2['errors']
     )
 
 controls = [minutes, position, x_axis, y_axis, highlight_name]
