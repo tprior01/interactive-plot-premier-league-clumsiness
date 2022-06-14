@@ -151,6 +151,3 @@ q.add_layout(q.legend[0],'right')
 update()  # initial load of the data
 curdoc().add_root(l)
 curdoc().title = 'Players'
-
-print(seasonal.data)
-show(l)
