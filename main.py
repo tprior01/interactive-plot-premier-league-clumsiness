@@ -63,6 +63,27 @@ q.xgrid.grid_line_color = None
 q.axis.minor_tick_line_color = None
 q.outline_line_color = None
 
+playerinfo = dict()
+for playerid in players['PlayerID']:
+    datax = {
+        'redcards': [],
+        'pensconceded': [],
+        'errors': []
+    }
+    seasons = []
+    for i in range(8, 23):
+        df = pd.read_csv(f"minutes/{i}.csv")
+        if (df[df['PlayerID'] == playerid]['PlayerID'].count() == 1):
+            seasons.append(f'{str(i - 1).zfill(2)}/{str(i).zfill(2)}')
+            for directory in directories:
+                dfx = pd.read_csv(f"{directory}/{i}.csv")
+                if (dfx[dfx['PlayerID'] == playerid][directory].count() == 1):
+                    datax[directory].append(dfx[dfx['PlayerID'] == playerid][directory].iloc[0])
+                else:
+                    datax[directory].append(0)
+    playerinfo[playerid] = datax
+
+print(playerinfo)
 
 def select_players():
     selected = players[
@@ -78,28 +99,30 @@ def highlight_players(selected):
         selected = selected[selected['PlayerName'].str.contains(highlight_name.value.strip(), case=False)]
         if (selected['PlayerID'].count() == 1):
             playerid = selected['PlayerID'][0]
-            datax = {
-                'redcards': [],
-                'pensconceded': [],
-                'errors': []
-            }
-            seasons=[]
-            for i in range(8,23):
-                df = pd.read_csv(f"minutes/{i}.csv")
-                if (df[df['PlayerID'] == playerid]['PlayerID'].count() == 1):
-                    seasons.append(f'{str(i-1).zfill(2)}/{str(i).zfill(2)}')
-                    for directory in directories:
-                        dfx = pd.read_csv(f"{directory}/{i}.csv")
-                        if (dfx[dfx['PlayerID'] == playerid][directory].count() == 1):
-                            datax[directory].append(dfx[dfx['PlayerID'] == playerid][directory].iloc[0])
-                        else:
-                            datax[directory].append(0)
-            seasonal.data = dict(
-                seasons=seasons,
-                redcards=datax['redcards'],
-                pensconceded=datax['pensconceded'],
-                errors=datax['errors']
-            )
+            # datax = {
+            #     'redcards': [],
+            #     'pensconceded': [],
+            #     'errors': []
+            # }
+            # seasons=[]
+            # for i in range(8,23):
+            #     df = pd.read_csv(f"minutes/{i}.csv")
+            #     if (df[df['PlayerID'] == playerid]['PlayerID'].count() == 1):
+            #         seasons.append(f'{str(i-1).zfill(2)}/{str(i).zfill(2)}')
+            #         for directory in directories:
+            #             dfx = pd.read_csv(f"{directory}/{i}.csv")
+            #             if (dfx[dfx['PlayerID'] == playerid][directory].count() == 1):
+            #                 datax[directory].append(dfx[dfx['PlayerID'] == playerid][directory].iloc[0])
+            #             else:
+            #                 datax[directory].append(0)
+            seasonal.data = playerinfo[playerid]
+
+            #     = dict(
+            #     seasons=seasons,
+            #     redcards=datax['redcards'],
+            #     pensconceded=datax['pensconceded'],
+            #     errors=datax['errors']
+            # )
             q.x_range.factors = seasonal.data['seasons']
     else:
         selected = selected[selected['PlayerName'] == None]
