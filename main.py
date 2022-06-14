@@ -30,7 +30,6 @@ names = list(set(last_names + full_names))
 desc = Div(text=open(join(dirname(__file__), 'my-application/description.html')).read(), sizing_mode="stretch_width")
 minutes = RangeSlider(title='Number of minutes', value=(0, max_mins), start=0, end=max_mins, step=10)
 position = Select(title='Position', value="All", options=positions)
-arsenal = Select(title='Highlight Arsenal players', value="No", options=['Yes', 'No'])
 highlight_name = AutocompleteInput(title='Highlight player', value='Xhaka', completions=names,
                                    restrict=False, case_sensitive=False)
 x_axis = Select(title='X Axis', options=sorted(axis_map.keys()), value='Minutes')
@@ -63,9 +62,7 @@ def select_players():
     return selected
 
 def highlight_players(selected):
-    if (arsenal.value == 'Yes'):
-        selected = selected[selected['arsenal'] == 'y']
-    elif (highlight_name.value != ""):
+    if (highlight_name.value != ""):
         selected = selected[selected['PlayerName'].str.contains(highlight_name.value.strip(), case=False)]
     else:
         selected = selected[selected['PlayerName'] == None]
@@ -101,7 +98,7 @@ def update():
     # y_predicted = [slope * i + intercept for i in source.data['x']]
     # p.line(source.data['x'], y_predicted, color='red')
 
-controls = [minutes, position, x_axis, y_axis, highlight_name, arsenal]
+controls = [minutes, position, x_axis, y_axis, highlight_name]
 for control in controls:
     control.on_change('value', lambda attr, old, new: update())
 
