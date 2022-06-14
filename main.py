@@ -80,8 +80,8 @@ def highlight_players(selected):
 
 def updatebarchart(selected):
     if (highlight_name.value != ""):
-        print(highlight_name.value)
-        playerid = selected['PlayerID'][0]
+        playerid = selected['PlayerID'].iat[0]
+        print(playerid)
         data = {
             'seasons': [],
             'redcards': [],
