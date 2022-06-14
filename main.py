@@ -92,12 +92,11 @@ def update():
         x=df2[x_name],
         y=df2[y_name],
     )
-    par = np.polyfit(source.data['x'], source.data['y'], 1, full=True)
-    slope = par[0][0]
-    intercept = par[0][1]
-    y_predicted = [slope * i + intercept for i in source.data['x']]
-    p.line(source.data['x'], y_predicted, color='red')
-
+    # par = np.polyfit(source.data['x'], source.data['y'], 1, full=True)
+    # slope = par[0][0]
+    # intercept = par[0][1]
+    # y_predicted = [slope * i + intercept for i in source.data['x']]
+    # p.line(source.data['x'], y_predicted, color='red')
 
 controls = [minutes, position, x_axis, y_axis, highlight_name]
 for control in controls:
