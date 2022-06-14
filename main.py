@@ -64,6 +64,8 @@ def select_players():
 def highlight_players(selected):
     if (highlight_name.value != ""):
         selected = selected[selected['PlayerName'].str.contains(highlight_name.value.strip(), case=False)]
+    else:
+        return pd.DataFrame()
     return selected
 
 print(highlight_name == "")
