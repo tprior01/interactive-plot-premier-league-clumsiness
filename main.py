@@ -65,7 +65,7 @@ def select_players():
 def highlight_players(selected):
     if (arsenal.value == 'Yes'):
         selected = selected[selected['arsenal'] == 'y']
-    if (highlight_name.value != ""):
+    elif (highlight_name.value != ""):
         selected = selected[selected['PlayerName'].str.contains(highlight_name.value.strip(), case=False)]
     else:
         selected = selected[selected['PlayerName'] == None]
