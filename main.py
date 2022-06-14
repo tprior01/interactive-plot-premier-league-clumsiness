@@ -92,8 +92,7 @@ def update():
     slope = par[0][0]
     intercept = par[0][1]
     y_predicted = [slope * i + intercept for i in source.data['x']]
-    p.line(source.data['x'], y_predicted, color='red',
-           legend='y=' + str(round(slope, 2)) + 'x+' + str(round(intercept, 2)))
+    p.line(source.data['x'], y_predicted, color='red')
 
 
 controls = [minutes, position, x_axis, y_axis, highlight_name]
