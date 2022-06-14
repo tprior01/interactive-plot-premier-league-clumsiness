@@ -49,13 +49,14 @@ TOOLTIPS=[
     ('Penalties Conceded', '@pensconceded'),
     ('Errors leading to a goal', '@errors')
 ]
-season_names = ['07/08','08/09','09/10','10/11','11/12','12/13','13/14','14/15','15/16','16/17','17/18','18/19','19/20','20/21','21/22']
+
 p = figure(height=600, width=700, title='', toolbar_location=None, tooltips=TOOLTIPS, sizing_mode='scale_both')
 r = p.circle(x='x', y='y', source=source, size=6, color='color', line_color=None, legend_field='position')
 p.circle(x='x', y='y', source=highlight, size=11, line_color='black', fill_alpha=0, line_width=1)
 p.legend.location = "top_left"
 p.hover.renderers = [r]
 
+# bar charts
 q = figure(x_range=seasonal.data['seasons'], title="Mistakes by year", height=250, toolbar_location=None, tools="")
 q.vbar_stack(directories, x='seasons', width=0.2, color=bar_colours, source=seasonal, legend_label=categories)
 q.y_range.start = 0
@@ -75,40 +76,41 @@ def select_players():
 def highlight_players(selected):
     if (highlight_name.value != ""):
         selected = selected[selected['PlayerName'].str.contains(highlight_name.value.strip(), case=False)]
-        if (selected['PlayerID'].count() == 1):
-            playerid = selected['PlayerID'][0]
-            datax = {
-                'redcards': [],
-                'pensconceded': [],
-                'errors': []
-            }
-            seasons=[]
-            for i in range(8,23):
-                df = pd.read_csv(f"minutes/{i}.csv")
-                if (df[df['PlayerID'] == playerid]['PlayerID'].count() == 1):
-                    seasons.append(f'{str(i-1).zfill(2)}/{str(i).zfill(2)}')
-                    for directory in directories:
-                        dfx = pd.read_csv(f"{directory}/{i}.csv")
-                        if (dfx[dfx['PlayerID'] == playerid][directory].count() == 1):
-                            datax[directory].append(dfx[dfx['PlayerID'] == playerid][directory].iloc[0])
-                        else:
-                            datax[directory].append(0)
-            seasonal.data = dict(
-                seasons=seasons,
-                redcards=datax['redcards'],
-                pensconceded=datax['pensconceded'],
-                errors=datax['errors']
-            )
-            q.x_range.factors = seasonal.data['seasons']
     else:
         selected = selected[selected['PlayerName'] == None]
     return selected
 
+def updatebarchart(selected):
+    playerid = selected['PlayerID'][0]
+    data = {
+        'redcards': [],
+        'pensconceded': [],
+        'errors': []
+    }
+    seasons = []
+    for i in range(8, 23):
+        df = pd.read_csv(f"minutes/{i}.csv")
+        if (df[df['PlayerID'] == playerid]['PlayerID'].count() == 1):
+            seasons.append(f'{str(i - 1).zfill(2)}/{str(i).zfill(2)}')
+            for directory in directories:
+                dfx = pd.read_csv(f"{directory}/{i}.csv")
+                if (dfx[dfx['PlayerID'] == playerid][directory].count() == 1):
+                    data[directory].append(dfx[dfx['PlayerID'] == playerid][directory].iloc[0])
+                else:
+                    data[directory].append(0)
+    seasonal.data = dict(
+        seasons=seasons,
+        redcards=data['redcards'],
+        pensconceded=data['pensconceded'],
+        errors=data['errors']
+    )
+    q.x_range.factors = seasonal.data['seasons']
 
 
 def update():
     df = select_players()
     df2 = highlight_players(df)
+    updatebarchart(df2)
     x_name = axis_map[x_axis.value]
     y_name = axis_map[y_axis.value]
     p.xaxis.axis_label = x_axis.value
@@ -128,6 +130,7 @@ def update():
         x=df2[x_name],
         y=df2[y_name],
     )
+
     # par = np.polyfit(source.data['x'], source.data['y'], 1, full=True)
     # slope = par[0][0]
     # intercept = par[0][1]
