@@ -103,7 +103,7 @@ def updatebarchart(selected):
 def update():
     df = select_players()
     df2 = highlight_players(df)
-    bar_dict = updatebarchart(df2)
+    # bar_dict = updatebarchart(df2)
     x_name = axis_map[x_axis.value]
     y_name = axis_map[y_axis.value]
     p.xaxis.axis_label = x_axis.value
