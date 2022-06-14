@@ -30,7 +30,7 @@ names = list(set(last_names + full_names))
 desc = Div(text=open(join(dirname(__file__), 'my-application/description.html')).read(), sizing_mode="stretch_width")
 minutes = RangeSlider(title='Number of minutes', value=(0, max_mins), start=0, end=max_mins, step=10)
 position = Select(title='Position', value="All", options=positions)
-highlight_name = AutocompleteInput(title='Highlight player', value='Xhaka',completions=names,
+highlight_name = AutocompleteInput(title='Highlight player', value='Xhaka', completions=names,
                                    restrict=False, case_sensitive=False)
 x_axis = Select(title='X Axis', options=sorted(axis_map.keys()), value='Minutes')
 y_axis = Select(title='Y Axis', options=sorted(axis_map.keys()), value='Total Mistakes')
@@ -64,8 +64,6 @@ def select_players():
 def highlight_players(selected):
     if (highlight_name.value != ""):
         selected = selected[selected['PlayerName'].str.contains(highlight_name.value.strip(), case=False)]
-    else:
-        return pd.DataFrame()
     return selected
 
 print(highlight_name == "")
