@@ -101,6 +101,8 @@ for control in controls:
     print(control)
     control.on_change('value', lambda attr, old, new: update())
 
+legend.on_change('visible', lambda attr, old, new: update())
+
 inputs = column(*controls, width=250)
 
 l = column(desc, row(inputs, p), sizing_mode='scale_both')
