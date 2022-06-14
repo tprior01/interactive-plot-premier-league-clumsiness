@@ -56,17 +56,12 @@ p.circle(x='x', y='y', source=highlight, size=11, line_color='black', fill_alpha
 p.legend.location = "top_left"
 p.hover.renderers = [r]
 
-# data2 = {'seasons': ['16/17', '17/18', '18/19', '19/20', '20/21', '21/22'], 'redcards': [2, 0, 0, 0, 1, 1], 'pensconceded': [2, 0, 2, 1, 0, 1], 'errors': [2, 3, 2, 0, 2, 0]}
-
-test=['16/17', '17/18', '18/19', '19/20', '20/21', '21/22']
-q = figure(x_range=seasonal.data['seasons'], title="Mistakes by year",height=250, toolbar_location=None, tools="")
-q.vbar_stack(directories, x='seasons', width=0.2, color=bar_colours, source=seasonal.data, legend_label=categories)
+q = figure(x_range=seasonal.data['seasons'], title="Mistakes by year", height=250, toolbar_location=None, tools="")
+q.vbar_stack(directories, x='seasons', width=0.2, color=bar_colours, source=seasonal, legend_label=categories)
 q.y_range.start = 0
 q.xgrid.grid_line_color = None
 q.axis.minor_tick_line_color = None
 q.outline_line_color = None
-q.legend.location = "top_right"
-# q.legend.orientation = "horizontal"
 
 
 def select_players():
@@ -105,6 +100,7 @@ def highlight_players(selected):
                 pensconceded=datax['pensconceded'],
                 errors=datax['errors']
             )
+            q.x_range.factors = seasonal.data['seasons']
     else:
         selected = selected[selected['PlayerName'] == None]
     return selected
@@ -151,3 +147,5 @@ q.add_layout(q.legend[0],'right')
 update()  # initial load of the data
 curdoc().add_root(l)
 curdoc().title = 'Players'
+
+show(l)
