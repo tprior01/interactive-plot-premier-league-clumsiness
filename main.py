@@ -4,6 +4,7 @@ from bokeh.layouts import column, row
 from bokeh.models import ColumnDataSource, Div, Select, AutocompleteInput, LabelSet, Label, RangeSlider, TextInput
 from bokeh.plotting import figure
 from os.path import dirname, join
+import numpy as np
 
 csv = 'data/data.csv'
 players = pd.read_csv(csv)
@@ -47,11 +48,18 @@ TOOLTIPS=[
 ]
 
 p = figure(height=600, width=700, title='', toolbar_location=None, tooltips=TOOLTIPS, sizing_mode='scale_both')
-p.circle(x='x', y='y', source=source, size=6, color='color', line_color=None, legend_field='position')
+r = p.circle(x='x', y='y', source=source, size=6, color='color', line_color=None, legend_field='position')
 p.circle(x='x', y='y', source=highlight, size=11, line_color='black', fill_alpha=0, line_width=1)
 p.legend.location = "top_left"
 # labels = LabelSet(x='x', y='y', text='PlayerName', x_offset=5, y_offset=5, source=highlight)
 # p.add_layout(labels)
+p.hover.renderers = [r]
+
+# # determine best fit line
+# par = np.polyfit(x, y, 1, full=True)
+# slope=par[0][0]
+# intercept=par[0][1]
+# y_predicted = [slope*i + intercept  for i in x]
 
 def select_players():
     selected = players[
@@ -95,6 +103,11 @@ def update():
         pensconceded=df2['pensconceded'],
         errors=df2['errors']
     )
+    # determine best fit line
+    par = np.polyfit(source.data['x'], source.data['y'], 1, full=True)
+    slope = par[0][0]
+    intercept = par[0][1]
+    y_predicted = [slope * i + intercept for i in x]
 
 controls = [minutes, position, x_axis, y_axis, highlight_name]
 for control in controls:
