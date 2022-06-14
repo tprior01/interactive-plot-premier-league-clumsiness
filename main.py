@@ -68,8 +68,6 @@ def highlight_players(selected):
         selected = selected[selected['PlayerName'] == None]
     return selected
 
-print(highlight_name == "")
-
 def update():
     df = select_players()
     df2 = highlight_players(df)
