@@ -30,7 +30,6 @@ names = list(set(last_names + full_names))
 desc = Div(text=open(join(dirname(__file__), 'my-application/description.html')).read(), sizing_mode="stretch_width")
 minutes = RangeSlider(title='Number of minutes', value=(0, max_mins), start=0, end=max_mins, step=10)
 position = Select(title='Position', value="All", options=positions)
-# highlight_name = TextInput(title='Highlight player', value='Xhaka')
 highlight_name = AutocompleteInput(title='Highlight player', value='Xhaka',completions=names,
                                    restrict=False, case_sensitive=False)
 x_axis = Select(title='X Axis', options=sorted(axis_map.keys()), value='Minutes')
@@ -53,18 +52,14 @@ p.circle(x='x', y='y', source=highlight, size=11, line_color='black', fill_alpha
 p.legend.location = "top_left"
 p.hover.renderers = [r]
 
-# # determine best fit line
-# par = np.polyfit(x, y, 1, full=True)
-# slope=par[0][0]
-# intercept=par[0][1]
-# y_predicted = [slope*i + intercept  for i in x]
-
 # determine best fit line
-par = np.polyfit(source.data['x'], source.data['y'], 1, full=True)
-slope = par[0][0]
-intercept = par[0][1]
-y_predicted = [slope * i + intercept for i in source.data['x']]
-p.line(source.data['x'], y_predicted, color='red')
+if (source.data['x'] != []):
+    par = np.polyfit(source.data['x'], source.data['y'], 1, full=True)
+    slope = par[0][0]
+    intercept = par[0][1]
+    y_predicted = [slope * i + intercept for i in source.data['x']]
+    p.line(source.data['x'], y_predicted, color='red',
+           legend='y='+str(round(slope,2))+'x+'+str(round(intercept,2)))
 
 def select_players():
     selected = players[
