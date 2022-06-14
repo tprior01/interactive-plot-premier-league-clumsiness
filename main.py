@@ -64,8 +64,6 @@ def select_players():
 def highlight_players(selected):
     if (highlight_name != ""):
         selected = selected[selected['PlayerName'].str.contains(highlight_name.value.strip(), case=False)]
-    else:
-        selected = pd.DataFrame()
     return selected
 
 def update():
@@ -90,6 +88,7 @@ def update():
         x=df2[x_name],
         y=df2[y_name],
     )
+
 
 controls = [minutes, position, x_axis, y_axis, highlight_name]
 for control in controls:
