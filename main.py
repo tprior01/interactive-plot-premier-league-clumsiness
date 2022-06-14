@@ -123,8 +123,8 @@ def update():
         x=df2[x_name],
         y=df2[y_name],
     )
-    seasonal.data = bar_dict
-    q.x_range.factors = seasonal.data['seasons']
+    # seasonal.data = bar_dict
+    # q.x_range.factors = seasonal.data['seasons']
 
 controls = [minutes, position, x_axis, y_axis, highlight_name]
 for control in controls:
