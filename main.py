@@ -62,9 +62,11 @@ def select_players():
     return selected
 
 def highlight_players(selected):
-    if (highlight_name != ""):
+    if (highlight_name.value != ""):
         selected = selected[selected['PlayerName'].str.contains(highlight_name.value.strip(), case=False)]
     return selected
+
+print(highlight_name == "")
 
 def update():
     df = select_players()
