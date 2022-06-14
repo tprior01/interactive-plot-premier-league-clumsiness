@@ -65,7 +65,7 @@ def highlight_players(selected):
     if (highlight_name.value != ""):
         selected = selected[selected['PlayerName'].str.contains(highlight_name.value.strip(), case=False)]
     else:
-        selected = None
+        selected = selected[selected['PlayerName'] == None]
     return selected
 
 print(highlight_name == "")
