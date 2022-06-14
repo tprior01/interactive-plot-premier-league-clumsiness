@@ -28,7 +28,7 @@ axis_map = {
 desc = Div(text=open(join(dirname(__file__), 'my-application/description.html')).read(), sizing_mode="stretch_width")
 minutes = RangeSlider(title='Number of minutes', value=(0, max_mins), start=0, end=max_mins, step=10)
 position = Select(title='Position', value="All", options=positions)
-highlight_name = AutocompleteInput(title='Highlight player', value='Jordan Henderson', completions=names,
+highlight_name = AutocompleteInput(title='Highlight player', value='Granit Xhaka', completions=names,
                                    restrict=True, case_sensitive=False)
 x_axis = Select(title='X Axis', options=sorted(axis_map.keys()), value='Minutes')
 y_axis = Select(title='Y Axis', options=sorted(axis_map.keys()), value='Total Mistakes')
