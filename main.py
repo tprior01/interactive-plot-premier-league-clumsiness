@@ -56,7 +56,7 @@ TOOLTIPS = [
 ]
 
 # scatter plot
-p = figure(height=600, width=700, title='', toolbar_location=None, tooltips=TOOLTIPS, sizing_mode='scale_both', tools='tap')
+p = figure(height=600, width=700, title='', toolbar_location=None, tooltips=TOOLTIPS, sizing_mode='scale_both')
 renderers = []
 for position, data, colour in zip(position_data.keys(), position_data.values(), position_colours):
     renderers.append(p.circle(x='x', y='y', source=position_data[position], size=6, color=colour, line_color=None,
