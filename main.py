@@ -57,7 +57,7 @@ TOOLTIPS = [
 ]
 
 # scatter plot
-p = figure(height=600, width=700, title='', toolbar_location=None, tooltips=TOOLTIPS, sizing_mode='scale_both', tools='tap')
+p = figure(height=600, width=700, title='', toolbar_location=None, tooltips=TOOLTIPS, sizing_mode='scale_both')
 renderers = []
 legend_items = dict()
 for position, data, colour in zip(position_data.keys(), position_data.values(), position_colours):
@@ -82,12 +82,6 @@ q.axis.minor_tick_line_color = None
 q.outline_line_color = None
 q.yaxis.ticker = SingleIntervalTicker(interval=1)
 
-def callback():
-    print('callback in process')
-
-taptool = p.select(type=TapTool)
-taptool.behavior = 'select'
-taptool.callback = callback()
 
 def select_players():
     selected = players[
