@@ -84,9 +84,6 @@ q.axis.minor_tick_line_color = None
 q.outline_line_color = None
 q.yaxis.ticker = SingleIntervalTicker(interval=1)
 
-
-p.add_tools(TapTool(behaviour='inspect', callback=''))
-
 def callback():
     print('callback in process')
 
