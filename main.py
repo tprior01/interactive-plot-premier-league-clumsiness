@@ -57,7 +57,7 @@ TOOLTIPS = [
 ]
 
 # scatter plot
-p = figure(height=600, width=700, title='', toolbar_location=None, tooltips=TOOLTIPS, sizing_mode='scale_both', tools='tap')
+p = figure(height=600, width=700, title='', toolbar_location=None, tooltips=TOOLTIPS, sizing_mode='scale_both')
 renderers = []
 legend_items = dict()
 for position, data, colour in zip(position_data.keys(), position_data.values(), position_colours):
