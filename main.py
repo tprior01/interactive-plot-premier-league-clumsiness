@@ -78,10 +78,9 @@ def highlight_players(selected):
     return selected
 
 
-def updatebarchart(selected):
-    if (highlight_name.value != ""):
+def updatebar(selected):
+    if (highlight_name.value in names):
         playerid = selected['PlayerID'].iat[0]
-        print(playerid)
         data = {
             'seasons': [],
             'redcards': [],
@@ -98,12 +97,13 @@ def updatebarchart(selected):
                         data[directory].append(dfx[dfx['PlayerID'] == playerid][directory].iloc[0])
                     else:
                         data[directory].append(0)
-        return data
+        seasonal.data = data
+        q.x_range.factors = seasonal.data['seasons']
 
-def update():
+def updatescatter():
     df = select_players()
-    df2 = highlight_players(df)
-    # bar_dict = updatebarchart(df2)
+    # df2 = highlight_players(df)
+    # updatebarchart(df2)
     x_name = axis_map[x_axis.value]
     y_name = axis_map[y_axis.value]
     p.xaxis.axis_label = x_axis.value
@@ -119,22 +119,24 @@ def update():
         pensconceded=df['pensconceded'],
         errors=df['errors']
     )
-    highlight.data = dict(
-        x=df2[x_name],
-        y=df2[y_name],
-    )
-    # seasonal.data = bar_dict
-    # q.x_range.factors = seasonal.data['seasons']
+    # highlight.data = dict(
+    #     x=df2[x_name],
+    #     y=df2[y_name],
+    # )
 
-controls = [minutes, position, x_axis, y_axis, highlight_name]
+controls = [minutes, position, x_axis, y_axis]
 for control in controls:
-    control.on_change('value', lambda attr, old, new: update())
+    control.on_change('value', lambda attr, old, new: updatescatter())
+
+highlight_name.on_change('value', lambda attr, old, new: updatebar())
 
 inputs = column(*controls, width=250)
 
 l = column(desc, row(inputs, p), q, sizing_mode='scale_both')
 
 q.add_layout(q.legend[0],'right')
-update()  # initial load of the data
+updatescatter()  # initial load of the data
 curdoc().add_root(l)
 curdoc().title = 'Players'
+
+show(l)
