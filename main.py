@@ -128,11 +128,9 @@ def updatescatter():
         y=df2[y_name],
     )
 
-controls = [minutes, position, x_axis, y_axis]
+controls = [minutes, position, x_axis, y_axis, highlight_name]
 for control in controls:
     control.on_change('value', lambda attr, old, new: updatescatter())
-highlight_name.on_change('value', lambda attr, old, new: updatebar())
-controls.append(highlight_name)
 
 inputs = column(*controls, width=250)
 
