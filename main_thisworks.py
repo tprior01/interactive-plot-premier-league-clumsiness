@@ -12,8 +12,6 @@ players = pd.read_csv(csv)
 coulour_map = {'All': '', 'Goalkeeper': ' hotpink', 'Defender': 'salmon', 'Midfielder': 'teal', 'Forward': 'turquoise'}
 positions = ['Goalkeeper', 'Defender', 'Midfielder', 'Forward']
 directories = ['redcards', 'errors', 'pensconceded']
-colours = ['hotpink', 'salmon', 'teal', 'turquoise']
-
 
 players['color'] = players['Position'].map(coulour_map)
 max_mins = round(players['minutes'].max(), -1)
@@ -54,25 +52,11 @@ TOOLTIPS=[
     ('Errors leading to a goal', '@errors')
 ]
 
-position_data = {
-    'Goalkeeper': ColumnDataSource(data=dict(x=[], y=[])),
-    'Defender': ColumnDataSource(data=dict(x=[], y=[])),
-    'Midfielder': ColumnDataSource(data=dict(x=[], y=[])),
-    'Forward': ColumnDataSource(data=dict(x=[], y=[]))
-}
-
-
 p = figure(height=600, width=700, title='', toolbar_location=None, tooltips=TOOLTIPS, sizing_mode='scale_both')
-
-for position, data, colour in zip(position_data.keys(), position_data.values(), colours):
-    p.circle(x='x', y='y', source=position_data[position], size=6, color=colour, line_color=None, legend_label=position)
-
-# r = p.circle(x='x', y='y', source=source, size=6, color='color', line_color=None, legend_field='position')
-# p.circle(x='x', y='y', source=highlight, size=11, line_color='black', fill_alpha=0, line_width=1)
+r = p.circle(x='x', y='y', source=source, size=6, color='color', line_color=None, legend_field='position')
+p.circle(x='x', y='y', source=highlight, size=11, line_color='black', fill_alpha=0, line_width=1)
 p.legend.location = "top_left"
-p.legend.click_policy="hide"
-
-# p.hover.renderers = [r]
+p.hover.renderers = [r]
 
 # bar chart
 q = figure(x_range=seasonal.data['seasons'], title='%s mistakes by season' % highlight_name.value, height=150, toolbar_location=None, tools="")
@@ -87,6 +71,8 @@ def select_players():
         (players.minutes >= minutes.value[0]) &
         (players.minutes <= minutes.value[1])
         ]
+    if position.value != 'All':
+        selected = selected[selected['Position'] == position.value]
     return selected
 
 def highlight_players(selected):
@@ -127,22 +113,22 @@ def updatescatter():
     p.xaxis.axis_label = x_axis.value
     p.yaxis.axis_label = y_axis.value
     p.title.text = '%d players selected' % len(df)
-    for position, data in position_data.items():
-        data.data = dict(
-        x=df[df['Position'] == position][x_name],
-        y=df[df['Position'] == position][y_name],
-        position=df[df['Position'] == position]['Position'],
-        name=df[df['Position'] == position]['PlayerName'],
-        redcards=df[df['Position'] == position]['redcards'],
-        pensconceded=df[df['Position'] == position]['pensconceded'],
-        errors=df[df['Position'] == position]['errors']
+    source.data = dict(
+        x=df[x_name],
+        y=df[y_name],
+        color=df['color'],
+        position=df['Position'],
+        name=df['PlayerName'],
+        redcards=df['redcards'],
+        pensconceded=df['pensconceded'],
+        errors=df['errors']
     )
     highlight.data = dict(
         x=df2[x_name],
         y=df2[y_name],
     )
 
-controls = [minutes, x_axis, y_axis, highlight_name]
+controls = [minutes, position, x_axis, y_axis, highlight_name]
 for control in controls:
     control.on_change('value', lambda attr, old, new: updatescatter())
 highlight_name.on_change('value', lambda attr, old, new: updatebar())
