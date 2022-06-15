@@ -85,12 +85,14 @@ q.outline_line_color = None
 q.yaxis.ticker = SingleIntervalTicker(interval=1)
 
 
-p.add_tools(TapTool())
-def callback(event):
-    print(event)
-    print(source.selected.indices)
+p.add_tools(TapTool(behaviour='inspect', callback=''))
 
-p.on_event(Tap, callback)
+def callback():
+    print('callback in process')
+
+cb = callback()
+
+p.add_tools(TapTool(behaviour='inspect', callback=cb))
 
 def select_players():
     selected = players[
