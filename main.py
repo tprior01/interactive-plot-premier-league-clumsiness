@@ -65,10 +65,9 @@ position_data = {
 
 p = figure(height=600, width=700, title='', toolbar_location=None, tooltips=TOOLTIPS, sizing_mode='scale_both')
 
+renderers = []
 for position, data, colour in zip(position_data.keys(), position_data.values(), colours):
-    p.circle(x='x', y='y', source=position_data[position], size=6, color=colour, line_color=None, legend_label=position)
-
-# r = p.circle(x='x', y='y', source=source, size=6, color='color', line_color=None, legend_field='position')
+    renderers.append(p.circle(x='x', y='y', source=position_data[position], size=6, color=colour, line_color=None, legend_label=position))
 p.circle(x='x', y='y', source=highlight, size=11, line_color='black', fill_alpha=0, line_width=1)
 legend = p.legend
 legend.location = "top_left"
@@ -76,8 +75,7 @@ legend.click_policy="hide"
 p.x_range = DataRange1d(only_visible=True)
 p.y_range = DataRange1d(only_visible=True)
 
-
-# p.hover.renderers = [r]
+p.hover.renderers = renderers
 
 # bar chart
 q = figure(x_range=seasonal.data['seasons'], height=150, toolbar_location=None, tools="")
