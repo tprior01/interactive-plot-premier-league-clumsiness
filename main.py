@@ -16,6 +16,7 @@ directories = ['redcards', 'errors', 'pensconceded']
 players['color'] = players['Position'].map(coulour_map)
 max_mins = round(players['minutes'].max(), -1)
 names = players[players['minutes'] > 1000]['PlayerName'].values.tolist()
+print(names)
 
 axis_map = {
     'Minutes': 'minutes',
@@ -78,9 +79,9 @@ def highlight_players(selected):
     return selected
 
 
-def updatebar(selected):
+def updatebar():
     if (highlight_name.value in names):
-        playerid = selected['PlayerID'].iat[0]
+        playerid = players['PlayerID'].iat[0]
         data = {
             'seasons': [],
             'redcards': [],
@@ -136,6 +137,7 @@ l = column(desc, row(inputs, p), q, sizing_mode='scale_both')
 
 q.add_layout(q.legend[0],'right')
 updatescatter()  # initial load of the data
+updatebar()
 curdoc().add_root(l)
 curdoc().title = 'Players'
 
