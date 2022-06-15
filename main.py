@@ -15,7 +15,12 @@ directories = ['redcards', 'errors', 'pensconceded']
 
 players['color'] = players['Position'].map(coulour_map)
 max_mins = round(players['minutes'].max(), -1)
-names = players[players['minutes'] > 1000]['PlayerName'].values.tolist()
+ids = players['PlayerID'].values.tolist()
+names = players['PlayerName'].values.tolist()
+id_dic = dict()
+for i in range(len(ids)):
+    id_dic[names[i]] = ids[i]
+
 
 axis_map = {
     'Minutes': 'minutes',
@@ -81,7 +86,7 @@ def highlight_players(selected):
 def updatebar():
     print(highlight_name.value)
     if (highlight_name.value in names):
-        playerid = players['PlayerID'].iat[0]
+        playerid = id_dic[highlight_name]
         print(playerid)
         data = {
             'seasons': [],
