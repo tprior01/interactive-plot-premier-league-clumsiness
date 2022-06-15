@@ -1,7 +1,7 @@
 import pandas as pd
 from bokeh.io import curdoc, show
 from bokeh.layouts import column, row
-from bokeh.models import ColumnDataSource, Div, Select, AutocompleteInput, RangeSlider, Range1d, FactorRange
+from bokeh.models import ColumnDataSource, Div, Select, AutocompleteInput, RangeSlider, Range1d, FactorRange, CustomJS
 from bokeh.plotting import figure
 from os.path import dirname, join
 
@@ -69,8 +69,9 @@ for position, data, colour in zip(position_data.keys(), position_data.values(), 
 
 # r = p.circle(x='x', y='y', source=source, size=6, color='color', line_color=None, legend_field='position')
 # p.circle(x='x', y='y', source=highlight, size=11, line_color='black', fill_alpha=0, line_width=1)
-p.legend.location = "top_left"
-p.legend.click_policy="hide"
+legend = p.legend
+legend.location = "top_left"
+legend.click_policy="hide"
 
 # p.hover.renderers = [r]
 
@@ -146,6 +147,23 @@ controls = [minutes, x_axis, y_axis, highlight_name]
 for control in controls:
     control.on_change('value', lambda attr, old, new: updatescatter())
 highlight_name.on_change('value', lambda attr, old, new: updatebar())
+
+callback = """
+    y_range = fig.y_range
+    y_range.have_updated_interactively = false
+    y_range.renderers = []
+    for (let it of legend.items) {
+        for (let r of it.renderers) {
+            if (r.visible)
+                y_range.renderers.push(r)
+        }
+    }
+    Bokeh.index[fig.id].update_dataranges()
+"""
+
+for item in legend.items:
+    item.renderers[0].js_on_change("visible",
+         CustomJS(args=dict(fig=p, legend=legend), code=callback))
 
 inputs = column(*controls, width=250)
 
