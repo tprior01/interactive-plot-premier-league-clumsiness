@@ -67,8 +67,8 @@ for position, data, colour in zip(position_data.keys(), position_data.values(), 
 p.circle(x='x', y='y', source=highlight, size=11, line_color='black', fill_alpha=0, line_width=1)
 p.legend.location = "top_left"
 p.legend.click_policy = "hide"
-p.x_range = DataRange1d(only_visible=True)
-p.y_range = DataRange1d(only_visible=True)
+p.x_range = DataRange1d(only_visible=True, renderers=renderers)
+p.y_range = DataRange1d(only_visible=True, renderers=renderers)
 p.hover.renderers = renderers
 legend_items["Goalkeeper"].visible = False
 
