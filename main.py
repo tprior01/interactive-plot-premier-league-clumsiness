@@ -69,7 +69,7 @@ for position, data, colour in zip(position_data.keys(), position_data.values(), 
     p.circle(x='x', y='y', source=position_data[position], size=6, color=colour, line_color=None, legend_label=position)
 
 # r = p.circle(x='x', y='y', source=source, size=6, color='color', line_color=None, legend_field='position')
-# p.circle(x='x', y='y', source=highlight, size=11, line_color='black', fill_alpha=0, line_width=1)
+p.circle(x='x', y='y', source=highlight, size=11, line_color='black', fill_alpha=0, line_width=1)
 legend = p.legend
 legend.location = "top_left"
 legend.click_policy="hide"
