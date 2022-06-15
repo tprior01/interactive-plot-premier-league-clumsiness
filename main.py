@@ -85,6 +85,7 @@ q.outline_line_color = None
 q.yaxis.ticker = SingleIntervalTicker(interval=1)
 
 
+p.add_tools(TapTool())
 def callback(event):
     print('attempting callback')
     # use event['x'], event['y'], event['sx'], event['sy']
