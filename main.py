@@ -89,7 +89,7 @@ def callback():
 
 cb = callback()
 
-p.add_tools(TapTool(behaviour='inspect', callback=cb))
+p.add_tools(TapTool(behavior='inspect', callback=cb))
 
 def select_players():
     selected = players[
