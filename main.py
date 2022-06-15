@@ -1,9 +1,8 @@
 import pandas as pd
-from bokeh.io import curdoc, show
+from bokeh.io import curdoc
 from bokeh.layouts import column, row
 from bokeh.models import ColumnDataSource, Div, Select, AutocompleteInput, RangeSlider, DataRange1d, \
-    SingleIntervalTicker, TapTool
-from bokeh.events import Tap
+    SingleIntervalTicker
 from bokeh.plotting import figure
 from os.path import dirname, join
 
@@ -172,16 +171,8 @@ inputs = column(*controls, width=250)
 
 l = column(desc, row(inputs, p), q, sizing_mode='scale_both')
 
-# def changehighlighted(name):
-#     highlight_name.value = name
-#
-# taptool = p.select(type=TapTool)
-# taptool.callback = changehighlighted('@name')
-# taptool.renderers = renderers
-
 q.add_layout(q.legend[0], 'right')
 updatescatter()  # initial load of the scatter data
 updatebar()  # initial load of the bar data
 curdoc().add_root(l)
 curdoc().title = 'Players'
-show(l)
