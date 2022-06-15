@@ -1,5 +1,5 @@
 import pandas as pd
-from bokeh.io import curdoc
+from bokeh.io import curdoc, show
 from bokeh.layouts import column, row
 from bokeh.models import ColumnDataSource, Div, Select, AutocompleteInput, RangeSlider, DataRange1d, \
     SingleIntervalTicker
@@ -76,7 +76,7 @@ q.y_range.start = 0
 q.xgrid.grid_line_color = None
 q.axis.minor_tick_line_color = None
 q.outline_line_color = None
-q.xaxis.ticker = SingleIntervalTicker(interval=1)
+q.yaxis.ticker = SingleIntervalTicker(interval=1)
 
 
 def select_players():
