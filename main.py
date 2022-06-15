@@ -84,10 +84,8 @@ def highlight_players(selected):
 
 
 def updatebar():
-    print(highlight_name.value)
     if (highlight_name.value in names):
         playerid = id_dic[highlight_name.value]
-        print(playerid)
         data = {
             'seasons': [],
             'redcards': [],
@@ -104,14 +102,12 @@ def updatebar():
                         data[directory].append(dfx[dfx['PlayerID'] == playerid][directory].iloc[0])
                     else:
                         data[directory].append(0)
-        print(data)
         seasonal.data = data
         q.x_range.factors = seasonal.data['seasons']
 
 def updatescatter():
     df = select_players()
-    # df2 = highlight_players(df)
-    # updatebarchart(df2)
+    df2 = highlight_players(df)
     x_name = axis_map[x_axis.value]
     y_name = axis_map[y_axis.value]
     p.xaxis.axis_label = x_axis.value
@@ -127,10 +123,10 @@ def updatescatter():
         pensconceded=df['pensconceded'],
         errors=df['errors']
     )
-    # highlight.data = dict(
-    #     x=df2[x_name],
-    #     y=df2[y_name],
-    # )
+    highlight.data = dict(
+        x=df2[x_name],
+        y=df2[y_name],
+    )
 
 controls = [minutes, position, x_axis, y_axis]
 for control in controls:
