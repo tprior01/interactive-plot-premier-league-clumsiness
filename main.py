@@ -80,7 +80,7 @@ p.y_range = DataRange1d(only_visible=True)
 # p.hover.renderers = [r]
 
 # bar chart
-q = figure(x_range=seasonal.data['seasons'], title='%s mistakes by season' % highlight_name.value, height=150, toolbar_location=None, tools="")
+q = figure(x_range=seasonal.data['seasons'], height=150, toolbar_location=None, tools="")
 q.vbar_stack(directories, x='seasons', width=0.2, color=bar_colours, source=seasonal, legend_label=categories)
 q.y_range.start = 0
 q.xgrid.grid_line_color = None
