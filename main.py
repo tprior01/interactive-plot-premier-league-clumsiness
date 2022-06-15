@@ -20,7 +20,7 @@ names = players['PlayerName'].values.tolist()
 id_dic = dict()
 for i in range(len(ids)):
     id_dic[names[i]] = ids[i]
-
+print(id_dic)
 
 axis_map = {
     'Minutes': 'minutes',
@@ -86,7 +86,7 @@ def highlight_players(selected):
 def updatebar():
     print(highlight_name.value)
     if (highlight_name.value in names):
-        playerid = id_dic[highlight_name]
+        playerid = id_dic[highlight_name.value]
         print(playerid)
         data = {
             'seasons': [],
