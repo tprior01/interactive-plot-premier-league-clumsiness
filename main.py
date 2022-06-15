@@ -87,7 +87,7 @@ q.yaxis.ticker = SingleIntervalTicker(interval=1)
 
 p.add_tools(TapTool())
 def callback(event):
-    print(source.selected.indices)
+    print(source.selected)
 
 p.on_event(Tap, callback)
 
