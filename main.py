@@ -58,15 +58,20 @@ TOOLTIPS = [
 # scatter plot
 p = figure(height=600, width=700, title='', toolbar_location=None, tooltips=TOOLTIPS, sizing_mode='scale_both')
 renderers = []
+legend_items = dict()
 for position, data, colour in zip(position_data.keys(), position_data.values(), position_colours):
-    renderers.append(p.circle(x='x', y='y', source=position_data[position], size=6, color=colour, line_color=None,
-                              legend_label=position))
+    temp = p.circle(x='x', y='y', source=position_data[position], size=6, color=colour, line_color=None,
+                              legend_label=position)
+    renderers.append(temp)
+    legend_items[position] = temp
 p.circle(x='x', y='y', source=highlight, size=11, line_color='black', fill_alpha=0, line_width=1)
 p.legend.location = "top_left"
 p.legend.click_policy = "hide"
 p.x_range = DataRange1d(only_visible=True)
 p.y_range = DataRange1d(only_visible=True)
 p.hover.renderers = renderers
+legend_items["Goalkeeper"].visible = False
+
 
 
 # bar chart
@@ -126,7 +131,7 @@ def updatescatter():
     y_name = axis_map[y_axis.value]
     p.xaxis.axis_label = x_axis.value
     p.yaxis.axis_label = y_axis.value
-    p.title.text = '%d players selected' % len(df)
+    size = 0
     for position, data in position_data.items():
         data.data = dict(
             x=df[df['Position'] == position][x_name],
@@ -137,6 +142,10 @@ def updatescatter():
             pensconceded=df[df['Position'] == position]['pensconceded'],
             errors=df[df['Position'] == position]['errors']
         )
+        if legend_items[position].visible:
+            size += len(df[df['Position'] == position])
+    p.title.text = '%d players selected' % size
+
     highlight.data = dict(
         x=df_highlighted[x_name],
         y=df_highlighted[y_name],
@@ -147,6 +156,18 @@ controls = [minutes, x_axis, y_axis, highlight_name]
 for control in controls:
     control.on_change('value', lambda attr, old, new: updatescatter())
 highlight_name.on_change('value', lambda attr, old, new: updatebar())
+
+def updatesize():
+    size = 0
+    df = select_players()
+    for position in positions:
+        if legend_items[position].visible:
+            size += len(df[df['Position'] == position])
+    p.title.text = '%d players selected' % size
+
+
+for position in positions:
+    legend_items[position].on_change('visible', lambda attr, old, new: updatesize())
 
 inputs = column(*controls, width=250)
 
@@ -164,3 +185,4 @@ updatescatter()  # initial load of the scatter data
 updatebar()  # initial load of the bar data
 curdoc().add_root(l)
 curdoc().title = 'Players'
+show(l)
