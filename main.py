@@ -82,6 +82,7 @@ def updatebar():
     print(highlight_name.value)
     if (highlight_name.value in names):
         playerid = players['PlayerID'].iat[0]
+        print(playerid)
         data = {
             'seasons': [],
             'redcards': [],
@@ -98,6 +99,7 @@ def updatebar():
                         data[directory].append(dfx[dfx['PlayerID'] == playerid][directory].iloc[0])
                     else:
                         data[directory].append(0)
+        print(data)
         seasonal.data = data
         q.x_range.factors = seasonal.data['seasons']
 
