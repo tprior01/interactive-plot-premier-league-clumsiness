@@ -151,12 +151,12 @@ inputs = column(*controls, width=250)
 
 l = column(desc, row(inputs, p), q, sizing_mode='scale_both')
 
-def changehighlighted(name):
-    highlight_name.value = name
-
-taptool = p.select(type=TapTool)
-taptool.callback = changehighlighted('@name')
-taptool.renderers = renderers
+# def changehighlighted(name):
+#     highlight_name.value = name
+#
+# taptool = p.select(type=TapTool)
+# taptool.callback = changehighlighted('@name')
+# taptool.renderers = renderers
 
 q.add_layout(q.legend[0], 'right')
 updatescatter()  # initial load of the scatter data
