@@ -2,7 +2,8 @@ import pandas as pd
 from bokeh.io import curdoc, show
 from bokeh.layouts import column, row
 from bokeh.models import ColumnDataSource, Div, Select, AutocompleteInput, RangeSlider, DataRange1d, \
-    SingleIntervalTicker
+    SingleIntervalTicker, TapTool
+from bokeh.events import Tap
 from bokeh.plotting import figure
 from os.path import dirname, join
 
@@ -56,7 +57,7 @@ TOOLTIPS = [
 ]
 
 # scatter plot
-p = figure(height=600, width=700, title='', toolbar_location=None, tooltips=TOOLTIPS, sizing_mode='scale_both')
+p = figure(height=600, width=700, title='', toolbar_location=None, tooltips=TOOLTIPS, sizing_mode='scale_both', tools='tap')
 renderers = []
 legend_items = dict()
 for position, data, colour in zip(position_data.keys(), position_data.values(), position_colours):
@@ -83,6 +84,11 @@ q.axis.minor_tick_line_color = None
 q.outline_line_color = None
 q.yaxis.ticker = SingleIntervalTicker(interval=1)
 
+def callback(event):
+    # use event['x'], event['y'], event['sx'], event['sy']
+    highlight_name.value = event['name']
+
+p.on_event(Tap, callback)
 
 def select_players():
     selected = players[
@@ -94,7 +100,7 @@ def select_players():
 
 def highlight_players(selected):
     if highlight_name.value != "":
-        selected = selected[selected['PlayerName'].str.contains(highlight_name.value.strip(), case=False)]
+        selected = selected[selected['PlayerName'] == highlight_name.value]
     else:
         selected = selected[selected['PlayerName'] == None]
     return selected
