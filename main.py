@@ -131,6 +131,7 @@ def updatescatter():
 controls = [minutes, position, x_axis, y_axis, highlight_name]
 for control in controls:
     control.on_change('value', lambda attr, old, new: updatescatter())
+highlight_name.on_change('value', lambda attr, old, new: updatebar())
 
 inputs = column(*controls, width=250)
 
