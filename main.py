@@ -123,7 +123,7 @@ def updatebar():
                         data[directory].append(0)
         seasonal.data = data
         q.x_range.factors = seasonal.data['seasons']
-        q.title = '%s mistakes by season' % highlight_name.value
+        q.title.text = '%s mistakes by season' % highlight_name.value
 
 def updatescatter():
     df = select_players()
