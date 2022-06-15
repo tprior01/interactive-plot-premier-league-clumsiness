@@ -73,8 +73,8 @@ for position, data, colour in zip(position_data.keys(), position_data.values(), 
 legend = p.legend
 legend.location = "top_left"
 legend.click_policy="hide"
-p.x_range = DataRange1d(range_padding=0.0, only_visible=True)
-p.y_range = DataRange1d(range_padding=0.0, only_visible=True)
+p.x_range = DataRange1d(only_visible=True)
+p.y_range = DataRange1d(only_visible=True)
 
 
 # p.hover.renderers = [r]
