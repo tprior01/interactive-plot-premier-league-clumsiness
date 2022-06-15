@@ -2,7 +2,7 @@ import pandas as pd
 from bokeh.io import curdoc, show
 from bokeh.layouts import column, row
 from bokeh.models import ColumnDataSource, Div, Select, AutocompleteInput, RangeSlider, Range1d, FactorRange, CustomJS, \
-    DataRange1d
+    DataRange1d, TapTool
 from bokeh.plotting import figure
 from os.path import dirname, join
 
@@ -21,7 +21,6 @@ names = players['PlayerName'].values.tolist()
 player_map = dict()
 for i in range(len(ids)):
     player_map[names[i]] = ids[i]
-print(player_map)
 
 axis_map = {
     'Minutes': 'minutes',
@@ -57,7 +56,7 @@ TOOLTIPS = [
 ]
 
 # scatter plot
-p = figure(height=600, width=700, title='', toolbar_location=None, tooltips=TOOLTIPS, sizing_mode='scale_both')
+p = figure(height=600, width=700, title='', toolbar_location=None, tooltips=TOOLTIPS, sizing_mode='scale_both', tools='tap')
 renderers = []
 for position, data, colour in zip(position_data.keys(), position_data.values(), position_colours):
     renderers.append(p.circle(x='x', y='y', source=position_data[position], size=6, color=colour, line_color=None,
@@ -68,6 +67,7 @@ p.legend.click_policy = "hide"
 p.x_range = DataRange1d(only_visible=True)
 p.y_range = DataRange1d(only_visible=True)
 p.hover.renderers = renderers
+
 
 # bar chart
 q = figure(x_range=seasonal.data['seasons'], height=150, toolbar_location=None, tools="")
@@ -150,6 +150,13 @@ highlight_name.on_change('value', lambda attr, old, new: updatebar())
 inputs = column(*controls, width=250)
 
 l = column(desc, row(inputs, p), q, sizing_mode='scale_both')
+
+def changehighlighted(name):
+    highlight_name.value = name
+
+taptool = p.select(type=TapTool)
+taptool.callback = changehighlighted('@name')
+taptool.renderers = renderers
 
 q.add_layout(q.legend[0], 'right')
 updatescatter()  # initial load of the scatter data
