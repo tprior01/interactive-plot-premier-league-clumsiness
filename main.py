@@ -57,7 +57,7 @@ TOOLTIPS = [
 ]
 
 # scatter plot
-p = figure(height=600, width=700, title='', toolbar_location=None, tooltips=TOOLTIPS, sizing_mode='scale_both')
+p = figure(height=600, width=700, title='', toolbar_location=None, tooltips=TOOLTIPS, sizing_mode='scale_both', tools='tap')
 renderers = []
 legend_items = dict()
 for position, data, colour in zip(position_data.keys(), position_data.values(), position_colours):
@@ -73,8 +73,6 @@ p.y_range = DataRange1d(only_visible=True, renderers=renderers)
 p.hover.renderers = renderers
 legend_items["Goalkeeper"].visible = False
 
-
-
 # bar chart
 q = figure(x_range=seasonal.data['seasons'], height=150, toolbar_location=None, tools="")
 q.vbar_stack(directories, x='seasons', width=0.2, color=bar_colours, source=seasonal, legend_label=categories)
@@ -87,9 +85,9 @@ q.yaxis.ticker = SingleIntervalTicker(interval=1)
 def callback():
     print('callback in process')
 
-cb = callback()
-
-p.add_tools(TapTool(behavior='inspect', callback=cb))
+taptool = p.select(type=TapTool)
+taptool.behavior = 'select'
+taptool.callback = callback()
 
 def select_players():
     selected = players[
