@@ -89,6 +89,7 @@ p.add_tools(TapTool())
 def callback(event):
     print('attempting callback')
     print(source.selected)
+    print(event['name'])
     # use event['x'], event['y'], event['sx'], event['sy']
     highlight_name.value = source.selected.name
 
