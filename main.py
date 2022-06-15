@@ -84,13 +84,13 @@ q.axis.minor_tick_line_color = None
 q.outline_line_color = None
 q.yaxis.ticker = SingleIntervalTicker(interval=1)
 
-#
-# p.add_tools(TapTool())
-# def callback(event):
-#     # use event['x'], event['y'], event['sx'], event['sy']
-#     highlight_name.value = event['name']
-#
-# p.on_event(Tap, callback)
+
+def callback(event):
+    print('attempting callback')
+    # use event['x'], event['y'], event['sx'], event['sy']
+    highlight_name.value = event['name']
+
+p.on_event(Tap, callback)
 
 def select_players():
     selected = players[
