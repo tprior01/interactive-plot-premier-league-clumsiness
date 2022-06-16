@@ -147,8 +147,15 @@ def updatesize():
     p.title.text = '%d players selected' % size
 
 
-controls = [minutes, x_axis, y_axis, highlight_name]
+def callback(attr, old, new):
+    print("In callback")
+    patch_name = position_data.data['name'][new[0]]
+    print("TapTool callback executed on Patch {}".format(patch_name))
 
+
+legend_items['Defender'].data_source.selected.on_change('indices', callback)
+
+controls = [minutes, x_axis, y_axis, highlight_name]
 for control in controls:
     control.on_change('value', lambda attr, old, new: updatescatter())
 highlight_name.on_change('value', lambda attr, old, new: updatebar())
