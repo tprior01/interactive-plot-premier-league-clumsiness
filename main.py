@@ -41,7 +41,7 @@ highlight_name = AutocompleteInput(title='Highlight player', value='Granit Xhaka
 x_axis = Select(title='X Axis', options=sorted(axis_map.keys()), value='Minutes')
 y_axis = Select(title='Y Axis', options=sorted(axis_map.keys()), value='Total Mistakes')
 
-# create column data sources
+# column data sources
 highlight = ColumnDataSource(data=dict(x=[], y=[]))
 seasonal = ColumnDataSource(data=dict(seasons=[], redcards=[], pensconceded=[], errors=[]))
 position_data = dict(Goalkeeper=ColumnDataSource(data=dict(x=[], y=[])),
@@ -152,6 +152,7 @@ controls = [minutes, x_axis, y_axis, highlight_name]
 for control in controls:
     control.on_change('value', lambda attr, old, new: updatescatter())
 highlight_name.on_change('value', lambda attr, old, new: updatebar())
+minutes.on_change('value', lambda attr, old, new: updatesize())
 
 for position in positions:
     legend_items[position].on_change('visible', lambda attr, old, new: updatesize())
