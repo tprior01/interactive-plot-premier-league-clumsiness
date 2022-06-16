@@ -5,7 +5,7 @@ from bokeh.models import ColumnDataSource, Div, Select, AutocompleteInput, Range
 from bokeh.plotting import figure
 from os.path import dirname, join
 
-csv = 'data/data.csv'
+csv = 'data/data_ss.csv'
 players = pd.read_csv(csv)
 
 

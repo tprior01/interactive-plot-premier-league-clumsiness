@@ -5,7 +5,7 @@ from bokeh.models import ColumnDataSource, Div, Select, LabelSet, Label, RangeSl
 from bokeh.plotting import figure
 from os.path import dirname, join
 
-csv = 'data/data.csv'
+csv = 'data/data_ss.csv'
 players = pd.read_csv(csv)
 colours = ['hotpink', 'salmon', 'teal', 'turquoise']
 max_mins = round(players['minutes'].max(), -1)
