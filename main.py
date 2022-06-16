@@ -141,7 +141,6 @@ def updatescatter():
         y=df_highlighted[y_name],
     )
 
-
 def updatesize():
     size = 0
     df = select_players()
@@ -149,15 +148,6 @@ def updatesize():
         if legend_items[position].visible:
             size += len(df[df['Position'] == position])
     p.title.text = '%d players selected' % size
-
-
-def callback(attr, old, new):
-    print("In callback")
-    patch_name = position_data.data['name'][new[0]]
-    print("TapTool callback executed on Patch {}".format(patch_name))
-
-
-legend_items['Defender'].data_source.selected.on_change('indices', callback)
 
 controls = [minutes, x_axis, y_axis, highlight_name]
 for control in controls:
@@ -178,3 +168,5 @@ updatebar()  # initial load of the bar data
 updatesize()
 curdoc().add_root(l)
 curdoc().title = 'Players'
+
+show(l)
