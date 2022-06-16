@@ -30,7 +30,7 @@ axis_map = {
     'Errors leading to a goal': 'errors'
 }
 
-desc = Div(text=open(join(dirname(__file__), 'my-application/description.html')).read(), sizing_mode="stretch_width")
+desc = Div(text=open(join(dirname(__file__), '../my-application/description.html')).read(), sizing_mode="stretch_width")
 minutes = RangeSlider(title='Number of minutes', value=(0, max_mins), start=0, end=max_mins, step=10)
 position = Select(title='Position', value="All", options=positions)
 highlight_name = AutocompleteInput(title='Highlight player', value='Granit Xhaka', completions=names,

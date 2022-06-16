@@ -18,7 +18,7 @@ axis_map = {
     'Errors leading to a goal': 'errors'
 }
 
-desc = Div(text=open(join(dirname(__file__), 'my-application/description.html')).read(), sizing_mode="stretch_width")
+desc = Div(text=open(join(dirname(__file__), '../my-application/description.html')).read(), sizing_mode="stretch_width")
 minutes = RangeSlider(title='Number of minutes', value=(0, max_mins), start=0, end=max_mins, step=10)
 highlight_name = TextInput(title='Highlight player name containing', value='Xhaka')
 x_axis = Select(title='X Axis', options=sorted(axis_map.keys()), value='Minutes')

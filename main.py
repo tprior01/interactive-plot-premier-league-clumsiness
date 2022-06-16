@@ -6,6 +6,7 @@ from bokeh.models import ColumnDataSource, Div, Select, AutocompleteInput, Range
 from bokeh.plotting import figure
 from os.path import dirname, join
 
+# data
 csv = 'data/data.csv'
 players = pd.read_csv(csv)
 
@@ -21,6 +22,7 @@ names = players['PlayerName'].values.tolist()
 player_map = dict()
 for i in range(len(ids)):
     player_map[names[i]] = ids[i]
+player_map[""] = None
 
 axis_map = {
     'Minutes': 'minutes',
@@ -30,19 +32,18 @@ axis_map = {
     'Errors leading to a goal': 'errors'
 }
 
+# text to display at the top of page
 desc = Div(text=open(join(dirname(__file__), 'my-application/description.html')).read(), sizing_mode="stretch_width")
+
+# widgets
 minutes = RangeSlider(title='Number of minutes', value=(0, max_mins), start=0, end=max_mins, step=10)
-position = Select(title='Position', value="All", options=positions)
-highlight_name = AutocompleteInput(title='Highlight player', value='Granit Xhaka', completions=names,
-                                   restrict=True, case_sensitive=False)
+highlight_name = AutocompleteInput(title='Highlight player', value='Granit Xhaka', completions=names, restrict=True, case_sensitive=False)
 x_axis = Select(title='X Axis', options=sorted(axis_map.keys()), value='Minutes')
 y_axis = Select(title='Y Axis', options=sorted(axis_map.keys()), value='Total Mistakes')
 
-# create Column Data Sources that will be used by the plots
-source = ColumnDataSource(data=dict(x=[], y=[], position=[], color=[]))
+# create column data sources
 highlight = ColumnDataSource(data=dict(x=[], y=[]))
 seasonal = ColumnDataSource(data=dict(seasons=[], redcards=[], pensconceded=[], errors=[]))
-
 position_data = dict(Goalkeeper=ColumnDataSource(data=dict(x=[], y=[])),
                      Defender=ColumnDataSource(data=dict(x=[], y=[])),
                      Midfielder=ColumnDataSource(data=dict(x=[], y=[])),
@@ -60,8 +61,7 @@ p = figure(height=600, width=700, title='', toolbar_location=None, tooltips=TOOL
 renderers = []
 legend_items = dict()
 for position, data, colour in zip(position_data.keys(), position_data.values(), position_colours):
-    temp = p.circle(x='x', y='y', source=position_data[position], size=6, color=colour, line_color=None,
-                              legend_label=position)
+    temp = p.circle(x='x', y='y', source=position_data[position], size=6, color=colour, line_color=None, legend_label=position)
     renderers.append(temp)
     legend_items[position] = temp
 p.circle(x='x', y='y', source=highlight, size=11, line_color='black', fill_alpha=0, line_width=1)
@@ -87,14 +87,6 @@ def select_players():
         (players.minutes >= minutes.value[0]) &
         (players.minutes <= minutes.value[1])
         ]
-    return selected
-
-
-def highlight_players(selected):
-    if highlight_name.value != "":
-        selected = selected[selected['PlayerName'] == highlight_name.value]
-    else:
-        selected = selected[selected['PlayerName'] == None]
     return selected
 
 
@@ -124,12 +116,11 @@ def updatebar():
 
 def updatescatter():
     df = select_players()
-    df_highlighted = highlight_players(df)
+    df_highlighted = df[df['PlayerID'] == player_map[highlight_name.value]]
     x_name = axis_map[x_axis.value]
     y_name = axis_map[y_axis.value]
     p.xaxis.axis_label = x_axis.value
     p.yaxis.axis_label = y_axis.value
-    size = 0
     for position, data in position_data.items():
         data.data = dict(
             x=df[df['Position'] == position][x_name],
@@ -140,20 +131,12 @@ def updatescatter():
             pensconceded=df[df['Position'] == position]['pensconceded'],
             errors=df[df['Position'] == position]['errors']
         )
-        if legend_items[position].visible:
-            size += len(df[df['Position'] == position])
-    p.title.text = '%d players selected' % size
 
     highlight.data = dict(
         x=df_highlighted[x_name],
         y=df_highlighted[y_name],
     )
 
-controls = [minutes, x_axis, y_axis, highlight_name]
-
-for control in controls:
-    control.on_change('value', lambda attr, old, new: updatescatter())
-highlight_name.on_change('value', lambda attr, old, new: updatebar())
 
 def updatesize():
     size = 0
@@ -163,6 +146,12 @@ def updatesize():
             size += len(df[df['Position'] == position])
     p.title.text = '%d players selected' % size
 
+
+controls = [minutes, x_axis, y_axis, highlight_name]
+
+for control in controls:
+    control.on_change('value', lambda attr, old, new: updatescatter())
+highlight_name.on_change('value', lambda attr, old, new: updatebar())
 
 for position in positions:
     legend_items[position].on_change('visible', lambda attr, old, new: updatesize())
@@ -174,5 +163,6 @@ l = column(desc, row(inputs, p), q, sizing_mode='scale_both')
 q.add_layout(q.legend[0], 'right')
 updatescatter()  # initial load of the scatter data
 updatebar()  # initial load of the bar data
+updatesize()
 curdoc().add_root(l)
 curdoc().title = 'Players'
