@@ -146,6 +146,8 @@ def updatescatter():
     #     y=df_highlighted[y_name],
     # )
 
+index = ['Midfielder', 0]
+
 def updatesize():
     size = 0
     df = select_players()
@@ -154,8 +156,6 @@ def updatesize():
             size += len(df[df['Position'] == position])
     p.title.text = '%d players selected' % size
     position_data[index[0]].selected.indices = [index[1]]
-
-index = ['Midfielder', 0]
 
 def goalkeeper(attr, old, new):
     try:
