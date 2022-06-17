@@ -97,9 +97,7 @@ def select_players():
         ]
     return selected
 
-
-def updatebar():
-    playerid = index[2]
+def getBarData(playerid):
     data = {
         'seasons': [],
         'redcards': [],
@@ -117,7 +115,19 @@ def updatebar():
                     data[directory].append(dfx[dfx['PlayerID'] == playerid][directory].iloc[0])
                 else:
                     data[directory].append(0)
-    seasonal.data = data
+    return data
+
+barMap = dict()
+for playerid in players[(players['minutes'] > 1500) | (players['sumerrors'] > 10)]['PlayerID'].tolist():
+    barMap[playerid] = getBarData(playerid)
+
+def updatebar():
+    playerid = index[2]
+    if playerid in barMap:
+        print(barMap[playerid])
+        seasonal.data = barMap[playerid]
+    else:
+        seasonal.data = getBarData(playerid)
     q.x_range.factors = seasonal.data['seasons']
     q.title.text = '%s mistakes by season' % nameMap[playerid]
 
@@ -199,6 +209,7 @@ controls = [minutes, x_axis, y_axis, highlight_name]
 for control in controls:
     control.on_change('value', lambda attr, old, new: updatescatter())
 highlight_name.on_change('value', lambda attr, old, new: updatebar())
+
 highlight_name.on_change('value', lambda attr, old, new: updatehighlighted())
 minutes.on_change('value', lambda attr, old, new: updatesize())
 
