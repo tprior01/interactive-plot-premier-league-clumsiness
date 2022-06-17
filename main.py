@@ -155,6 +155,7 @@ def updatesize():
         if legend_items[position].visible:
             size += len(df[df['Position'] == position])
     p.title.text = '%d players selected' % size
+    print(index[0], index[1])
     position_data[index[0]].selected.indices = [index[1]]
 
 def goalkeeper(attr, old, new):
