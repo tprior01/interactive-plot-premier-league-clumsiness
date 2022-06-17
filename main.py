@@ -22,9 +22,11 @@ ids = players['PlayerID'].values.tolist()
 names = players['PlayerName'].values.tolist()
 player_map = dict()
 for i in range(len(ids)):
-    player_map[names[i].rsplit(' ', 1)[-1]] = ids[i]
+    short_name = names[i].rsplit(' ', 1)[-1]
+    player_map[short_name] = ids[i]
+    names[i] = short_name
 player_map[""] = None
-print(player_map)
+
 
 axis_map = {
     'Minutes': 'minutes',
