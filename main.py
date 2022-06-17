@@ -23,9 +23,7 @@ ids = players['PlayerID'].values.tolist()
 names = players['PlayerName'].values.tolist()
 nameMap = dict()
 for i in range(len(ids)):
-    shortName = names[i].rsplit(' ', 1)[-1]
-    nameMap[ids[i]] = shortName
-    names[i] = shortName
+    nameMap[ids[i]] = names[i]
 names.sort()
 
 axis_map = {
@@ -80,7 +78,6 @@ for renderer in renderers:
     renderer.nonselection_glyph = None
     renderer.selection_glyph = Circle(fill_alpha=1, fill_color="yellow", line_color='black', line_width=2)
 
-
 # bar chart
 q = figure(x_range=seasonal.data['seasons'], height=150, toolbar_location=None, tools="")
 q.vbar_stack(directories, x='seasons', width=0.2, color=bar_colours, source=seasonal, legend_label=categories)
@@ -121,7 +118,6 @@ def updatebar():
     seasonal.data = data
     q.x_range.factors = seasonal.data['seasons']
     q.title.text = '%s mistakes by season' % nameMap[playerid]
-
 
 def updatescatter():
     df = select_players()
@@ -205,7 +201,6 @@ minutes.on_change('value', lambda attr, old, new: updatesize())
 
 for position in positions:
     legend_items[position].on_change('visible', lambda attr, old, new: updatesize())
-    legend_items[position].on_change('visible', lambda attr, old, new: updatehighlighted())
 
 p.on_event(events.Tap, updatehighlighted)
 
