@@ -59,7 +59,7 @@ TOOLTIPS = [
 ]
 
 # scatter plot
-p = figure(height=600, width=700, title='', toolbar_location=None, tooltips=TOOLTIPS, sizing_mode='scale_both')
+p = figure(tools='tap',height=600, width=700, title='', toolbar_location=None, tooltips=TOOLTIPS, sizing_mode='scale_both')
 renderers = []
 legend_items = dict()
 for position, data, colour in zip(position_data.keys(), position_data.values(), position_colours):
@@ -148,6 +148,13 @@ def updatesize():
         if legend_items[position].visible:
             size += len(df[df['Position'] == position])
     p.title.text = '%d players selected' % size
+
+def handler(attr, old, new):
+    print('attr: {} old: {} new: {}'.format(attr, old, new))
+
+p.data_source.selected.on_change('indices', handler)
+
+
 
 controls = [minutes, x_axis, y_axis, highlight_name]
 for control in controls:
