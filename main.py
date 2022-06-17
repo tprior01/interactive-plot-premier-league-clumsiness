@@ -42,6 +42,9 @@ highlight_name = AutocompleteInput(title='Highlight player', value='Granit Xhaka
 x_axis = Select(title='X Axis', options=sorted(axis_map.keys()), value='Minutes')
 y_axis = Select(title='Y Axis', options=sorted(axis_map.keys()), value='Total Mistakes')
 
+# global variable :|
+player_id = 12136
+
 # column data sources
 highlight = ColumnDataSource(data=dict(x=[], y=[]))
 seasonal = ColumnDataSource(data=dict(seasons=[], redcards=[], pensconceded=[], errors=[]))
@@ -129,15 +132,16 @@ def updatescatter():
     p.xaxis.axis_label = x_axis.value
     p.yaxis.axis_label = y_axis.value
     for position, data in position_data.items():
+        dft = df[df['Position'] == position]
         data.data = dict(
-            x=df[df['Position'] == position][x_name],
-            y=df[df['Position'] == position][y_name],
-            position=df[df['Position'] == position]['Position'],
-            name=df[df['Position'] == position]['PlayerName'],
-            redcards=df[df['Position'] == position]['redcards'],
-            pensconceded=df[df['Position'] == position]['pensconceded'],
-            errors=df[df['Position'] == position]['errors'],
-            owngoals=df[df['Position'] == position]['owngoals']
+            x=dft[x_name],
+            y=dft[y_name],
+            position=dft['Position'],
+            name=dft['PlayerName'],
+            redcards=dft['redcards'],
+            pensconceded=dft['pensconceded'],
+            errors=dft['errors'],
+            owngoals=dft['owngoals']
         )
 
     # highlight.data = dict(
