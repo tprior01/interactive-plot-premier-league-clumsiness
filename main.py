@@ -2,7 +2,7 @@ import pandas as pd
 from bokeh.io import curdoc, show
 from bokeh.layouts import column, row
 from bokeh.models import ColumnDataSource, Div, Select, AutocompleteInput, RangeSlider, DataRange1d, \
-    SingleIntervalTicker
+    SingleIntervalTicker, Circle
 from bokeh.plotting import figure
 from os.path import dirname, join
 
@@ -75,6 +75,8 @@ p.hover.renderers = renderers
 legend_items["Goalkeeper"].visible = False
 for renderer in renderers:
     renderer.nonselection_glyph = None
+    renderer.selection_glyph = Circle(fill_alpha=1, fill_color="yellow", line_color='black', line_width=2)
+
 
 # bar chart
 q = figure(x_range=seasonal.data['seasons'], height=150, toolbar_location=None, tools="")
@@ -121,7 +123,7 @@ def updatebar():
 
 def updatescatter():
     df = select_players()
-    df_highlighted = df[df['PlayerID'] == player_map[highlight_name.value]]
+    # df_highlighted = df[df['PlayerID'] == player_map[highlight_name.value]]
     x_name = axis_map[x_axis.value]
     y_name = axis_map[y_axis.value]
     p.xaxis.axis_label = x_axis.value
@@ -138,10 +140,10 @@ def updatescatter():
             owngoals=df[df['Position'] == position]['owngoals']
         )
 
-    highlight.data = dict(
-        x=df_highlighted[x_name],
-        y=df_highlighted[y_name],
-    )
+    # highlight.data = dict(
+    #     x=df_highlighted[x_name],
+    #     y=df_highlighted[y_name],
+    # )
 
 def updatesize():
     size = 0
