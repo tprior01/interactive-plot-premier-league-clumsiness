@@ -23,7 +23,9 @@ ids = players['PlayerID'].values.tolist()
 names = players['PlayerName'].values.tolist()
 nameMap = dict()
 for i in range(len(ids)):
-    nameMap[ids[i]] = names[i]
+    shortName = names[i].rsplit(' ', 1)[-1]
+    nameMap[ids[i]] = shortName
+    names[i] = shortName
 names.sort()
 
 axis_map = {
