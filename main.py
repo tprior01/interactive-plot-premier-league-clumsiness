@@ -153,6 +153,7 @@ def updatesize():
         if legend_items[position].visible:
             size += len(df[df['Position'] == position])
     p.title.text = '%d players selected' % size
+    position_data[index[0]].selected.indices = [index[1]]
 
 index = ['Midfielder', 0]
 
@@ -161,36 +162,32 @@ def goalkeeper(attr, old, new):
         global index
         index = ['Goalkeeper', new]
         highlight_name.value = position_data['Goalkeeper'].data['name'].iloc[new[0]]
-    except IndexError as error:
-        if index[0] == 'Goalkeeper':
-            position_data['Goalkeeper'].selected.indices = [index[1]]
+    except IndexError:
+        pass
 
 def defender(attr, old, new):
     try:
         global index
         index = ['Defender', new]
         highlight_name.value = position_data['Defender'].data['name'].iloc[new[0]]
-    except IndexError as error:
-        if index[0] == 'Defender':
-            position_data['Defender'].selected.indices = [index[1]]
+    except IndexError:
+        pass
 
 def midfielder(attr, old, new):
     try:
         global index
         index = ['Midfielder', new]
         highlight_name.value = position_data['Midfielder'].data['name'].iloc[new[0]]
-    except IndexError as error:
-        if index[0] == 'Midfielder':
-            position_data['Midfielder'].selected.indices = [index[1]]
+    except IndexError:
+        pass
 
 def forward(attr, old, new):
     try:
         global index
         index = ['Forward', new]
         highlight_name.value = position_data['Forward'].data['name'].iloc[new[0]]
-    except IndexError as error:
-        if index[0] == 'Forward':
-            position_data['Forward'].selected.indices = [index[1]]
+    except IndexError:
+        pass
 
 renderers[0].data_source.selected.on_change('indices', goalkeeper)
 renderers[1].data_source.selected.on_change('indices', defender)
