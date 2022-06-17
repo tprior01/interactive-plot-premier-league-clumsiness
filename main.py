@@ -149,11 +149,19 @@ def updatesize():
             size += len(df[df['Position'] == position])
     p.title.text = '%d players selected' % size
 
-def handler(attr, old, new):
-    print('attr: {} old: {} new: {}'.format(attr, old, new))
-    print(position_data[new])
+def goalkeeper(attr, old, new):
+    highlight_name.value = position_data['Goalkeeper'].data['name'][new]
+def defender(attr, old, new):
+    highlight_name.value = position_data['Defender'].data['name'][new]
+def midfielder(attr, old, new):
+    highlight_name.value = position_data['Midfielder'].data['name'][new]
+def forward(attr, old, new):
+    highlight_name.value = position_data['Forward'].data['name'][new]
 
-renderers[0].data_source.selected.on_change('indices', handler)
+renderers[0].data_source.selected.on_change('indices', goalkeeper)
+renderers[1].data_source.selected.on_change('indices', goalkeeper)
+renderers[2].data_source.selected.on_change('indices', goalkeeper)
+renderers[3].data_source.selected.on_change('indices', goalkeeper)
 
 
 
