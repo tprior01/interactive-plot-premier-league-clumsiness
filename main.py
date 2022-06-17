@@ -76,7 +76,6 @@ p.legend.click_policy = "hide"
 p.x_range = DataRange1d(only_visible=True, renderers=renderers)
 p.y_range = DataRange1d(only_visible=True, renderers=renderers)
 p.hover.renderers = renderers
-legend_items["Goalkeeper"].visible = False
 for renderer in renderers:
     renderer.nonselection_glyph = None
     renderer.selection_glyph = Circle(fill_alpha=1, fill_color="yellow", line_color='black', line_width=2)
