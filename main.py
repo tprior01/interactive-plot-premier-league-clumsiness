@@ -63,7 +63,7 @@ p = figure(tools='tap',height=600, width=700, title='', toolbar_location=None, t
 renderers = []
 legend_items = dict()
 for position, data, colour in zip(position_data.keys(), position_data.values(), position_colours):
-    temp = p.circle(x='x', y='y', source=position_data[position], size=6, color=colour, line_color=None, legend_label=position, nonselection_glyph=None)
+    temp = p.circle(x='x', y='y', source=position_data[position], size=6, color=colour, line_color=None, legend_label=position)
     renderers.append(temp)
     legend_items[position] = temp
 p.circle(x='x', y='y', source=highlight, size=11, line_color='black', fill_alpha=0, line_width=1)
@@ -73,6 +73,8 @@ p.x_range = DataRange1d(only_visible=True, renderers=renderers)
 p.y_range = DataRange1d(only_visible=True, renderers=renderers)
 p.hover.renderers = renderers
 legend_items["Goalkeeper"].visible = False
+for renderer in renderers:
+    renderer.nonselection_glyph = None
 
 # bar chart
 q = figure(x_range=seasonal.data['seasons'], height=150, toolbar_location=None, tools="")
