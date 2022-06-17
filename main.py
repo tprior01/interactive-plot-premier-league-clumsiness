@@ -150,13 +150,13 @@ def updatesize():
     p.title.text = '%d players selected' % size
 
 def goalkeeper(attr, old, new):
-    print(position_data['Goalkeeper'].data['name'][4])
+    print(position_data['Goalkeeper'].data['name'].iloc[4])
 def defender(attr, old, new):
-    print(position_data['Defender'].data['name'][4])
+    print(position_data['Defender'].data['name'].iloc[4])
 def midfielder(attr, old, new):
-    print(position_data['Midfielder'].data['name'][4])
+    print(position_data['Midfielder'].data['name'].iloc[4])
 def forward(attr, old, new):
-    print(position_data['Forward'].data['name'][4])
+    print(position_data['Forward'].data['name'].iloc[4])
     print(new)
 
 renderers[0].data_source.selected.on_change('indices', goalkeeper)
@@ -185,5 +185,7 @@ updatebar()  # initial load of the bar data
 updatesize()
 curdoc().add_root(l)
 curdoc().title = 'Players'
+
+print(position_data['Forward'].data['name'].iloc[3])
 
 show(l)
