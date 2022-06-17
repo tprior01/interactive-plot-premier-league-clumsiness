@@ -150,18 +150,19 @@ def updatesize():
     p.title.text = '%d players selected' % size
 
 def goalkeeper(attr, old, new):
-    highlight_name.value = position_data['Goalkeeper'].data['name'][new]
+    print(position_data['Goalkeeper'].data['name'][4])
 def defender(attr, old, new):
-    highlight_name.value = position_data['Defender'].data['name'][new]
+    print(position_data['Defender'].data['name'][4])
 def midfielder(attr, old, new):
-    highlight_name.value = position_data['Midfielder'].data['name'][new]
+    print(position_data['Midfielder'].data['name'][4])
 def forward(attr, old, new):
-    highlight_name.value = position_data['Forward'].data['name'][new]
+    print(position_data['Forward'].data['name'][4])
+    print(new)
 
 renderers[0].data_source.selected.on_change('indices', goalkeeper)
-renderers[1].data_source.selected.on_change('indices', goalkeeper)
-renderers[2].data_source.selected.on_change('indices', goalkeeper)
-renderers[3].data_source.selected.on_change('indices', goalkeeper)
+renderers[1].data_source.selected.on_change('indices', defender)
+renderers[2].data_source.selected.on_change('indices', midfielder)
+renderers[3].data_source.selected.on_change('indices', forward)
 
 
 
