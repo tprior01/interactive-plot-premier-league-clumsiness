@@ -156,6 +156,8 @@ def updatesize():
             size += len(df[df['Position'] == position])
     p.title.text = '%d players selected' % size
     print(index[0], index[1])
+
+def updatehighlighted():
     position_data[index[0]].selected.indices = [index[1]]
 
 def goalkeeper(attr, old, new):
@@ -203,6 +205,8 @@ minutes.on_change('value', lambda attr, old, new: updatesize())
 
 for position in positions:
     legend_items[position].on_change('visible', lambda attr, old, new: updatesize())
+    legend_items[position].on_change('visible', lambda attr, old, new: updatehighlighted())
+
 
 inputs = column(*controls, width=250)
 
