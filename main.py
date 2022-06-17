@@ -161,22 +161,34 @@ def goalkeeper(attr, old, new):
     print(attr)
     print(old)
     print(new)
-    highlight_name.value = position_data['Goalkeeper'].data['name'].iloc[new[0]]
+    try:
+        highlight_name.value = position_data['Goalkeeper'].data['name'].iloc[new[0]]
+    except IndexError as error:
+        print(error)
 def defender(attr, old, new):
     print(attr)
     print(old)
     print(new)
-    highlight_name.value = position_data['Defender'].data['name'].iloc[new[0]]
+    try:
+        highlight_name.value = position_data['Defender'].data['name'].iloc[new[0]]
+    except IndexError as error:
+        print(error)
 def midfielder(attr, old, new):
     print(attr)
     print(old)
     print(new)
-    highlight_name.value = position_data['Midfielder'].data['name'].iloc[new[0]]
+    try:
+        highlight_name.value = position_data['Midfielder'].data['name'].iloc[new[0]]
+    except IndexError as error:
+        print(error)
 def forward(attr, old, new):
     print(attr)
     print(old)
     print(new)
-    highlight_name.value = position_data['Forward'].data['name'].iloc[new[0]]
+    try:
+        highlight_name.value = position_data['Midfielder'].data['name'].iloc[new[0]]
+    except IndexError as error:
+        print(error)
 
 renderers[0].data_source.selected.on_change('indices', goalkeeper)
 renderers[1].data_source.selected.on_change('indices', defender)
