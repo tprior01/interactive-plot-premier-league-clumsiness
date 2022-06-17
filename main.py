@@ -199,6 +199,7 @@ controls = [minutes, x_axis, y_axis, highlight_name]
 for control in controls:
     control.on_change('value', lambda attr, old, new: updatescatter())
 highlight_name.on_change('value', lambda attr, old, new: updatebar())
+highlight_name.on_change('value', lambda attr, old, new: updatehighlighted())
 minutes.on_change('value', lambda attr, old, new: updatesize())
 
 for position in positions:
