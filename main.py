@@ -18,14 +18,13 @@ bar_colours = ['hotpink', 'teal', 'salmon', 'turquoise']
 categories = ['Red Cards', 'Errors Leading to a Goal', 'Penalties Conceded', 'Own Goals']
 
 max_mins = round(players['minutes'].max(), -1)
-ids = players['PlayerID'].values.tolist()
 
+ids = players['PlayerID'].values.tolist()
 names = players['PlayerName'].values.tolist()
 nameMap = dict()
 for i in range(len(ids)):
     shortName = names[i].rsplit(' ', 1)[-1]
-    d = {'fullName': names[i], 'shortName': shortName}
-    nameMap[ids[i]] = d
+    nameMap[ids[i]] = shortName
     names[i] = shortName
 names.sort()
 
@@ -121,7 +120,7 @@ def updatebar():
                     data[directory].append(0)
     seasonal.data = data
     q.x_range.factors = seasonal.data['seasons']
-    q.title.text = '%s mistakes by season' % nameMap[playerid]['fullName']
+    q.title.text = '%s mistakes by season' % nameMap[playerid]
 
 
 def updatescatter():
@@ -162,7 +161,7 @@ def goalkeeper(attr, old, new):
         global index
         id = position_data['Goalkeeper'].data['playerid'].iloc[new[0]]
         index = ['Goalkeeper', new[0], id]
-        highlight_name.value = nameMap[id]['shortName']
+        highlight_name.value = nameMap[id]
     except IndexError:
         pass
 
@@ -171,7 +170,7 @@ def defender(attr, old, new):
         global index
         id = position_data['Defender'].data['playerid'].iloc[new[0]]
         index = ['Defender', new[0], id]
-        highlight_name.value = nameMap[id]['shortName']
+        highlight_name.value = nameMap[id]
     except IndexError:
         pass
 
@@ -180,7 +179,7 @@ def midfielder(attr, old, new):
         global index
         id = position_data['Midfielder'].data['playerid'].iloc[new[0]]
         index = ['Midfielder', new[0], id]
-        highlight_name.value = nameMap[id]['shortName']
+        highlight_name.value = nameMap[id]
     except IndexError:
         pass
 
@@ -189,7 +188,7 @@ def forward(attr, old, new):
         global index
         id = position_data['Forward'].data['playerid'].iloc[new[0]]
         index = ['Forward', new[0], id]
-        highlight_name.value = nameMap[id]['shortName']
+        highlight_name.value = nameMap[id]
     except IndexError:
         pass
 
