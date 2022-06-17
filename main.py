@@ -126,7 +126,6 @@ def updatebar():
 
 def updatescatter():
     df = select_players()
-    # df_highlighted = df[df['PlayerID'] == player_map[highlight_name.value]]
     x_name = axis_map[x_axis.value]
     y_name = axis_map[y_axis.value]
     p.xaxis.axis_label = x_axis.value
@@ -143,11 +142,6 @@ def updatescatter():
             errors=dft['errors'],
             owngoals=dft['owngoals']
         )
-
-    # highlight.data = dict(
-    #     x=df_highlighted[x_name],
-    #     y=df_highlighted[y_name],
-    # )
 
 index = ['Midfielder', 0]
 
@@ -223,5 +217,3 @@ curdoc().add_root(l)
 curdoc().title = 'Players'
 
 position_data['Midfielder'].selected.indices = [0]
-
-show(l)
