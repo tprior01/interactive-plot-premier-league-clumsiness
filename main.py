@@ -19,14 +19,15 @@ categories = ['Red Cards', 'Errors Leading to a Goal', 'Penalties Conceded', 'Ow
 
 max_mins = round(players['minutes'].max(), -1)
 ids = players['PlayerID'].values.tolist()
-names = players['PlayerName'].values.tolist()
-player_map = dict()
-for i in range(len(ids)):
-    short_name = names[i].rsplit(' ', 1)[-1]
-    player_map[ids[i]] = short_name
-    names[i] = short_name
-player_map[""] = None
 
+names = players['PlayerName'].values.tolist()
+nameMap = dict()
+for i in range(len(ids)):
+    shortName = names[i].rsplit(' ', 1)[-1]
+    d = {'fullName': names[i], 'shortName': shortName}
+    nameMap[ids[i]] = d
+    names[i] = shortName
+names.sort()
 
 axis_map = {
     'Minutes': 'minutes',
@@ -120,7 +121,7 @@ def updatebar():
                     data[directory].append(0)
     seasonal.data = data
     q.x_range.factors = seasonal.data['seasons']
-    q.title.text = '%s mistakes by season' % highlight_name.value
+    q.title.text = '%s mistakes by season' % nameMap[playerid]['fullName']
 
 
 def updatescatter():
@@ -161,7 +162,7 @@ def goalkeeper(attr, old, new):
         global index
         id = position_data['Goalkeeper'].data['playerid'].iloc[new[0]]
         index = ['Goalkeeper', new[0], id]
-        highlight_name.value = player_map[id]
+        highlight_name.value = nameMap[id]['shortName']
     except IndexError:
         pass
 
@@ -170,7 +171,7 @@ def defender(attr, old, new):
         global index
         id = position_data['Defender'].data['playerid'].iloc[new[0]]
         index = ['Defender', new[0], id]
-        highlight_name.value = player_map[id]
+        highlight_name.value = nameMap[id]['shortName']
     except IndexError:
         pass
 
@@ -179,7 +180,7 @@ def midfielder(attr, old, new):
         global index
         id = position_data['Midfielder'].data['playerid'].iloc[new[0]]
         index = ['Midfielder', new[0], id]
-        highlight_name.value = player_map[id]
+        highlight_name.value = nameMap[id]['shortName']
     except IndexError:
         pass
 
@@ -188,7 +189,7 @@ def forward(attr, old, new):
         global index
         id = position_data['Forward'].data['playerid'].iloc[new[0]]
         index = ['Forward', new[0], id]
-        highlight_name.value = player_map[id]
+        highlight_name.value = nameMap[id]['shortName']
     except IndexError:
         pass
 
@@ -221,3 +222,5 @@ curdoc().add_root(l)
 curdoc().title = 'Players'
 
 position_data['Midfielder'].selected.indices = [0]
+
+show(l)
