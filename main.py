@@ -152,7 +152,7 @@ def updatesize():
 def handler(attr, old, new):
     print('attr: {} old: {} new: {}'.format(attr, old, new))
 
-p.position_data.selected.on_change('indices', handler)
+renderers[0].data_source.selected.on_change('indices', handler)
 
 
 
