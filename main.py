@@ -164,7 +164,7 @@ def goalkeeper(attr, old, new):
     try:
         highlight_name.value = position_data['Goalkeeper'].data['name'].iloc[new[0]]
     except IndexError as error:
-        print(error)
+        highlight_name.value = position_data['Defender'].data['name'].iloc[old[0]]
 def defender(attr, old, new):
     print(attr)
     print(old)
@@ -172,7 +172,7 @@ def defender(attr, old, new):
     try:
         highlight_name.value = position_data['Defender'].data['name'].iloc[new[0]]
     except IndexError as error:
-        print(error)
+        highlight_name.value = position_data['Defender'].data['name'].iloc[old[0]]
 def midfielder(attr, old, new):
     print(attr)
     print(old)
@@ -180,7 +180,7 @@ def midfielder(attr, old, new):
     try:
         highlight_name.value = position_data['Midfielder'].data['name'].iloc[new[0]]
     except IndexError as error:
-        print(error)
+        highlight_name.value = position_data['Midfielder'].data['name'].iloc[old[0]]
 def forward(attr, old, new):
     print(attr)
     print(old)
@@ -188,7 +188,7 @@ def forward(attr, old, new):
     try:
         highlight_name.value = position_data['Midfielder'].data['name'].iloc[new[0]]
     except IndexError as error:
-        print(error)
+        highlight_name.value = position_data['Midfielder'].data['name'].iloc[old[0]]
 
 renderers[0].data_source.selected.on_change('indices', goalkeeper)
 renderers[1].data_source.selected.on_change('indices', defender)
@@ -214,6 +214,7 @@ updatebar()  # initial load of the bar data
 updatesize()
 curdoc().add_root(l)
 curdoc().title = 'Players'
+renderers[3].select_one()
 
 print(position_data['Forward'].data['name'].iloc[3])
 
