@@ -63,7 +63,7 @@ p = figure(tools='tap',height=600, width=700, title='', toolbar_location=None, t
 renderers = []
 legend_items = dict()
 for position, data, colour in zip(position_data.keys(), position_data.values(), position_colours):
-    temp = p.circle(x='x', y='y', source=position_data[position], size=6, color=colour, line_color=None, legend_label=position)
+    temp = p.circle(x='x', y='y', source=position_data[position], size=6, color=colour, line_color=None, legend_label=position, nonselection_glyph=None)
     renderers.append(temp)
     legend_items[position] = temp
 p.circle(x='x', y='y', source=highlight, size=11, line_color='black', fill_alpha=0, line_width=1)
@@ -162,8 +162,6 @@ renderers[0].data_source.selected.on_change('indices', goalkeeper)
 renderers[1].data_source.selected.on_change('indices', defender)
 renderers[2].data_source.selected.on_change('indices', midfielder)
 renderers[3].data_source.selected.on_change('indices', forward)
-
-
 
 controls = [minutes, x_axis, y_axis, highlight_name]
 for control in controls:
