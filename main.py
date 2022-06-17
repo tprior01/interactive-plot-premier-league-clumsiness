@@ -161,7 +161,7 @@ def updatesize():
 def goalkeeper(attr, old, new):
     try:
         global index
-        index = ['Goalkeeper', new]
+        index = ['Goalkeeper', new[0]]
         highlight_name.value = position_data['Goalkeeper'].data['name'].iloc[new[0]]
     except IndexError:
         pass
@@ -169,7 +169,7 @@ def goalkeeper(attr, old, new):
 def defender(attr, old, new):
     try:
         global index
-        index = ['Defender', new]
+        index = ['Defender', new[0]]
         highlight_name.value = position_data['Defender'].data['name'].iloc[new[0]]
     except IndexError:
         pass
@@ -177,7 +177,7 @@ def defender(attr, old, new):
 def midfielder(attr, old, new):
     try:
         global index
-        index = ['Midfielder', new]
+        index = ['Midfielder', new[0]]
         highlight_name.value = position_data['Midfielder'].data['name'].iloc[new[0]]
     except IndexError:
         pass
@@ -185,7 +185,7 @@ def midfielder(attr, old, new):
 def forward(attr, old, new):
     try:
         global index
-        index = ['Forward', new]
+        index = ['Forward', new[0]]
         highlight_name.value = position_data['Forward'].data['name'].iloc[new[0]]
     except IndexError:
         pass
