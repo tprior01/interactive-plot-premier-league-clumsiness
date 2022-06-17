@@ -23,7 +23,7 @@ names = players['PlayerName'].values.tolist()
 player_map = dict()
 for i in range(len(ids)):
     short_name = names[i].rsplit(' ', 1)[-1]
-    player_map[short_name] = ids[i]
+    player_map[ids[i]] = short_name
     names[i] = short_name
 player_map[""] = None
 
@@ -100,7 +100,7 @@ def select_players():
 
 
 def updatebar():
-    playerid = player_map[highlight_name.value]
+    playerid = index[2]
     data = {
         'seasons': [],
         'redcards': [],
@@ -139,10 +139,11 @@ def updatescatter():
             redcards=dft['redcards'],
             pensconceded=dft['pensconceded'],
             errors=dft['errors'],
-            owngoals=dft['owngoals']
+            owngoals=dft['owngoals'],
+            playerid=dft['PlayerID']
         )
 
-index = ['Midfielder', 0]
+index = ['Midfielder', 0, 12136]
 
 def updatesize():
     size = 0
@@ -158,32 +159,36 @@ def updatehighlighted():
 def goalkeeper(attr, old, new):
     try:
         global index
-        index = ['Goalkeeper', new[0]]
-        highlight_name.value = position_data['Goalkeeper'].data['name'].iloc[new[0]].rsplit(' ', 1)[-1]
+        id = position_data['Goalkeeper'].data['playerid'].iloc[new[0]]
+        index = ['Goalkeeper', new[0], id]
+        highlight_name.value = player_map[id]
     except IndexError:
         pass
 
 def defender(attr, old, new):
     try:
         global index
-        index = ['Defender', new[0]]
-        highlight_name.value = position_data['Defender'].data['name'].iloc[new[0]].rsplit(' ', 1)[-1]
+        id = position_data['Defender'].data['playerid'].iloc[new[0]]
+        index = ['Defender', new[0], id]
+        highlight_name.value = player_map[id]
     except IndexError:
         pass
 
 def midfielder(attr, old, new):
     try:
         global index
-        index = ['Midfielder', new[0]]
-        highlight_name.value = position_data['Midfielder'].data['name'].iloc[new[0]].rsplit(' ', 1)[-1]
+        id = position_data['Midfielder'].data['playerid'].iloc[new[0]]
+        index = ['Midfielder', new[0], id]
+        highlight_name.value = player_map[id]
     except IndexError:
         pass
 
 def forward(attr, old, new):
     try:
         global index
-        index = ['Forward', new[0]]
-        highlight_name.value = position_data['Forward'].data['name'].iloc[new[0]].rsplit(' ', 1)[-1]
+        id = position_data['Forward'].data['playerid'].iloc[new[0]]
+        index = ['Forward', new[0], id]
+        highlight_name.value = player_map[id]
     except IndexError:
         pass
 
