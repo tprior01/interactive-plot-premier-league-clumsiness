@@ -22,8 +22,9 @@ ids = players['PlayerID'].values.tolist()
 names = players['PlayerName'].values.tolist()
 player_map = dict()
 for i in range(len(ids)):
-    player_map[names[i]] = ids[i]
+    player_map[names[i].rsplit(' ', 1)[-1]] = ids[i]
 player_map[""] = None
+print(player_map)
 
 axis_map = {
     'Minutes': 'minutes',
@@ -39,7 +40,7 @@ desc = Div(text=open(join(dirname(__file__), 'my-application/description.html'))
 
 # widgets
 minutes = RangeSlider(title='Number of minutes', value=(0, max_mins), start=0, end=max_mins, step=10)
-highlight_name = AutocompleteInput(title='Highlight player', value='Granit Xhaka', completions=names, restrict=True, case_sensitive=False)
+highlight_name = AutocompleteInput(title='Highlight player', value='Xhaka', completions=names, restrict=True, case_sensitive=False)
 x_axis = Select(title='X Axis', options=sorted(axis_map.keys()), value='Minutes')
 y_axis = Select(title='Y Axis', options=sorted(axis_map.keys()), value='Total Mistakes')
 
@@ -98,28 +99,27 @@ def select_players():
 
 
 def updatebar():
-    if highlight_name.value in names:
-        playerid = player_map[highlight_name.value]
-        data = {
-            'seasons': [],
-            'redcards': [],
-            'pensconceded': [],
-            'errors': [],
-            'owngoals': []
-        }
-        for i in range(8, 23):
-            df = pd.read_csv(f"minutes/{i}.csv")
-            if df[df['PlayerID'] == playerid]['PlayerID'].count() == 1:
-                data['seasons'].append(f'{str(i - 1).zfill(2)}/{str(i).zfill(2)}')
-                for directory in directories:
-                    dfx = pd.read_csv(f"{directory}/{i}.csv")
-                    if dfx[dfx['PlayerID'] == playerid][directory].count() == 1:
-                        data[directory].append(dfx[dfx['PlayerID'] == playerid][directory].iloc[0])
-                    else:
-                        data[directory].append(0)
-        seasonal.data = data
-        q.x_range.factors = seasonal.data['seasons']
-        q.title.text = '%s mistakes by season' % highlight_name.value
+    playerid = player_map[highlight_name.value]
+    data = {
+        'seasons': [],
+        'redcards': [],
+        'pensconceded': [],
+        'errors': [],
+        'owngoals': []
+    }
+    for i in range(8, 23):
+        df = pd.read_csv(f"minutes/{i}.csv")
+        if df[df['PlayerID'] == playerid]['PlayerID'].count() == 1:
+            data['seasons'].append(f'{str(i - 1).zfill(2)}/{str(i).zfill(2)}')
+            for directory in directories:
+                dfx = pd.read_csv(f"{directory}/{i}.csv")
+                if dfx[dfx['PlayerID'] == playerid][directory].count() == 1:
+                    data[directory].append(dfx[dfx['PlayerID'] == playerid][directory].iloc[0])
+                else:
+                    data[directory].append(0)
+    seasonal.data = data
+    q.x_range.factors = seasonal.data['seasons']
+    q.title.text = '%s mistakes by season' % highlight_name.value
 
 
 def updatescatter():
@@ -164,7 +164,7 @@ def goalkeeper(attr, old, new):
     try:
         global index
         index = ['Goalkeeper', new[0]]
-        highlight_name.value = position_data['Goalkeeper'].data['name'].iloc[new[0]]
+        highlight_name.value = position_data['Goalkeeper'].data['name'].iloc[new[0]].rsplit(' ', 1)[-1]
     except IndexError:
         pass
 
@@ -172,7 +172,7 @@ def defender(attr, old, new):
     try:
         global index
         index = ['Defender', new[0]]
-        highlight_name.value = position_data['Defender'].data['name'].iloc[new[0]]
+        highlight_name.value = position_data['Defender'].data['name'].iloc[new[0]].rsplit(' ', 1)[-1]
     except IndexError:
         pass
 
@@ -180,7 +180,7 @@ def midfielder(attr, old, new):
     try:
         global index
         index = ['Midfielder', new[0]]
-        highlight_name.value = position_data['Midfielder'].data['name'].iloc[new[0]]
+        highlight_name.value = position_data['Midfielder'].data['name'].iloc[new[0]].rsplit(' ', 1)[-1]
     except IndexError:
         pass
 
@@ -188,7 +188,7 @@ def forward(attr, old, new):
     try:
         global index
         index = ['Forward', new[0]]
-        highlight_name.value = position_data['Forward'].data['name'].iloc[new[0]]
+        highlight_name.value = position_data['Forward'].data['name'].iloc[new[0]].rsplit(' ', 1)[-1]
     except IndexError:
         pass
 
