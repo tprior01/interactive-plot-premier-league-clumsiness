@@ -2,9 +2,10 @@ import pandas as pd
 from bokeh.io import curdoc, show
 from bokeh.layouts import column, row
 from bokeh.models import ColumnDataSource, Div, Select, AutocompleteInput, RangeSlider, DataRange1d, \
-    SingleIntervalTicker, Circle
+    SingleIntervalTicker, Circle, Tap
 from bokeh.plotting import figure
 from os.path import dirname, join
+from bokeh import events
 
 # data
 csv = 'data/data.csv'
@@ -155,7 +156,6 @@ def updatesize():
         if legend_items[position].visible:
             size += len(df[df['Position'] == position])
     p.title.text = '%d players selected' % size
-    print(index[0], index[1])
 
 def updatehighlighted():
     position_data[index[0]].selected.indices = [index[1]]
@@ -207,6 +207,7 @@ for position in positions:
     legend_items[position].on_change('visible', lambda attr, old, new: updatesize())
     legend_items[position].on_change('visible', lambda attr, old, new: updatehighlighted())
 
+p.on_event(events.Tap, updatehighlighted)
 
 inputs = column(*controls, width=250)
 
