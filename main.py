@@ -224,7 +224,7 @@ renderers[1].data_source.selected.on_change('indices', defender)
 renderers[2].data_source.selected.on_change('indices', midfielder)
 renderers[3].data_source.selected.on_change('indices', forward)
 
-controls = [minutes, x_axis, y_axis, highlight_name]
+controls = [minutes, x_axis, y_axis] #, highlight_name]
 for control in controls:
     control.on_change('value', lambda attr, old, new: updatescatter())
 highlight_name.on_change('value', lambda attr, old, new: updatebar())
