@@ -210,7 +210,9 @@ def highlightbar():
     global index
     id = nameMap[highlight_name.value]
     position = positionMap[id]
+    print(1)
     if index[0] != position or index[2] != id:
+        print(2)
         index[0] = position
         index[1] = positionData[position].data['playerid'].values.tolist().index(id)
         index[2] = id
