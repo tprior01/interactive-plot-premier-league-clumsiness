@@ -212,6 +212,7 @@ def highlightbar():
         if id != index[2]:
             position = positionMap[id]
             index = [position, players[players['Position'] == position].index[0], id]
+            updatehighlighted()
     except IndexError:
         pass
 
@@ -227,7 +228,7 @@ for control in controls:
 highlight_name.on_change('value', lambda attr, old, new: updatebar())
 playerID.on_change('value', lambda attr, old, new: updatehighlighted())
 
-highlight_name.on_change('value', lambda attr, old, new: updatehighlighted())
+highlight_name.on_change('value', lambda attr, old, new: highlightbar())
 minutes.on_change('value', lambda attr, old, new: updatesize())
 
 for position in positions:
