@@ -204,15 +204,18 @@ def forward(attr, old, new):
         highlight_name.value = nameMap[id]
     except IndexError:
         pass
-#
-# def highlightbar():
-#     global index
-#     id = idMap[highlight_name.value]
-#     position = positionMap[id]
-#     if position != index[0] or id != index[2]:
-#         index = [position, positionData[position].data['playerid'].values.tolist().index(id), id]
-#         updatehighlighted()
-#         updatebar()
+
+
+def highlightbar():
+    global index
+    id = nameMap[highlight_name.value]
+    position = positionMap[id]
+    if index[0] != position or index[2] != id:
+        index[0] = position
+        index[1] = positionData[position].data['playerid'].values.tolist().index(id)
+        index[2] = id
+    positionData[index[0]].selected.indices = [index[1]]
+    updatebar()
 
 
 renderers[0].data_source.selected.on_change('indices', goalkeeper)
@@ -221,7 +224,6 @@ renderers[2].data_source.selected.on_change('indices', midfielder)
 renderers[3].data_source.selected.on_change('indices', forward)
 
 controls = [minutes, x_axis, y_axis, highlight_name]
-
 for control in controls:
     control.on_change('value', lambda attr, old, new: updatescatter())
 highlight_name.on_change('value', lambda attr, old, new: updatebar())
