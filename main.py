@@ -231,7 +231,8 @@ for control in controls:
 highlight_name.on_change('value', lambda attr, old, new: updatebar())
 playerID.on_change('value', lambda attr, old, new: updatehighlighted())
 
-# highlight_name.on_change('value', lambda attr, old, new: highlightbar())
+highlight_name.on_change('value', lambda attr, old, new: updatebar())
+highlight_name.on_change('value', lambda attr, old, new: updatehighlighted())
 minutes.on_change('value', lambda attr, old, new: updatesize())
 
 for position in positions:
