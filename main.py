@@ -211,7 +211,8 @@ def highlightbar():
         id = idMap[highlight_name.value]
         if id != index[2]:
             position = positionMap[id]
-            index = [position, players[players['Position'] == position].index[0], id]
+            df = players[players['Position'] == position]
+            index = [position, df.PlayerID[df.PlayerID == id].index[0], id]
             updatehighlighted()
             print(f'index 1: {index[0]}, index 2: {index[1]}, index 3: {index[2]}')
     except IndexError:
