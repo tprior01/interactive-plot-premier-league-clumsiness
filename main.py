@@ -223,7 +223,7 @@ p.on_event(events.Tap, updatehighlighted)
 
 inputs = column(*controls, width=250)
 
-l = column(desc, row(inputs, p), q, sizing_mode='scale_both')
+l = column(desc, row(inputs, p), q, sizing_mode='scale_both', max_width=1000)
 
 q.add_layout(q.legend[0], 'right')
 updatescatter()  # initial load of the scatter data
