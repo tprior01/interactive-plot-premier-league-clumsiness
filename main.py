@@ -69,7 +69,7 @@ p = figure(tools='tap',height=600, width=700, title='', toolbar_location=None, t
 renderers = []
 legend_items = dict()
 for position, data, colour in zip(position_data.keys(), position_data.values(), position_colours):
-    temp = p.circle(x='x', y='y', source=position_data[position], size=6, color=colour, line_color=None, legend_label=position)
+    temp = p.circle(x='x', y='y', source=position_data[position], size=8, color=colour, line_color=None, legend_label=position)
     renderers.append(temp)
     legend_items[position] = temp
 p.legend.location = "top_left"
