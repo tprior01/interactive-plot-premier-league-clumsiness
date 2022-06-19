@@ -213,6 +213,7 @@ def highlightbar():
             position = positionMap[id]
             index = [position, positionData[position].data['playerid'].values.tolist().index(id), id]
             updatehighlighted()
+            updatebar()
     except IndexError:
         pass
 
