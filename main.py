@@ -11,25 +11,29 @@ from bokeh import events
 csv = 'data/data.csv'
 players = pd.read_csv(csv)
 
-positions = ['Goalkeeper', 'Defender', 'Midfielder', 'Forward']
-directories = ['redcards', 'errors', 'pensconceded', 'owngoals']
-position_colours = ['hotpink', 'salmon', 'teal', 'turquoise']
-bar_colours = ['hotpink', 'teal', 'salmon', 'turquoise']
-categories = ['Red Cards', 'Errors Leading to a Goal', 'Penalties Conceded', 'Own Goals']
-
-max_mins = round(players['minutes'].max(), -1)
+maxMins = round(players['minutes'].max(), -1)
 
 ids = players['PlayerID'].values.tolist()
 names = players['PlayerName'].values.tolist()
+positions = players['Position'].values.tolist()
 nameMap = dict()
+positionMap = dict()
 for i in range(len(ids)):
     shortName = names[i].rsplit(' ', 1)[-1]
     nameMap[ids[i]] = shortName
+    positionMap[ids[i]] = positions[i]
     names[i] = shortName
 ids.sort()
 names.sort()
+idMap= {v: k for k, v in nameMap.items()}
 
-axis_map = {
+positions = ['Goalkeeper', 'Defender', 'Midfielder', 'Forward']
+directories = ['redcards', 'errors', 'pensconceded', 'owngoals']
+positionColours = ['hotpink', 'salmon', 'teal', 'turquoise']
+barColours = ['hotpink', 'teal', 'salmon', 'turquoise']
+categories = ['Red Cards', 'Errors Leading to a Goal', 'Penalties Conceded', 'Own Goals']
+
+axisMap = {
     'Minutes': 'minutes',
     'Total Mistakes': 'sumerrors',
     'Red Cards': 'redcards',
@@ -42,19 +46,19 @@ axis_map = {
 desc = Div(text=open(join(dirname(__file__), 'my-application/description.html')).read(), sizing_mode="stretch_width")
 
 # widgets
-minutes = RangeSlider(title='Number of minutes', value=(0, max_mins), start=0, end=max_mins, step=10)
+minutes = RangeSlider(title='Number of minutes', value=(0, maxMins), start=0, end=maxMins, step=10)
 highlight_name = AutocompleteInput(title='Highlight player', value='Xhaka', completions=names, restrict=True, case_sensitive=False)
-x_axis = Select(title='X Axis', options=sorted(axis_map.keys()), value='Minutes')
-y_axis = Select(title='Y Axis', options=sorted(axis_map.keys()), value='Total Mistakes')
+x_axis = Select(title='X Axis', options=sorted(axisMap.keys()), value='Minutes')
+y_axis = Select(title='Y Axis', options=sorted(axisMap.keys()), value='Total Mistakes')
 playerID = NumericInput(value=12136)
 
 # column data sources
 highlight = ColumnDataSource(data=dict(x=[], y=[]))
 seasonal = ColumnDataSource(data=dict(seasons=[], redcards=[], pensconceded=[], errors=[]))
-position_data = dict(Goalkeeper=ColumnDataSource(data=dict(x=[], y=[])),
-                     Defender=ColumnDataSource(data=dict(x=[], y=[])),
-                     Midfielder=ColumnDataSource(data=dict(x=[], y=[])),
-                     Forward=ColumnDataSource(data=dict(x=[], y=[])))
+positionData = dict(Goalkeeper=ColumnDataSource(data=dict(x=[], y=[])),
+                    Defender=ColumnDataSource(data=dict(x=[], y=[])),
+                    Midfielder=ColumnDataSource(data=dict(x=[], y=[])),
+                    Forward=ColumnDataSource(data=dict(x=[], y=[])))
 
 TOOLTIPS = [
     ('Name', '@name'),
@@ -68,8 +72,8 @@ TOOLTIPS = [
 p = figure(tools='tap',height=600, width=700, title='', toolbar_location=None, tooltips=TOOLTIPS, sizing_mode='scale_both')
 renderers = []
 legend_items = dict()
-for position, data, colour in zip(position_data.keys(), position_data.values(), position_colours):
-    temp = p.circle(x='x', y='y', source=position_data[position], size=8, color=colour, line_color=None, legend_label=position)
+for position, data, colour in zip(positionData.keys(), positionData.values(), positionColours):
+    temp = p.circle(x='x', y='y', source=positionData[position], size=8, color=colour, line_color=None, legend_label=position)
     renderers.append(temp)
     legend_items[position] = temp
 p.legend.location = "top_left"
@@ -83,7 +87,7 @@ for renderer in renderers:
 
 # bar chart
 q = figure(x_range=seasonal.data['seasons'], height=150, toolbar_location=None, tools="")
-q.vbar_stack(directories, x='seasons', width=0.2, color=bar_colours, source=seasonal, legend_label=categories)
+q.vbar_stack(directories, x='seasons', width=0.2, color=barColours, source=seasonal, legend_label=categories)
 q.y_range.start = 0
 q.xgrid.grid_line_color = None
 q.axis.minor_tick_line_color = None
@@ -129,11 +133,11 @@ def updatebar():
 
 def updatescatter():
     df = select_players()
-    x_name = axis_map[x_axis.value]
-    y_name = axis_map[y_axis.value]
+    x_name = axisMap[x_axis.value]
+    y_name = axisMap[y_axis.value]
     p.xaxis.axis_label = x_axis.value
     p.yaxis.axis_label = y_axis.value
-    for position, data in position_data.items():
+    for position, data in positionData.items():
         dft = df[df['Position'] == position]
         data.data = dict(
             x=dft[x_name],
@@ -160,13 +164,13 @@ def updatesize():
 
 
 def updatehighlighted():
-    position_data[index[0]].selected.indices = [index[1]]
+    positionData[index[0]].selected.indices = [index[1]]
 
 
 def goalkeeper(attr, old, new):
     try:
         global index
-        id = position_data['Goalkeeper'].data['playerid'].iloc[new[0]]
+        id = positionData['Goalkeeper'].data['playerid'].iloc[new[0]]
         index = ['Goalkeeper', new[0], id]
         highlight_name.value = nameMap[id]
     except IndexError:
@@ -175,7 +179,7 @@ def goalkeeper(attr, old, new):
 def defender(attr, old, new):
     try:
         global index
-        id = position_data['Defender'].data['playerid'].iloc[new[0]]
+        id = positionData['Defender'].data['playerid'].iloc[new[0]]
         index = ['Defender', new[0], id]
         highlight_name.value = nameMap[id]
     except IndexError:
@@ -185,7 +189,7 @@ def defender(attr, old, new):
 def midfielder(attr, old, new):
     try:
         global index
-        id = position_data['Midfielder'].data['playerid'].iloc[new[0]]
+        id = positionData['Midfielder'].data['playerid'].iloc[new[0]]
         index = ['Midfielder', new[0], id]
         highlight_name.value = nameMap[id]
     except IndexError:
@@ -195,9 +199,19 @@ def midfielder(attr, old, new):
 def forward(attr, old, new):
     try:
         global index
-        id = position_data['Forward'].data['playerid'].iloc[new[0]]
+        id = positionData['Forward'].data['playerid'].iloc[new[0]]
         index = ['Forward', new[0], id]
         highlight_name.value = nameMap[id]
+    except IndexError:
+        pass
+
+def highlightbar():
+    try:
+        global index
+        id = idMap[highlight_name.value]
+        if id != index[2]:
+            position = positionMap[id]
+            index = [position, players[players['Position'] == position].index[0], id]
     except IndexError:
         pass
 
@@ -232,4 +246,4 @@ updatesize()
 curdoc().add_root(l)
 curdoc().title = 'Players'
 
-position_data['Midfielder'].selected.indices = [0]
+positionData['Midfielder'].selected.indices = [0]
