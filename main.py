@@ -206,18 +206,17 @@ def forward(attr, old, new):
         pass
 
 
-# def highlightbar():
-#     global index
-#     id = nameMap[highlight_name.value]
-#     position = positionMap[id]
-#     print(1)
-#     if index[0] != position or index[2] != id:
-#         print(2)
-#         index[0] = position
-#         index[1] = positionData[position].data['playerid'].values.tolist().index(id)
-#         index[2] = id
-#         positionData[index[0]].selected.indices = [index[1]]
-#         updatebar()
+def highlightbar():
+    global index
+    if highlight_name.value == nameMap[index[2]]:
+        positionData[index[0]].selected.indices = [index[1]]
+    else:
+        id = idMap[highlight_name.value]
+        position = positionMap[id]
+        indice = positionData[position].data['playerid'].values.tolist().index(id)
+        index = [id, position, indice]
+        updatebar()
+        updatehighlighted()
 
 
 renderers[0].data_source.selected.on_change('indices', goalkeeper)
