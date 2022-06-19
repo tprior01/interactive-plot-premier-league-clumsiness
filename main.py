@@ -26,6 +26,8 @@ for i in range(len(ids)):
     shortName = names[i].rsplit(' ', 1)[-1]
     nameMap[ids[i]] = shortName
     names[i] = shortName
+ids.sort()
+names.sort()
 
 axis_map = {
     'Minutes': 'minutes',
@@ -231,5 +233,3 @@ curdoc().add_root(l)
 curdoc().title = 'Players'
 
 position_data['Midfielder'].selected.indices = [0]
-
-show(l)
