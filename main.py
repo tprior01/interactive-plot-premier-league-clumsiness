@@ -2,7 +2,7 @@ import pandas as pd
 from bokeh.io import curdoc, show
 from bokeh.layouts import column, row
 from bokeh.models import ColumnDataSource, Div, Select, AutocompleteInput, RangeSlider, DataRange1d, \
-    SingleIntervalTicker, Circle, Tap
+    SingleIntervalTicker, Circle, Tap, NumericInput
 from bokeh.plotting import figure
 from os.path import dirname, join
 from bokeh import events
@@ -26,7 +26,6 @@ for i in range(len(ids)):
     shortName = names[i].rsplit(' ', 1)[-1]
     nameMap[ids[i]] = shortName
     names[i] = shortName
-names.sort()
 
 axis_map = {
     'Minutes': 'minutes',
@@ -45,6 +44,7 @@ minutes = RangeSlider(title='Number of minutes', value=(0, max_mins), start=0, e
 highlight_name = AutocompleteInput(title='Highlight player', value='Xhaka', completions=names, restrict=True, case_sensitive=False)
 x_axis = Select(title='X Axis', options=sorted(axis_map.keys()), value='Minutes')
 y_axis = Select(title='Y Axis', options=sorted(axis_map.keys()), value='Total Mistakes')
+playerID = NumericInput(value=12136)
 
 # column data sources
 highlight = ColumnDataSource(data=dict(x=[], y=[]))
@@ -70,7 +70,6 @@ for position, data, colour in zip(position_data.keys(), position_data.values(), 
     temp = p.circle(x='x', y='y', source=position_data[position], size=6, color=colour, line_color=None, legend_label=position)
     renderers.append(temp)
     legend_items[position] = temp
-p.circle(x='x', y='y', source=highlight, size=11, line_color='black', fill_alpha=0, line_width=1)
 p.legend.location = "top_left"
 p.legend.click_policy = "hide"
 p.x_range = DataRange1d(only_visible=True, renderers=renderers)
@@ -97,7 +96,8 @@ def select_players():
         ]
     return selected
 
-def getBarData(playerid):
+
+def getBarData(playerID):
     data = {
         'seasons': [],
         'redcards': [],
@@ -107,29 +107,23 @@ def getBarData(playerid):
     }
     for i in range(8, 23):
         df = pd.read_csv(f"minutes/{i}.csv")
-        if df[df['PlayerID'] == playerid]['PlayerID'].count() == 1:
+        if df[df['PlayerID'] == playerID]['PlayerID'].count() == 1:
             data['seasons'].append(f'{str(i - 1).zfill(2)}/{str(i).zfill(2)}')
             for directory in directories:
                 dfx = pd.read_csv(f"{directory}/{i}.csv")
-                if dfx[dfx['PlayerID'] == playerid][directory].count() == 1:
-                    data[directory].append(dfx[dfx['PlayerID'] == playerid][directory].iloc[0])
+                if dfx[dfx['PlayerID'] == playerID][directory].count() == 1:
+                    data[directory].append(dfx[dfx['PlayerID'] == playerID][directory].iloc[0])
                 else:
                     data[directory].append(0)
     return data
 
-barMap = dict()
-for playerid in players[(players['minutes'] > 1500) | (players['sumerrors'] > 10)]['PlayerID'].tolist():
-    barMap[playerid] = getBarData(playerid)
 
 def updatebar():
-    playerid = index[2]
-    if playerid in barMap:
-        print(barMap[playerid])
-        seasonal.data = barMap[playerid]
-    else:
-        seasonal.data = getBarData(playerid)
+    playerID = index[2]
+    seasonal.data = getBarData(playerID)
     q.x_range.factors = seasonal.data['seasons']
-    q.title.text = '%s mistakes by season' % nameMap[playerid]
+    q.title.text = '%s mistakes by season' % nameMap[playerID]
+
 
 def updatescatter():
     df = select_players()
@@ -153,6 +147,7 @@ def updatescatter():
 
 index = ['Midfielder', 0, 12136]
 
+
 def updatesize():
     size = 0
     df = select_players()
@@ -161,8 +156,10 @@ def updatesize():
             size += len(df[df['Position'] == position])
     p.title.text = '%d players selected' % size
 
+
 def updatehighlighted():
     position_data[index[0]].selected.indices = [index[1]]
+
 
 def goalkeeper(attr, old, new):
     try:
@@ -182,6 +179,7 @@ def defender(attr, old, new):
     except IndexError:
         pass
 
+
 def midfielder(attr, old, new):
     try:
         global index
@@ -190,6 +188,7 @@ def midfielder(attr, old, new):
         highlight_name.value = nameMap[id]
     except IndexError:
         pass
+
 
 def forward(attr, old, new):
     try:
@@ -206,9 +205,11 @@ renderers[2].data_source.selected.on_change('indices', midfielder)
 renderers[3].data_source.selected.on_change('indices', forward)
 
 controls = [minutes, x_axis, y_axis, highlight_name]
+
 for control in controls:
     control.on_change('value', lambda attr, old, new: updatescatter())
 highlight_name.on_change('value', lambda attr, old, new: updatebar())
+playerID.on_change('value', lambda attr, old, new: updatehighlighted())
 
 highlight_name.on_change('value', lambda attr, old, new: updatehighlighted())
 minutes.on_change('value', lambda attr, old, new: updatesize())
