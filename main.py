@@ -213,6 +213,7 @@ def highlightbar():
             position = positionMap[id]
             index = [position, players[players['Position'] == position].index[0], id]
             updatehighlighted()
+            print(f'index 1: {index[0]}, index 2: {index[1]}, index 3: {index[2]}')
     except IndexError:
         pass
 
