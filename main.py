@@ -216,8 +216,8 @@ def highlightbar():
         index[0] = position
         index[1] = positionData[position].data['playerid'].values.tolist().index(id)
         index[2] = id
-    positionData[index[0]].selected.indices = [index[1]]
-    updatebar()
+        positionData[index[0]].selected.indices = [index[1]]
+        updatebar()
 
 
 renderers[0].data_source.selected.on_change('indices', goalkeeper)
