@@ -215,7 +215,7 @@ def highlightbar():
             id = idMap[highlight_name.value]
             position = positionMap[id]
             indice = positionData[position].data['playerid'].values.tolist().index(id)
-            index = [position, id, indice]
+            index = [position, indice, id]
             print(index)
             updatebar()
             updatehighlighted()
