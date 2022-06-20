@@ -19,7 +19,8 @@ for directory in directories:
     df = df.join(dfx, on='PlayerID', how='left').fillna(0)
 
 # add new column summing other columns
-df['sumerrors'] = df['redcards'] + df['pensconceded'] + df['errors'] +df['owngoals']
+df['sumerrors'] = df['redcards'] + df['pensconceded'] + df['errors'] + df['owngoals']
 df = df.sort_values(by=['sumerrors'], ascending=False)
+df = df[df['minutes'] > 0]
 
-df.to_csv('data_ss.csv')
+df.to_csv('data_ss2.csv')

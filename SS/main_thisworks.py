@@ -19,7 +19,7 @@ ids = players['PlayerID'].values.tolist()
 names = players['PlayerName'].values.tolist()
 id_dic = dict()
 for i in range(len(ids)):
-    id_dic[names[i]] = ids[i]
+    id_dic[names[i].rsplit(' ', 1)[0]] = ids[i]
 print(id_dic)
 
 axis_map = {

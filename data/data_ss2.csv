@@ -2047,23 +2047,19 @@
 351,12983,Adama Diomande,Forward,1169.0,0.0,0.0,0.0,0.0,0.0
 352,24994,Patson Daka,Forward,1161.0,0.0,0.0,0.0,0.0,0.0
 353,4806,Stevan Jovetic,Forward,1147.0,0.0,0.0,0.0,0.0,0.0
-1270,2344,Talal El Karkouri,Defender,0.0,0.0,0.0,0.0,0.0,0.0
-355,3050,Julio Baptista,Forward,0.0,0.0,0.0,0.0,0.0,0.0
+
 356,14742,Rhian Brewster,Forward,1123.0,0.0,0.0,0.0,0.0,0.0
 357,5806,Willian José,Forward,1113.0,0.0,0.0,0.0,0.0,0.0
-381,1959,Lomana Lua Lua,Forward,0.0,0.0,0.0,0.0,0.0,0.0
 1221,4822,Muniesa,Defender,3973.0,0.0,0.0,0.0,0.0,0.0
 432,32936,Fousseni Diabaté,Forward,638.0,0.0,0.0,0.0,0.0,0.0
 419,20196,Yoshinori Muto,Forward,724.0,0.0,0.0,0.0,0.0,0.0
 409,5208,Ahmed Musa,Forward,753.0,0.0,0.0,0.0,0.0,0.0
-410,3271,Tamás Priskin,Forward,0.0,0.0,0.0,0.0,0.0,0.0
 1183,3665,Fábio,Defender,5024.0,0.0,0.0,0.0,0.0,0.0
 411,6627,Kenneth Zohore,Forward,746.0,0.0,0.0,0.0,0.0,0.0
 412,4212,Pablo Barrera,Forward,744.0,0.0,0.0,0.0,0.0,0.0
 413,51754,Joe Gelhardt,Forward,738.0,0.0,0.0,0.0,0.0,0.0
 414,4297,Denis Stracqualursi,Forward,734.0,0.0,0.0,0.0,0.0,0.0
 415,7081,Lucas Pérez,Forward,731.0,0.0,0.0,0.0,0.0,0.0
-416,3273,Steve Kabba,Forward,0.0,0.0,0.0,0.0,0.0,0.0
 417,3985,Marcelo Moreno Martins,Forward,727.0,0.0,0.0,0.0,0.0,0.0
 418,3770,Diego Tristán,Forward,727.0,0.0,0.0,0.0,0.0,0.0
 420,3291,Julius Aghahowa,Forward,415.0,0.0,0.0,0.0,0.0,0.0
@@ -2073,7 +2069,6 @@
 1167,2654,Paulo Ferreira,Defender,3786.0,0.0,0.0,0.0,0.0,0.0
 423,2133,Brett Ormerod,Forward,702.0,0.0,0.0,0.0,0.0,0.0
 424,14997,William Smallbone,Forward,699.0,0.0,0.0,0.0,0.0,0.0
-425,576,Teddy Sheringham,Forward,0.0,0.0,0.0,0.0,0.0,0.0
 426,3367,Claudio Pizarro,Forward,681.0,0.0,0.0,0.0,0.0,0.0
 427,9198,Luuk de Jong,Forward,671.0,0.0,0.0,0.0,0.0,0.0
 428,13798,Alberto Paloschi,Forward,669.0,0.0,0.0,0.0,0.0,0.0
@@ -2086,9 +2081,7 @@
 1217,4955,Martín Montoya,Defender,4066.0,0.0,0.0,0.0,0.0,0.0
 383,4254,Joel Campbell,Forward,926.0,0.0,0.0,0.0,0.0,0.0
 384,2819,Robert Earnshaw,Forward,926.0,0.0,0.0,0.0,0.0,0.0
-385,2048,Henrik Pedersen,Forward,0.0,0.0,0.0,0.0,0.0,0.0
 386,3380,Emanuel Villa,Forward,915.0,0.0,0.0,0.0,0.0,0.0
-387,3233,Christian Nade,Forward,0.0,0.0,0.0,0.0,0.0,0.0
 1211,12854,Matteo Darmian,Defender,4151.0,0.0,0.0,0.0,0.0,0.0
 388,8055,Lewis Grabban,Forward,877.0,0.0,0.0,0.0,0.0,0.0
 390,3566,Nathan Delfouneso,Forward,867.0,0.0,0.0,0.0,0.0,0.0
@@ -2100,7 +2093,6 @@
 396,13234,Tomer Hemed,Forward,848.0,0.0,0.0,0.0,0.0,0.0
 397,24641,Adam Idah,Forward,841.0,0.0,0.0,0.0,0.0,0.0
 398,3167,Lee Dong-Gook,Forward,549.0,0.0,0.0,0.0,0.0,0.0
-399,27,Paul Dickov,Forward,0.0,0.0,0.0,0.0,0.0,0.0
 400,13130,Keinan Davis,Forward,815.0,0.0,0.0,0.0,0.0,0.0
 401,20048,Josh Maja,Forward,809.0,0.0,0.0,0.0,0.0,0.0
 402,10499,Eljero Elia,Forward,787.0,0.0,0.0,0.0,0.0,0.0
@@ -2120,32 +2112,19 @@
 879,2570,Carl Ikeme,Goalkeeper,38.0,0.0,0.0,0.0,0.0,0.0
 878,14428,João Virgínia,Goalkeeper,47.0,0.0,0.0,0.0,0.0,0.0
 877,3834,Diego Penny,Goalkeeper,75.0,0.0,0.0,0.0,0.0,0.0
-876,2235,Iain Turner,Goalkeeper,0.0,0.0,0.0,0.0,0.0,0.0
-874,2090,Matteo Sereni,Goalkeeper,0.0,0.0,0.0,0.0,0.0,0.0
-861,708,Pavel Srnicek,Goalkeeper,0.0,0.0,0.0,0.0,0.0,0.0
-873,1161,Mart Poom,Goalkeeper,0.0,0.0,0.0,0.0,0.0,0.0
-872,3123,Daniele Padelli,Goalkeeper,0.0,0.0,0.0,0.0,0.0,0.0
-871,1396,Thomas Myhre,Goalkeeper,0.0,0.0,0.0,0.0,0.0,0.0
 870,2761,Joe Lewis,Goalkeeper,90.0,0.0,0.0,0.0,0.0,0.0
 869,3817,Jake Kean,Goalkeeper,90.0,0.0,0.0,0.0,0.0,0.0
-868,519,Tim Flowers,Goalkeeper,0.0,0.0,0.0,0.0,0.0,0.0
 867,9293,Joel Coleman,Goalkeeper,90.0,0.0,0.0,0.0,0.0,0.0
 866,13556,Joel Pereira,Goalkeeper,90.0,0.0,0.0,0.0,0.0,0.0
 865,4207,Ruud Boffin,Goalkeeper,90.0,0.0,0.0,0.0,0.0,0.0
-864,1940,Fabien Barthez,Goalkeeper,0.0,0.0,0.0,0.0,0.0,0.0
 863,3663,Ben Amos,Goalkeeper,90.0,0.0,0.0,0.0,0.0,0.0
 887,2817,Luke Daniels,Goalkeeper,12.0,0.0,0.0,0.0,0.0,0.0
-888,616,Alec Chamberlain,Goalkeeper,0.0,0.0,0.0,0.0,0.0,0.0
-889,9113,Dimitrios Konstantopoulos,Goalkeeper,0.0,0.0,0.0,0.0,0.0,0.0
-890,6806,Dusan Kuciak,Goalkeeper,0.0,0.0,0.0,0.0,0.0,0.0
-659,1854,Shaun Bartlett,Forward,0.0,0.0,0.0,0.0,0.0,0.0
 660,3554,Jay Emmanuel-Thomas,Forward,9.0,0.0,0.0,0.0,0.0,0.0
 661,14298,Michael Folivi,Forward,9.0,0.0,0.0,0.0,0.0,0.0
 662,14283,George Hirst,Forward,9.0,0.0,0.0,0.0,0.0,0.0
 663,53182,Theo Corbeanu,Forward,8.0,0.0,0.0,0.0,0.0,0.0
 664,70228,Kaide Gordon,Forward,8.0,0.0,0.0,0.0,0.0,0.0
 665,10432,Rushian Marcus Amari Hepburn-Murphy,Forward,8.0,0.0,0.0,0.0,0.0,0.0
-666,3119,Björn Runström,Forward,0.0,0.0,0.0,0.0,0.0,0.0
 667,3913,Alex Nimely,Forward,7.0,0.0,0.0,0.0,0.0,0.0
 668,20789,Jonathan Benteke,Forward,6.0,0.0,0.0,0.0,0.0,0.0
 669,120096,Kayky,Forward,6.0,0.0,0.0,0.0,0.0,0.0
@@ -2155,27 +2134,22 @@
 673,4429,Iago Falque,Forward,5.0,0.0,0.0,0.0,0.0,0.0
 674,3947,Louis Moult,Forward,5.0,0.0,0.0,0.0,0.0,0.0
 675,12215,Obbi Oularé,Forward,5.0,0.0,0.0,0.0,0.0,0.0
-676,3089,Johann Smith,Forward,0.0,0.0,0.0,0.0,0.0,0.0
 677,66570,Dane Scarlett,Forward,4.0,0.0,0.0,0.0,0.0,0.0
 678,67198,Lewis Richardson,Forward,3.0,0.0,0.0,0.0,0.0,0.0
-679,3275,Theo Robinson,Forward,0.0,0.0,0.0,0.0,0.0,0.0
 680,51226,Nathan Young-Coombes,Forward,3.0,0.0,0.0,0.0,0.0,0.0
 681,14636,Nathan Broadhead,Forward,2.0,0.0,0.0,0.0,0.0,0.0
 862,2972,Ben Alnwick,Goalkeeper,90.0,0.0,0.0,0.0,0.0,0.0
 860,1715,Paul Rachubka,Goalkeeper,124.0,0.0,0.0,0.0,0.0,0.0
 548,3356,Daniel Braaten,Forward,143.0,0.0,0.0,0.0,0.0,0.0
-810,859,John Filan,Goalkeeper,0.0,0.0,0.0,0.0,0.0,0.0
 825,3505,David Button,Goalkeeper,450.0,0.0,0.0,0.0,0.0,0.0
 823,1554,Steve Simonsen,Goalkeeper,500.0,0.0,0.0,0.0,0.0,0.0
 822,51416,Ørjan Nyland,Goalkeeper,537.0,0.0,0.0,0.0,0.0,0.0
 821,3370,Lewis Price,Goalkeeper,540.0,0.0,0.0,0.0,0.0,0.0
 820,13555,Sergio Romero,Goalkeeper,630.0,0.0,0.0,0.0,0.0,0.0
 819,4511,Marcus Bettinelli,Goalkeeper,630.0,0.0,0.0,0.0,0.0,0.0
-818,3113,Jan Lastuvka,Goalkeeper,0.0,0.0,0.0,0.0,0.0,0.0
 686,3699,Theofanis Gekas,Forward,1.0,0.0,0.0,0.0,0.0,0.0
 815,11224,Robin Olsen,Goalkeeper,720.0,0.0,0.0,0.0,0.0,0.0
 813,3662,Ron-Robert Zieler,Goalkeeper,753.0,0.0,0.0,0.0,0.0,0.0
-811,2864,Richard Lee,Goalkeeper,0.0,0.0,0.0,0.0,0.0,0.0
 809,3022,Mike Pollitt,Goalkeeper,679.0,0.0,0.0,0.0,0.0,0.0
 859,3732,Ryan Allsop,Goalkeeper,135.0,0.0,0.0,0.0,0.0,0.0
 808,1295,Stuart Taylor,Goalkeeper,653.0,0.0,0.0,0.0,0.0,0.0
@@ -2186,24 +2160,16 @@
 799,2799,Radek Cerny,Goalkeeper,1620.0,0.0,0.0,0.0,0.0,0.0
 797,3142,Andreas Isaksson,Goalkeeper,450.0,0.0,0.0,0.0,0.0,0.0
 795,4154,Anders Lindegaard,Goalkeeper,1710.0,0.0,0.0,0.0,0.0,0.0
-790,1927,Nicky Weaver,Goalkeeper,0.0,0.0,0.0,0.0,0.0,0.0
 764,4120,Neil Etheridge,Goalkeeper,3420.0,0.0,0.0,0.0,0.0,0.0
 775,2818,Tomasz Kuszczak,Goalkeeper,2262.0,0.0,0.0,0.0,0.0,0.0
-826,2665,Gábor Király,Goalkeeper,0.0,0.0,0.0,0.0,0.0,0.0
 828,13777,Jakob Haugaard,Goalkeeper,405.0,0.0,0.0,0.0,0.0,0.0
 829,14723,Caoimhin Kelleher,Goalkeeper,360.0,0.0,0.0,0.0,0.0,0.0
 830,1848,Dean Kiely,Goalkeeper,270.0,0.0,0.0,0.0,0.0,0.0
 858,19675,Michael McGovern,Goalkeeper,158.0,0.0,0.0,0.0,0.0,0.0
-857,878,Richard Wright,Goalkeeper,0.0,0.0,0.0,0.0,0.0,0.0
 856,3383,Stefan Wessels,Goalkeeper,180.0,0.0,0.0,0.0,0.0,0.0
 855,54392,Zack Steffen,Goalkeeper,180.0,0.0,0.0,0.0,0.0,0.0
-854,1,David Seaman,Goalkeeper,0.0,0.0,0.0,0.0,0.0,0.0
-853,307,Peter Schmeichel,Goalkeeper,0.0,0.0,0.0,0.0,0.0,0.0
 852,10727,Marek Rodák,Goalkeeper,180.0,0.0,0.0,0.0,0.0,0.0
 850,4110,Ján Mucha,Goalkeeper,180.0,0.0,0.0,0.0,0.0,0.0
-848,416,Paul Gerrard,Goalkeeper,0.0,0.0,0.0,0.0,0.0,0.0
-847,2109,Jerzy Dudek,Goalkeeper,0.0,0.0,0.0,0.0,0.0,0.0
-846,2176,Ian Bennett,Goalkeeper,0.0,0.0,0.0,0.0,0.0,0.0
 844,8293,Will Norris,Goalkeeper,181.0,0.0,0.0,0.0,0.0,0.0
 843,4348,Jed Steer,Goalkeeper,188.0,0.0,0.0,0.0,0.0,0.0
 842,4556,Lee Camp,Goalkeeper,222.0,0.0,0.0,0.0,0.0,0.0
@@ -2217,37 +2183,24 @@
 685,7628,Lacina Emeghara Traoré,Forward,1.0,0.0,0.0,0.0,0.0,0.0
 831,13485,Bailey Peacock-Farrell,Goalkeeper,360.0,0.0,0.0,0.0,0.0,0.0
 658,15079,Joel Asoro,Forward,9.0,0.0,0.0,0.0,0.0,0.0
-657,1305,Christopher Wreh,Forward,0.0,0.0,0.0,0.0,0.0,0.0
 656,83496,Antwoine Hackford,Forward,10.0,0.0,0.0,0.0,0.0,0.0
-587,2118,Diego Forlán,Forward,0.0,0.0,0.0,0.0,0.0,0.0
-576,29,Ian Wright,Forward,0.0,0.0,0.0,0.0,0.0,0.0
 577,8712,Moussa Dembele,Forward,88.0,0.0,0.0,0.0,0.0,0.0
 578,55700,Bryan Gil,Forward,86.0,0.0,0.0,0.0,0.0,0.0
 579,10191,Sullay Kaikai,Forward,81.0,0.0,0.0,0.0,0.0,0.0
-580,1855,Jonatan Johansson,Forward,0.0,0.0,0.0,0.0,0.0,0.0
-581,1903,Marcus Stewart,Forward,0.0,0.0,0.0,0.0,0.0,0.0
 582,14804,Tyrese Campbell,Forward,75.0,0.0,0.0,0.0,0.0,0.0
 583,4162,Bebé,Forward,75.0,0.0,0.0,0.0,0.0,0.0
-584,2525,Dong Fangzhuo,Forward,0.0,0.0,0.0,0.0,0.0,0.0
 585,20858,Tahith Chong,Forward,71.0,0.0,0.0,0.0,0.0,0.0
 586,19871,Folarin Balogun,Forward,70.0,0.0,0.0,0.0,0.0,0.0
-589,2085,Barry Hayles,Forward,0.0,0.0,0.0,0.0,0.0,0.0
 655,4380,Bruno Andrade,Forward,10.0,0.0,0.0,0.0,0.0,0.0
 590,50960,Ignacio Pussetto,Forward,67.0,0.0,0.0,0.0,0.0,0.0
 591,3954,Ryan Noble,Forward,66.0,0.0,0.0,0.0,0.0,0.0
 592,11323,Víctor Ibarbo,Forward,64.0,0.0,0.0,0.0,0.0,0.0
 593,4743,Rhys Healey,Forward,63.0,0.0,0.0,0.0,0.0,0.0
-594,2086,Steve Marlet,Forward,0.0,0.0,0.0,0.0,0.0,0.0
 595,15052,Julien Ngoy,Forward,63.0,0.0,0.0,0.0,0.0,0.0
-596,3108,Ben Sahar,Forward,0.0,0.0,0.0,0.0,0.0,0.0
 597,19925,Ellis Simms,Forward,62.0,0.0,0.0,0.0,0.0,0.0
 598,4153,John Guidetti,Forward,60.0,0.0,0.0,0.0,0.0,0.0
 599,4310,Muamer Tankovic,Forward,59.0,0.0,0.0,0.0,0.0,0.0
 600,10433,Andre Green,Forward,57.0,0.0,0.0,0.0,0.0,0.0
-575,337,Brian McClair,Forward,0.0,0.0,0.0,0.0,0.0,0.0
-574,339,Mark Hughes,Forward,0.0,0.0,0.0,0.0,0.0,0.0
-573,538,Iain Dowie,Forward,0.0,0.0,0.0,0.0,0.0,0.0
-572,342,Eric Cantona,Forward,0.0,0.0,0.0,0.0,0.0,0.0
 549,5248,Albian Ajeti,Forward,132.0,0.0,0.0,0.0,0.0,0.0
 550,13284,Alexandre Pato,Forward,131.0,0.0,0.0,0.0,0.0,0.0
 551,12299,Léo Bonatini,Forward,130.0,0.0,0.0,0.0,0.0,0.0
@@ -2259,17 +2212,13 @@
 557,3608,Jose Baxter,Forward,116.0,0.0,0.0,0.0,0.0,0.0
 558,1672,Dean Windass,Forward,115.0,0.0,0.0,0.0,0.0,0.0
 559,13240,Jonathan Kodjia,Forward,112.0,0.0,0.0,0.0,0.0,0.0
-560,1836,Sylvain Wiltord,Forward,0.0,0.0,0.0,0.0,0.0,0.0
 561,2391,Sherjill MacDonald,Forward,110.0,0.0,0.0,0.0,0.0,0.0
 562,4739,Andreas Cornelius,Forward,107.0,0.0,0.0,0.0,0.0,0.0
-563,2957,Albert Luque,Forward,0.0,0.0,0.0,0.0,0.0,0.0
 564,11034,Richairo Zivkovic,Forward,107.0,0.0,0.0,0.0,0.0,0.0
 565,15019,Daniel N'Lundulu,Forward,102.0,0.0,0.0,0.0,0.0,0.0
 566,40320,Percy Tau,Forward,102.0,0.0,0.0,0.0,0.0,0.0
 567,2950,Tom Craddock,Forward,93.0,0.0,0.0,0.0,0.0,0.0
 568,9794,Ignacio Scocco,Forward,93.0,0.0,0.0,0.0,0.0,0.0
-569,726,Alun Armstrong,Forward,0.0,0.0,0.0,0.0,0.0,0.0
-570,991,Dennis Bergkamp,Forward,0.0,0.0,0.0,0.0,0.0,0.0
 571,9985,Marco Borriello,Forward,90.0,0.0,0.0,0.0,0.0,0.0
 601,5349,Juan Iturbe,Forward,55.0,0.0,0.0,0.0,0.0,0.0
 602,14800,Brahim Díaz,Forward,50.0,0.0,0.0,0.0,0.0,0.0
@@ -2281,7 +2230,6 @@
 635,4555,Adam Campbell,Forward,22.0,0.0,0.0,0.0,0.0,0.0
 636,71590,Evan Ferguson,Forward,22.0,0.0,0.0,0.0,0.0,0.0
 637,9417,Jordan Hugill,Forward,22.0,0.0,0.0,0.0,0.0,0.0
-638,3042,Moses Ashikodi,Forward,0.0,0.0,0.0,0.0,0.0,0.0
 639,3651,Nathan Eccleston,Forward,21.0,0.0,0.0,0.0,0.0,0.0
 640,10380,Joseph Dodoo,Forward,19.0,0.0,0.0,0.0,0.0,0.0
 641,10441,Jérémie Boga,Forward,18.0,0.0,0.0,0.0,0.0,0.0
@@ -2301,11 +2249,9 @@
 631,4648,Mikael Mandron,Forward,24.0,0.0,0.0,0.0,0.0,0.0
 629,14170,Levi Lumeka,Forward,25.0,0.0,0.0,0.0,0.0,0.0
 604,51813,Liam Delap,Forward,48.0,0.0,0.0,0.0,0.0,0.0
-628,539,Nicky Banger,Forward,0.0,0.0,0.0,0.0,0.0,0.0
 605,8889,Nahki Wells,Forward,46.0,0.0,0.0,0.0,0.0,0.0
 606,4542,Ángelo Henríquez,Forward,45.0,0.0,0.0,0.0,0.0,0.0
 607,68857,Jeremy Sarmiento,Forward,45.0,0.0,0.0,0.0,0.0,0.0
-608,2882,James Sinclair,Forward,0.0,0.0,0.0,0.0,0.0,0.0
 609,3853,Frédéric Nimani,Forward,44.0,0.0,0.0,0.0,0.0,0.0
 610,1215,Jonathan Macken,Forward,41.0,0.0,0.0,0.0,0.0,0.0
 611,3586,Temitope Obadeyi,Forward,41.0,0.0,0.0,0.0,0.0,0.0
@@ -2317,7 +2263,6 @@
 617,4865,Jamar Loza,Forward,32.0,0.0,0.0,0.0,0.0,0.0
 618,8335,Gary Madine,Forward,32.0,0.0,0.0,0.0,0.0,0.0
 619,2193,Stern John,Forward,31.0,0.0,0.0,0.0,0.0,0.0
-620,2117,Ruud van Nistelrooy,Forward,0.0,0.0,0.0,0.0,0.0,0.0
 621,4711,Sam Baldock,Forward,30.0,0.0,0.0,0.0,0.0,0.0
 622,51511,Lewis Dobbin,Forward,30.0,0.0,0.0,0.0,0.0,0.0
 623,5211,Seydou Doumbia,Forward,29.0,0.0,0.0,0.0,0.0,0.0
@@ -2328,7 +2273,6 @@
 1303,2558,Fitz Hall,Defender,962.0,0.0,0.0,0.0,0.0,0.0
 335,20874,Jean-Philippe Mateta,Forward,1365.0,0.0,0.0,0.0,0.0,0.0
 334,49259,Anthony Elanga,Forward,1370.0,0.0,0.0,0.0,0.0,0.0
-1692,317,Paul Parker,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1703,3194,Scott Golbourne,Defender,63.0,0.0,0.0,0.0,0.0,0.0
 1702,3526,Erik Hagen,Defender,74.0,0.0,0.0,0.0,0.0,0.0
 1701,3612,Fredrik Stoor,Defender,77.0,0.0,0.0,0.0,0.0,0.0
@@ -2336,52 +2280,30 @@
 1699,4322,Karim Rekik,Defender,84.0,0.0,0.0,0.0,0.0,0.0
 1698,22651,Marc Navarro,Defender,85.0,0.0,0.0,0.0,0.0,0.0
 1697,4579,Daniel Carriço,Defender,85.0,0.0,0.0,0.0,0.0,0.0
-1696,72,Alan Wright,Defender,0.0,0.0,0.0,0.0,0.0,0.0
-1695,11,Nigel Winterburn,Defender,0.0,0.0,0.0,0.0,0.0,0.0
-1694,2003,Giovanni van Bronckhorst,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1693,10510,Thomas Robson,Defender,90.0,0.0,0.0,0.0,0.0,0.0
-1691,522,Kenneth Monkou,Defender,0.0,0.0,0.0,0.0,0.0,0.0
-1678,1344,Mark Fish,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1690,14822,Demetri Mitchell,Defender,90.0,0.0,0.0,0.0,0.0,0.0
-1689,1254,Andy Melville,Defender,0.0,0.0,0.0,0.0,0.0,0.0
-1688,1895,John McGreal,Defender,0.0,0.0,0.0,0.0,0.0,0.0
-1687,424,Chris Makin,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1686,3428,Shaleum Logan,Defender,90.0,0.0,0.0,0.0,0.0,0.0
-1685,2915,Jan Kromkamp,Defender,0.0,0.0,0.0,0.0,0.0,0.0
-1684,524,Jeff Kenna,Defender,0.0,0.0,0.0,0.0,0.0,0.0
-1683,315,Denis Irwin,Defender,0.0,0.0,0.0,0.0,0.0,0.0
-1682,2806,Philip Ifil,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1681,3931,James Hurst,Defender,90.0,0.0,0.0,0.0,0.0,0.0
-1680,521,Richard Hall,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1704,3048,Gavin Hoyte,Defender,60.0,0.0,0.0,0.0,0.0,0.0
-1705,2556,Matt Mills,Defender,0.0,0.0,0.0,0.0,0.0,0.0
-1706,2675,Gonzalo Sorondo,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1707,8598,James Husband,Defender,59.0,0.0,0.0,0.0,0.0,0.0
 1732,25435,Oskar Buur,Defender,22.0,0.0,0.0,0.0,0.0,0.0
 1731,4257,Derrick Williams,Defender,24.0,0.0,0.0,0.0,0.0,0.0
 1730,20929,Ben Wilmot,Defender,26.0,0.0,0.0,0.0,0.0,0.0
 1728,7486,Milos Veljkovic,Defender,30.0,0.0,0.0,0.0,0.0,0.0
 1727,51454,Leif Davis,Defender,31.0,0.0,0.0,0.0,0.0,0.0
-1725,2811,Reto Ziegler,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1724,3429,Sam Williamson,Defender,36.0,0.0,0.0,0.0,0.0,0.0
 1723,5137,Adam Matthews,Defender,36.0,0.0,0.0,0.0,0.0,0.0
 1722,3674,John Johnson,Defender,36.0,0.0,0.0,0.0,0.0,0.0
 1721,13388,Callum Connolly,Defender,36.0,0.0,0.0,0.0,0.0,0.0
 1720,4168,James Tavernier,Defender,37.0,0.0,0.0,0.0,0.0,0.0
 1719,104260,Niall Huggins,Defender,37.0,0.0,0.0,0.0,0.0,0.0
-1718,1894,Fabian Wilnis,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1717,23903,Bali Mumba,Defender,45.0,0.0,0.0,0.0,0.0,0.0
 1716,4034,Li Ke,Defender,45.0,0.0,0.0,0.0,0.0,0.0
 1715,14771,Demeaco Duhaney,Defender,45.0,0.0,0.0,0.0,0.0,0.0
-1714,9,Steve Bould,Defender,0.0,0.0,0.0,0.0,0.0,0.0
-1713,3250,Cedric Avinel,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1712,10506,Dionatan Teixeira,Defender,49.0,0.0,0.0,0.0,0.0,0.0
 1711,2937,Richard Eckersley,Defender,49.0,0.0,0.0,0.0,0.0,0.0
-1710,1210,Ronny Johnsen,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1709,21468,Andrew Eleftheriou,Defender,51.0,0.0,0.0,0.0,0.0,0.0
 1708,25292,Dimitri Foulquier,Defender,58.0,0.0,0.0,0.0,0.0,0.0
-1679,1736,Alain Goma,Defender,0.0,0.0,0.0,0.0,0.0,0.0
-1677,528,Jason Dodd,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1621,4278,Joe Riley,Defender,200.0,0.0,0.0,0.0,0.0,0.0
 1635,3859,Jeffrey Bruma,Defender,165.0,0.0,0.0,0.0,0.0,0.0
 1646,69286,Charlie Cresswell,Defender,139.0,0.0,0.0,0.0,0.0,0.0
@@ -2390,7 +2312,6 @@
 1643,2074,Mark Hudson,Defender,147.0,0.0,0.0,0.0,0.0,0.0
 1642,19869,Dominic Thompson,Defender,148.0,0.0,0.0,0.0,0.0,0.0
 1641,112246,Leo Fuhr Hjelde,Defender,148.0,0.0,0.0,0.0,0.0,0.0
-1640,1558,David Weir,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1639,4128,Danny Wilson,Defender,155.0,0.0,0.0,0.0,0.0,0.0
 1638,15013,Jake Vokins,Defender,156.0,0.0,0.0,0.0,0.0,0.0
 1637,19564,Jesús Vallejo,Defender,162.0,0.0,0.0,0.0,0.0,0.0
@@ -2398,34 +2319,19 @@
 1634,2258,Frazer Richardson,Defender,167.0,0.0,0.0,0.0,0.0,0.0
 1676,13125,José Crespo,Defender,90.0,0.0,0.0,0.0,0.0,0.0
 1633,5570,Nicolas Nkoulou,Defender,168.0,0.0,0.0,0.0,0.0,0.0
-1632,3188,Sam Sodje,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1631,3469,Lucien Aubey,Defender,169.0,0.0,0.0,0.0,0.0,0.0
 1630,24001,Kayne Ramsay,Defender,180.0,0.0,0.0,0.0,0.0,0.0
 1629,3374,Lewin Nyatanga,Defender,180.0,0.0,0.0,0.0,0.0,0.0
-1628,14,Martin Keown,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1627,4101,Tomas Kalas,Defender,180.0,0.0,0.0,0.0,0.0,0.0
 1626,3992,Matt Hill,Defender,180.0,0.0,0.0,0.0,0.0,0.0
-1625,1297,Gilles Grimandi,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1624,2180,Michael Johnson,Defender,191.0,0.0,0.0,0.0,0.0,0.0
-1623,3224,Ahmed Fathy,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1648,10952,Miguel Layún,Defender,132.0,0.0,0.0,0.0,0.0,0.0
 1649,929,Danny Mills,Defender,122.0,0.0,0.0,0.0,0.0,0.0
 1650,2917,Jack Hobbs,Defender,129.0,0.0,0.0,0.0,0.0,0.0
-1651,320,Gary Pallister,Defender,0.0,0.0,0.0,0.0,0.0,0.0
-1675,960,Jamie Clapham,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1674,4372,Bruno Perone,Defender,90.0,0.0,0.0,0.0,0.0,0.0
 1673,5513,Martín Cáceres,Defender,90.0,0.0,0.0,0.0,0.0,0.0
-1672,319,Steve Bruce,Defender,0.0,0.0,0.0,0.0,0.0,0.0
-1670,1516,Steve Brown,Defender,0.0,0.0,0.0,0.0,0.0,0.0
-1669,445,Rufus Brevett,Defender,0.0,0.0,0.0,0.0,0.0,0.0
-1668,2114,Laurent Blanc,Defender,0.0,0.0,0.0,0.0,0.0,0.0
-1667,74,Henning Berg,Defender,0.0,0.0,0.0,0.0,0.0,0.0
-1666,523,Francis Benali,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1665,2220,Nathan Ashton,Defender,90.0,0.0,0.0,0.0,0.0,0.0
 1664,3372,Miles Addison,Defender,90.0,0.0,0.0,0.0,0.0,0.0
-1663,520,Micky Adams,Defender,0.0,0.0,0.0,0.0,0.0,0.0
-1662,3,Tony Adams,Defender,0.0,0.0,0.0,0.0,0.0,0.0
-1661,13,Lee Dixon,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1660,11070,Jesús Gámez,Defender,97.0,0.0,0.0,0.0,0.0,0.0
 1659,10526,Jason Davidson,Defender,102.0,0.0,0.0,0.0,0.0,0.0
 1658,2168,Rob Edwards,Defender,106.0,0.0,0.0,0.0,0.0,0.0
@@ -2519,15 +2425,12 @@
 1737,11146,Jake Clarke-Salter,Defender,16.0,0.0,0.0,0.0,0.0,0.0
 1761,3129,Stephen Darby,Defender,1.0,0.0,0.0,0.0,0.0,0.0
 1763,51582,William Fish,Defender,1.0,0.0,0.0,0.0,0.0,0.0
-252,2066,Tomasz Radzinski,Forward,0.0,0.0,0.0,0.0,0.0,0.0
-1764,2902,Mark Hughes,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 253,4188,Asamoah Gyan,Forward,2232.0,0.0,0.0,0.0,0.0,0.0
 254,4740,Rudy Gestede,Forward,2231.0,0.0,0.0,0.0,0.0,0.0
 255,4176,Sammy Ameobi,Forward,2212.0,0.0,0.0,0.0,0.0,0.0
 256,2128,Michael Chopra,Forward,2208.0,0.0,0.0,0.0,0.0,0.0
 257,10520,Modou Barrow,Forward,2207.0,0.0,0.0,0.0,0.0,0.0
 258,21653,Aaron Connolly,Forward,2206.0,0.0,0.0,0.0,0.0,0.0
-259,3272,Darius Henderson,Forward,0.0,0.0,0.0,0.0,0.0,0.0
 260,2862,Sone Aluko,Forward,2177.0,0.0,0.0,0.0,0.0,0.0
 261,1542,Gary McSheffrey,Forward,2154.0,0.0,0.0,0.0,0.0,0.0
 262,5771,Edinson Cavani,Forward,2132.0,0.0,0.0,0.0,0.0,0.0
@@ -2542,7 +2445,6 @@
 1769,3883,Alex Smith,Defender,1.0,0.0,0.0,0.0,0.0,0.0
 1768,54056,Femi Seriki,Defender,1.0,0.0,0.0,0.0,0.0,0.0
 1767,3776,Jonathon Routledge,Defender,1.0,0.0,0.0,0.0,0.0,0.0
-1766,3083,César,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1765,10634,Tom James,Defender,1.0,0.0,0.0,0.0,0.0,0.0
 1622,9634,Connor Goldson,Defender,199.0,0.0,0.0,0.0,0.0,0.0
 1620,3760,Jordan Spence,Defender,204.0,0.0,0.0,0.0,0.0,0.0
@@ -2551,12 +2453,9 @@
 299,43098,Ferran Torres,Forward,1610.0,0.0,0.0,0.0,0.0,0.0
 1420,4350,Marc Tierney,Defender,1620.0,0.0,0.0,0.0,0.0,0.0
 1419,2643,Radhi Jaidi,Defender,1620.0,0.0,0.0,0.0,0.0,0.0
-1418,3253,Lloyd Doyley,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1417,21495,Romain Perraud,Defender,1625.0,0.0,0.0,0.0,0.0,0.0
 300,19618,Isaac Success,Forward,1609.0,0.0,0.0,0.0,0.0,0.0
 1415,3187,Alex Pearce,Defender,1645.0,0.0,0.0,0.0,0.0,0.0
-301,3155,Bernardo Corradi,Forward,0.0,0.0,0.0,0.0,0.0,0.0
-1412,3094,Souleymane Diawara,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1411,1045,Ian Harte,Defender,1667.0,0.0,0.0,0.0,0.0,0.0
 302,2931,Ishmael Miller,Forward,1134.0,0.0,0.0,0.0,0.0,0.0
 1408,16234,Ezequiel Schelotto,Defender,1677.0,0.0,0.0,0.0,0.0,0.0
@@ -2569,7 +2468,6 @@
 305,3153,Emile Mpenza,Forward,742.0,0.0,0.0,0.0,0.0,0.0
 306,16788,Odsonne Édouard,Forward,1567.0,0.0,0.0,0.0,0.0,0.0
 1393,2532,Peter Ramage,Defender,58.0,0.0,0.0,0.0,0.0,0.0
-1392,1315,Arjan De Zeeuw,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1391,3138,Lee Peltier,Defender,1771.0,0.0,0.0,0.0,0.0,0.0
 307,7124,Jürgen Locadia,Forward,1560.0,0.0,0.0,0.0,0.0,0.0
 298,1725,Danny Webber,Forward,460.0,0.0,0.0,0.0,0.0,0.0
@@ -2583,30 +2481,22 @@
 291,1538,Mikael Forssell,Forward,1693.0,0.0,0.0,0.0,0.0,0.0
 1452,20064,Jeremy Ngakia,Defender,1341.0,0.0,0.0,0.0,0.0,0.0
 1451,13281,Fikayo Tomori,Defender,1368.0,0.0,0.0,0.0,0.0,0.0
-1450,3145,Hatem Trabelsi,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 292,3381,Giles Barnes,Forward,1686.0,0.0,0.0,0.0,0.0,0.0
 293,11364,Islam Slimani,Forward,1668.0,0.0,0.0,0.0,0.0,0.0
 294,3635,Daniel Cousin,Forward,1661.0,0.0,0.0,0.0,0.0,0.0
-1444,2952,Craig Moore,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1442,2505,Zak Whitbread,Defender,1440.0,0.0,0.0,0.0,0.0,0.0
 295,72371,João Pedro,Forward,1660.0,0.0,0.0,0.0,0.0,0.0
 296,1659,Thierry Henry,Forward,94.0,0.0,0.0,0.0,0.0,0.0
 1438,14051,Nathaniel Phillips,Defender,1455.0,0.0,0.0,0.0,0.0,0.0
 1435,4732,Declan John,Defender,1487.0,0.0,0.0,0.0,0.0,0.0
-1434,1388,Robert Kozluk,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1433,7105,Jetro Willems,Defender,1498.0,0.0,0.0,0.0,0.0,0.0
-1432,2736,Gabriel Heinze,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 297,9199,Adam Armstrong,Forward,1646.0,0.0,0.0,0.0,0.0,0.0
 1429,20171,Rúben Vinagre,Defender,1524.0,0.0,0.0,0.0,0.0,0.0
-1428,177,Matt Jackson,Defender,0.0,0.0,0.0,0.0,0.0,0.0
-308,3079,Shabani Nonda,Forward,0.0,0.0,0.0,0.0,0.0,0.0
 1384,5782,Raphaël Varane,Defender,1829.0,0.0,0.0,0.0,0.0,0.0
-1619,3128,Gabriel Paletta,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 326,4491,Brett Holman,Forward,1428.0,0.0,0.0,0.0,0.0,0.0
 1343,4545,Massadio Haïdara,Defender,2280.0,0.0,0.0,0.0,0.0,0.0
 1342,63654,Emerson Royal,Defender,2289.0,0.0,0.0,0.0,0.0,0.0
 321,3337,Garry O'Connor,Forward,1473.0,0.0,0.0,0.0,0.0,0.0
-1339,3032,Lee McCulloch,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 322,1449,Richard Cresswell,Forward,1472.0,0.0,0.0,0.0,0.0,0.0
 1337,4730,Kévin Théophile-Catherine,Defender,2356.0,0.0,0.0,0.0,0.0,0.0
 323,20261,Wout Weghorst,Forward,1457.0,0.0,0.0,0.0,0.0,0.0
@@ -2620,30 +2510,23 @@
 328,3521,Freddie Sears,Forward,1423.0,0.0,0.0,0.0,0.0,0.0
 329,4811,Ricky van Wolfswinkel,Forward,1394.0,0.0,0.0,0.0,0.0,0.0
 1320,23591,Bernardo,Defender,2632.0,0.0,0.0,0.0,0.0,0.0
-1319,1708,Jordan Stewart,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1318,10439,Ola Aina,Defender,2694.0,0.0,0.0,0.0,0.0,0.0
 1317,22043,Ethan Pinnock,Defender,2697.0,0.0,0.0,0.0,0.0,0.0
 330,3536,Steve Howard,Forward,1392.0,0.0,0.0,0.0,0.0,0.0
 331,4116,Jermaine Beckford,Forward,1388.0,0.0,0.0,0.0,0.0,0.0
 1314,4728,Ben Turner,Defender,2720.0,0.0,0.0,0.0,0.0,0.0
-1308,3252,Jay DeMerit,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 320,3940,Aruna Dindane,Forward,1478.0,0.0,0.0,0.0,0.0,0.0
 319,2111,Milan Baros,Forward,620.0,0.0,0.0,0.0,0.0,0.0
 1347,2313,Andrew Davies,Defender,325.0,0.0,0.0,0.0,0.0,0.0
-1348,3215,Derek Geary,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 310,3984,Jason Scotland,Forward,1549.0,0.0,0.0,0.0,0.0,0.0
 311,1724,David Healy,Forward,1536.0,0.0,0.0,0.0,0.0,0.0
-1380,1282,Ben Thatcher,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1379,96,Ian Pearce,Defender,32.0,0.0,0.0,0.0,0.0,0.0
 1376,4652,Dwight Tiendalli,Defender,1891.0,0.0,0.0,0.0,0.0,0.0
 1375,4121,Carlos Salcido,Defender,1904.0,0.0,0.0,0.0,0.0,0.0
 313,10477,Radamel Falcao,Forward,1514.0,0.0,0.0,0.0,0.0,0.0
-314,1843,Juan Pablo Ángel,Forward,0.0,0.0,0.0,0.0,0.0,0.0
 1371,1831,Lauren,Defender,977.0,0.0,0.0,0.0,0.0,0.0
 1370,13917,Connor Roberts,Defender,1959.0,0.0,0.0,0.0,0.0,0.0
 1369,20113,Kristoffer Ajer,Defender,1987.0,0.0,0.0,0.0,0.0,0.0
-315,3227,Colin Kazim-Richards,Forward,0.0,0.0,0.0,0.0,0.0,0.0
-1365,1313,Chris Morgan,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1364,15549,Frédéric Guilbert,Defender,2041.0,0.0,0.0,0.0,0.0,0.0
 1363,5097,Erik Durm,Defender,2052.0,0.0,0.0,0.0,0.0,0.0
 1362,16803,Emerson,Defender,2057.0,0.0,0.0,0.0,0.0,0.0
@@ -2653,9 +2536,7 @@
 1352,1620,Garry Monk,Defender,2186.0,0.0,0.0,0.0,0.0,0.0
 1351,2913,Antonio Barragán,Defender,2196.0,0.0,0.0,0.0,0.0,0.0
 1350,49495,Valentino Livramento,Defender,2203.0,0.0,0.0,0.0,0.0,0.0
-1349,3213,Chris Armstrong,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1462,4468,Kaspars Gorkss,Defender,1260.0,0.0,0.0,0.0,0.0,0.0
-1463,1701,Abel Xavier,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 287,15580,Wesley Moraes,Forward,1806.0,0.0,0.0,0.0,0.0,0.0
 1567,1651,Sylvinho,Defender,485.0,0.0,0.0,0.0,0.0,0.0
 1583,53085,Andrew Omobamidele,Defender,381.0,0.0,0.0,0.0,0.0,0.0
@@ -2680,7 +2561,6 @@
 273,31442,Armando Broja,Forward,1982.0,0.0,0.0,0.0,0.0,0.0
 1552,4826,Modibo Diakité,Defender,630.0,0.0,0.0,0.0,0.0,0.0
 1551,3906,Greg Cunningham,Defender,632.0,0.0,0.0,0.0,0.0,0.0
-1548,2051,Jonathan Fortune,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 275,10336,Duncan Watmore,Forward,1935.0,0.0,0.0,0.0,0.0,0.0
 1584,3580,Sébastien Puygrenier,Defender,380.0,0.0,0.0,0.0,0.0,0.0
 1585,3963,Fabio Daprelà,Defender,372.0,0.0,0.0,0.0,0.0,0.0
@@ -2688,7 +2568,6 @@
 1588,3932,Lennard Sowah,Defender,340.0,0.0,0.0,0.0,0.0,0.0
 1618,10535,Reece Oxford,Defender,213.0,0.0,0.0,0.0,0.0,0.0
 1617,3977,Román Golobart,Defender,213.0,0.0,0.0,0.0,0.0,0.0
-1616,3093,Madjid Bougherra,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1614,3396,Toni Kallio,Defender,221.0,0.0,0.0,0.0,0.0,0.0
 1613,2559,Martin Cranie,Defender,233.0,0.0,0.0,0.0,0.0,0.0
 1610,10528,Cristian Gamboa,Defender,263.0,0.0,0.0,0.0,0.0,0.0
@@ -2696,7 +2575,6 @@
 1608,3704,Carl Dickinson,Defender,266.0,0.0,0.0,0.0,0.0,0.0
 1607,14829,Jimmy Dunne,Defender,270.0,0.0,0.0,0.0,0.0,0.0
 1606,3071,Bruno Berner,Defender,180.0,0.0,0.0,0.0,0.0,0.0
-1605,3284,Andy Webster,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1602,2795,Jelle Van Damme,Defender,278.0,0.0,0.0,0.0,0.0,0.0
 1601,4857,Kevin McNaughton,Defender,281.0,0.0,0.0,0.0,0.0,0.0
 1600,3868,Luke Garbutt,Defender,287.0,0.0,0.0,0.0,0.0,0.0
@@ -2706,7 +2584,6 @@
 1595,1941,Alan Tate,Defender,326.0,0.0,0.0,0.0,0.0,0.0
 1594,19599,Luis Hernández,Defender,326.0,0.0,0.0,0.0,0.0,0.0
 1592,4506,Jiang Guangtai,Defender,328.0,0.0,0.0,0.0,0.0,0.0
-1591,2295,David Sommeil,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1590,4988,Konstantinos Stafylidis,Defender,334.0,0.0,0.0,0.0,0.0,0.0
 1589,6615,Juan Cuadrado,Defender,337.0,0.0,0.0,0.0,0.0,0.0
 1544,3733,Carl Hoefkens,Defender,659.0,0.0,0.0,0.0,0.0,0.0
@@ -2714,14 +2591,8 @@
 1542,13558,Donald Love,Defender,660.0,0.0,0.0,0.0,0.0,0.0
 1507,2765,Adam Drury,Defender,907.0,0.0,0.0,0.0,0.0,0.0
 1505,4915,Filipe Luís,Defender,939.0,0.0,0.0,0.0,0.0,0.0
-1503,1882,Gary Naysmith,Defender,0.0,0.0,0.0,0.0,0.0,0.0
-1502,1168,Chris Powell,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 282,3972,Alessandro Diamanti,Forward,1900.0,0.0,0.0,0.0,0.0,0.0
-1497,1163,Christian Dailly,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1496,4268,Marcus Olsson,Defender,991.0,0.0,0.0,0.0,0.0,0.0
-1493,181,David Unsworth,Defender,0.0,0.0,0.0,0.0,0.0,0.0
-1490,3152,DaMarcus Beasley,Defender,0.0,0.0,0.0,0.0,0.0,0.0
-1489,1145,Celestine Babayaro,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1488,24983,Vitalii Mykolenko,Defender,1056.0,0.0,0.0,0.0,0.0,0.0
 283,3889,Stefano Okaka,Forward,1863.0,0.0,0.0,0.0,0.0,0.0
 1486,3330,Rafael Schmitz,Defender,1075.0,0.0,0.0,0.0,0.0,0.0
@@ -2729,27 +2600,19 @@
 1482,14608,Jayden Bogle,Defender,1107.0,0.0,0.0,0.0,0.0,0.0
 285,1432,Erik Nevland,Forward,1845.0,0.0,0.0,0.0,0.0,0.0
 1479,4853,Razvan Rat,Defender,1131.0,0.0,0.0,0.0,0.0,0.0
-1478,1613,Leigh Bromby,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1477,19591,Dimitris Giannoulis,Defender,1166.0,0.0,0.0,0.0,0.0,0.0
 286,20337,Hwang Hee-Chan,Forward,1819.0,0.0,0.0,0.0,0.0,0.0
 1473,5428,Markus Suttner,Defender,1178.0,0.0,0.0,0.0,0.0,0.0
-1472,2828,Malky MacKay,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1471,4375,Taye Ismaila Taiwo,Defender,1194.0,0.0,0.0,0.0,0.0,0.0
 1469,25313,Davide Zappacosta,Defender,1220.0,0.0,0.0,0.0,0.0,0.0
 1506,8968,Liam Moore,Defender,936.0,0.0,0.0,0.0,0.0,0.0
-1509,2953,Paul Huntington,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1541,1370,Marc Edworthy,Defender,660.0,0.0,0.0,0.0,0.0,0.0
 281,3772,David Di Michele,Forward,1901.0,0.0,0.0,0.0,0.0,0.0
-1540,3214,Chris Lucketti,Defender,0.0,0.0,0.0,0.0,0.0,0.0
-1539,3025,David Wright,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1538,3116,Matthew Briggs,Defender,670.0,0.0,0.0,0.0,0.0,0.0
-1537,2364,James Chambers,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 276,3814,Christian Benitez,Forward,1934.0,0.0,0.0,0.0,0.0,0.0
 1534,13560,Cameron Borthwick-Jackson,Defender,692.0,0.0,0.0,0.0,0.0,0.0
 277,66670,Fábio Silva,Forward,1918.0,0.0,0.0,0.0,0.0,0.0
 278,2797,Leon Best,Forward,1915.0,0.0,0.0,0.0,0.0,0.0
-1530,3171,Oguchi Onyewu,Defender,0.0,0.0,0.0,0.0,0.0,0.0
-1529,2219,Osei Sankofa,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 279,13793,Wahbi Khazri,Forward,1915.0,0.0,0.0,0.0,0.0,0.0
 1526,2836,Matthew Connolly,Defender,758.0,0.0,0.0,0.0,0.0,0.0
 1525,10953,Juan Carlos Paredes,Defender,766.0,0.0,0.0,0.0,0.0,0.0
@@ -2758,9 +2621,5 @@
 1522,3358,Shaun Cummings,Defender,810.0,0.0,0.0,0.0,0.0,0.0
 1521,6292,Ivo Pinto,Defender,811.0,0.0,0.0,0.0,0.0,0.0
 1520,5671,Juan Camilo Zuñiga,Defender,813.0,0.0,0.0,0.0,0.0,0.0
-1518,3098,Khalid Boulahrouz,Defender,0.0,0.0,0.0,0.0,0.0,0.0
-1517,1335,Stéphane Henchoz,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 280,14801,Jadon Sancho,Forward,1902.0,0.0,0.0,0.0,0.0,0.0
-1512,1253,Michael Gray,Defender,0.0,0.0,0.0,0.0,0.0,0.0
 1511,16006,Konstantinos Tsimikas,Defender,879.0,0.0,0.0,0.0,0.0,0.0
-2764,14194,Greg Olley,Midfielder,0.0,0.0,0.0,0.0,0.0,0.0
