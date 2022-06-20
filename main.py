@@ -172,8 +172,6 @@ def updateHighlighted():
     id = playerID.value
     position = positionMap[id]
     indice = positionData[position].data['playerid'].values.tolist().index(int(id))
-    for position in positions:
-        position[position].selected.indices = []
     positionData[position].selected.indices = [indice]
     updateBar()
 
