@@ -135,7 +135,7 @@ def getBarData(playerID):
 def updateBar():
     seasonal.data = getBarData(int(playerID.value))
     q.x_range.factors = seasonal.data['seasons']
-    q.title.text = '%s mistakes by season' % fullNameMap[playerID.value]
+    q.title.text = '%s mistakes by season' % f'{fullNameMap[playerID.value]} ({positionMap[playerID.value]})'
 
 
 def updateScatter():
@@ -243,3 +243,5 @@ curdoc().add_root(l)
 curdoc().title = 'Players'
 
 positionData['Midfielder'].selected.indices = [0]
+
+show(l)
