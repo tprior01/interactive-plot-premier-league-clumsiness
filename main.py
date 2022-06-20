@@ -123,12 +123,12 @@ def getBarData(playerID):
     }
     for i in range(8, 23):
         df = pd.read_csv(f"minutes/{i}.csv")
-        if df[df['PlayerID'] == playerID.value]['PlayerID'].count() == 1:
+        if df[df['PlayerID'] == playerID]['PlayerID'].count() == 1:
             data['seasons'].append(f'{str(i - 1).zfill(2)}/{str(i).zfill(2)}')
             for directory in directories:
                 dfx = pd.read_csv(f"{directory}/{i}.csv")
-                if dfx[dfx['PlayerID'] == playerID.value][directory].count() == 1:
-                    data[directory].append(dfx[dfx['PlayerID'] == playerID.value][directory].iloc[0])
+                if dfx[dfx['PlayerID'] == playerID][directory].count() == 1:
+                    data[directory].append(dfx[dfx['PlayerID'] == playerID][directory].iloc[0])
                 else:
                     data[directory].append(0)
     return data
@@ -136,7 +136,7 @@ def getBarData(playerID):
 
 def updatebar():
     # playerID = index[2]
-    seasonal.data = getBarData(playerID.value)
+    seasonal.data = getBarData(int(playerID.value))
     q.x_range.factors = seasonal.data['seasons']
     q.title.text = '%s mistakes by season' % nameMap[playerID.value]
 
