@@ -6,6 +6,7 @@ from bokeh.models import ColumnDataSource, Div, Select, AutocompleteInput, Range
 from bokeh.plotting import figure
 from os.path import dirname, join
 from bokeh import events
+import unidecode
 
 # data
 csv = 'data/data.csv'
@@ -21,7 +22,7 @@ positionMap = dict()
 idMap = dict()
 for i in range(len(ids)):
     fullName = shortNames[i]
-    shortName = shortNames[i].rsplit(' ', 1)[-1]
+    shortName = unidecode.unidecode(shortNames[i].rsplit(' ', 1)[-1])
     shortNameMap[str(ids[i])] = shortName
     fullNameMap[str(ids[i])] = fullName
     positionMap[str(ids[i])] = positions[i]
