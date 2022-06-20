@@ -252,6 +252,7 @@ def highlightbar():
 
 def updateIdList():
     playerID.options = idMap[playerName.value]
+    playerID.value = playerID.options[0]
 
 renderers[0].data_source.selected.on_change('indices', goalkeeper)
 renderers[1].data_source.selected.on_change('indices', defender)
