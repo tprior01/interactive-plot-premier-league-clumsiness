@@ -12,7 +12,6 @@ csv = 'data/data.csv'
 players = pd.read_csv(csv)
 
 maxMins = round(players['minutes'].max(), -1)
-
 ids = players['PlayerID'].values.tolist()
 names = players['PlayerName'].values.tolist()
 positions = players['Position'].values.tolist()
