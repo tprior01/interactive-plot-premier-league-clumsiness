@@ -223,6 +223,8 @@ def highlightbar():
         pass
     except TypeError:
         pass
+    except KeyError:
+        pass
 
 
 renderers[0].data_source.selected.on_change('indices', goalkeeper)
