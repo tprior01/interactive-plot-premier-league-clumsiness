@@ -30,7 +30,7 @@ for i in range(len(names)):
         idMap[names[i]] = [str(ids[i])]
     else:
         idMap[names[i]].append(str(ids[i]))
-
+names = list(set(names))
 ids.sort()
 names.sort()
 
@@ -178,7 +178,7 @@ def updatehighlighted():
     id = playerID.value
     position = positionMap[id]
     indice = positionData[position].data['playerid'].values.tolist().index(int(id))
-    positionData[position].selected.indices = indice
+    positionData[position].selected.indices = [indice]
     updatebar()
 
 
@@ -264,7 +264,7 @@ for control in controls:
 playerName.on_change('value', lambda attr, old, new: updateIdList())
 playerID.on_change('value', lambda attr, old, new: updatehighlighted())
 
-playerName.on_change('value', lambda attr, old, new: highlightbar())
+# playerName.on_change('value', lambda attr, old, new: highlightbar())
 minutes.on_change('value', lambda attr, old, new: updatesize())
 
 for position in positions:
