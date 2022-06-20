@@ -2,7 +2,7 @@ import pandas as pd
 from bokeh.io import curdoc, show
 from bokeh.layouts import column, row
 from bokeh.models import ColumnDataSource, Div, Select, AutocompleteInput, RangeSlider, DataRange1d, \
-    SingleIntervalTicker, Circle, Tap, NumericInput
+    SingleIntervalTicker, Circle, Tap, NumericInput, Dropdown
 from bokeh.plotting import figure
 from os.path import dirname, join
 from bokeh import events
@@ -20,12 +20,20 @@ nameMap = dict()
 positionMap = dict()
 for i in range(len(ids)):
     shortName = names[i].rsplit(' ', 1)[-1]
-    nameMap[ids[i]] = shortName
-    positionMap[ids[i]] = positions[i]
+    nameMap[str(ids[i])] = shortName
+    positionMap[str(ids[i])] = positions[i]
     names[i] = shortName
+# idMap= {v: k for k, v in nameMap.items()}
+idMap = dict()
+for i in range(len(names)):
+    if names[i] not in idMap:
+        idMap[names[i]] = [str(ids[i])]
+    else:
+        idMap[names[i]].append(str(ids[i]))
+
 ids.sort()
 names.sort()
-idMap= {v: k for k, v in nameMap.items()}
+
 
 positions = ['Goalkeeper', 'Defender', 'Midfielder', 'Forward']
 directories = ['redcards', 'errors', 'pensconceded', 'owngoals']
@@ -47,10 +55,12 @@ desc = Div(text=open(join(dirname(__file__), 'my-application/description.html'))
 
 # widgets
 minutes = RangeSlider(title='Number of minutes', value=(0, maxMins), start=0, end=maxMins, step=10)
-highlight_name = AutocompleteInput(title='Highlight player', value='Xhaka', completions=names, restrict=True, case_sensitive=False)
 x_axis = Select(title='X Axis', options=sorted(axisMap.keys()), value='Minutes')
 y_axis = Select(title='Y Axis', options=sorted(axisMap.keys()), value='Total Mistakes')
-playerID = NumericInput(value=12136)
+
+playerName = AutocompleteInput(title='Highlight player', value='Xhaka', completions=names, restrict=True, case_sensitive=False)
+playerID = Select(value='12136', options=idMap[playerName.value])
+# playerPosition = Select(value='Midfielder', options=positions)
 
 # column data sources
 highlight = ColumnDataSource(data=dict(x=[], y=[]))
@@ -125,10 +135,10 @@ def getBarData(playerID):
 
 
 def updatebar():
-    playerID = index[2]
-    seasonal.data = getBarData(playerID)
+    # playerID = index[2]
+    seasonal.data = getBarData(playerID.value)
     q.x_range.factors = seasonal.data['seasons']
-    q.title.text = '%s mistakes by season' % nameMap[playerID]
+    q.title.text = '%s mistakes by season' % nameMap[playerID.value]
 
 
 def updatescatter():
@@ -164,44 +174,58 @@ def updatesize():
 
 
 def updatehighlighted():
-    positionData[index[0]].selected.indices = [index[1]]
+    # positionData[index[0]].selected.indices = [index[1]]
+    id = playerID.value
+    position = positionMap[id]
+    indice = positionData[position].data['playerid'].values.tolist().index(int(id))
+    positionData[position].selected.indices = indice
+    updatebar()
+
 
 
 def goalkeeper(attr, old, new):
     try:
-        global index
-        id = positionData['Goalkeeper'].data['playerid'].iloc[new[0]]
-        index = ['Goalkeeper', new[0], id]
-        highlight_name.value = nameMap[id]
+        # global index
+        # id = positionData['Goalkeeper'].data['playerid'].iloc[new[0]]
+        # index = ['Goalkeeper', new[0], id]
+        # playerName.value = nameMap[id]
+        playerID.value = str(positionData['Goalkeeper'].data['playerid'].iloc[new[0]])
+        playerName.value = nameMap[playerID.value]
     except IndexError:
         pass
 
 def defender(attr, old, new):
     try:
-        global index
-        id = positionData['Defender'].data['playerid'].iloc[new[0]]
-        index = ['Defender', new[0], id]
-        highlight_name.value = nameMap[id]
+        # global index
+        # id = positionData['Defender'].data['playerid'].iloc[new[0]]
+        # index = ['Defender', new[0], id]
+        # playerName.value = nameMap[id]
+        playerID.value = str(positionData['Defender'].data['playerid'].iloc[new[0]])
+        playerName.value = nameMap[playerID.value]
     except IndexError:
         pass
 
 
 def midfielder(attr, old, new):
     try:
-        global index
-        id = positionData['Midfielder'].data['playerid'].iloc[new[0]]
-        index = ['Midfielder', new[0], id]
-        highlight_name.value = nameMap[id]
+        # global index
+        # id = positionData['Midfielder'].data['playerid'].iloc[new[0]]
+        # index = ['Midfielder', new[0], id]
+        # playerName.value = nameMap[id]
+        playerID.value = str(positionData['Midfielder'].data['playerid'].iloc[new[0]])
+        playerName.value = nameMap[playerID.value]
     except IndexError:
         pass
 
 
 def forward(attr, old, new):
     try:
-        global index
-        id = positionData['Forward'].data['playerid'].iloc[new[0]]
-        index = ['Forward', new[0], id]
-        highlight_name.value = nameMap[id]
+        # global index
+        # id = positionData['Forward'].data['playerid'].iloc[new[0]]
+        # index = ['Forward', new[0], id]
+        # playerName.value = nameMap[id]
+        playerID.value = str(positionData['Forward'].data['playerid'].iloc[new[0]])
+        playerName.value = nameMap[playerID.value]
     except IndexError:
         pass
 
@@ -209,10 +233,10 @@ def forward(attr, old, new):
 def highlightbar():
     try:
         global index
-        if highlight_name.value == nameMap[index[2]]:
+        if playerName.value == nameMap[index[2]]:
             positionData[index[0]].selected.indices = [index[1]]
         else:
-            id = idMap[highlight_name.value]
+            id = idMap[playerName.value]
             position = positionMap[id]
             indice = positionData[position].data['playerid'].values.tolist().index(id)
             index = [position, indice, id]
@@ -226,19 +250,21 @@ def highlightbar():
     except KeyError:
         pass
 
+def updateIdList():
+    playerID.options = idMap[playerName.value]
 
 renderers[0].data_source.selected.on_change('indices', goalkeeper)
 renderers[1].data_source.selected.on_change('indices', defender)
 renderers[2].data_source.selected.on_change('indices', midfielder)
 renderers[3].data_source.selected.on_change('indices', forward)
 
-controls = [minutes, x_axis, y_axis, highlight_name]
+controls = [minutes, x_axis, y_axis, playerName, playerID]
 for control in controls:
     control.on_change('value', lambda attr, old, new: updatescatter())
-highlight_name.on_change('value', lambda attr, old, new: updatebar())
+playerName.on_change('value', lambda attr, old, new: updateIdList())
 playerID.on_change('value', lambda attr, old, new: updatehighlighted())
 
-highlight_name.on_change('value', lambda attr, old, new: highlightbar())
+playerName.on_change('value', lambda attr, old, new: highlightbar())
 minutes.on_change('value', lambda attr, old, new: updatesize())
 
 for position in positions:
@@ -258,3 +284,5 @@ curdoc().add_root(l)
 curdoc().title = 'Players'
 
 positionData['Midfielder'].selected.indices = [0]
+
+show(l)
