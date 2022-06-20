@@ -174,6 +174,9 @@ def updateHighlighted():
     indice = positionData[position].data['playerid'].values.tolist().index(int(id))
     positionData[position].selected.indices = [indice]
     updateBar()
+    for pos in positions:
+        if pos != position:
+            positionData[position].selected.indices = []
 
 
 def goalkeeper(attr, old, new):
