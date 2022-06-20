@@ -59,8 +59,8 @@ desc = Div(text=open(join(dirname(__file__), 'my-application/description.html'))
 minutes = RangeSlider(title='Number of minutes', value=(0, maxMins), start=0, end=maxMins, step=10)
 x_axis = Select(title='X Axis', options=sorted(axisMap.keys()), value='Minutes')
 y_axis = Select(title='Y Axis', options=sorted(axisMap.keys()), value='Total Mistakes')
-playerName = AutocompleteInput(title='Highlight player', value='Xhaka', completions=shortNames, restrict=True, case_sensitive=False)
-playerID = Select(value='12136', options=idMap[playerName.value])
+playerName = AutocompleteInput(title='Highlighted player name:', value='Xhaka', completions=shortNames, restrict=True, case_sensitive=False)
+playerID = Select(title='Highlighted player ID:', value='12136', options=idMap[playerName.value])
 
 # column data sources
 seasonal = ColumnDataSource(data=dict(seasons=[], redcards=[], pensconceded=[], errors=[]))
