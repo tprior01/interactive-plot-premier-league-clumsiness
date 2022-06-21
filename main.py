@@ -1,48 +1,39 @@
 import pandas as pd
-from bokeh.io import curdoc, show
+from bokeh.io import curdoc
 from bokeh.layouts import column, row
 from bokeh.models import ColumnDataSource, Div, Select, AutocompleteInput, RangeSlider, DataRange1d, \
-    SingleIntervalTicker, Circle, Tap
+    SingleIntervalTicker, Circle
 from bokeh.plotting import figure
-from os.path import dirname, join
 from bokeh import events
-import unidecode
 
 # data
-csv = 'data/data.csv'
-players = pd.read_csv(csv)
+csv = 'data.csv'
+totals = pd.read_csv(csv, index_col='PlayerID')
 
-# create various maps
-ids = players['PlayerID'].values.tolist()
-shortNames = players['PlayerName'].values.tolist()
-positions = players['Position'].values.tolist()
-shortNameMap = dict()
-fullNameMap = dict()
-positionMap = dict()
+# create maps
+playerIDs = totals.index.values.tolist()
+playerShortNames = totals['PlayerShortName'].values.tolist()
+playerPositions = totals['Position'].values.tolist()
 idMap = dict()
-for i in range(len(ids)):
-    fullName = shortNames[i]
-    shortName = unidecode.unidecode(shortNames[i].rsplit(' ', 1)[-1])
-    shortNameMap[str(ids[i])] = shortName
-    fullNameMap[str(ids[i])] = fullName
-    positionMap[str(ids[i])] = positions[i]
-    shortNames[i] = shortName
-    if shortNames[i] not in idMap:
-        idMap[shortNames[i]] = [str(ids[i])]
+nameMap = dict()
+positionMap = dict()
+for i in range(len(playerIDs)):
+    if playerShortNames[i] not in idMap:
+        idMap[playerShortNames[i]] = [str(playerIDs[i])]
     else:
-        idMap[shortNames[i]].append(str(ids[i]))
-shortNames = list(set(shortNames))
-ids.sort()
-shortNames.sort()
+        idMap[playerShortNames[i]].append(str(playerIDs[i]))
+    positionMap[str(playerIDs[i])] = playerPositions[i]
+    nameMap[str(playerIDs[i])] = playerShortNames[i]
+playerShortNames = list(set(playerShortNames))
+playerShortNames.sort()
 
 # more data
-positions = ['Goalkeeper', 'Defender', 'Midfielder', 'Forward']
+playerPositions = ['Goalkeeper', 'Defender', 'Midfielder', 'Forward']
 directories = ['redcards', 'errors', 'pensconceded', 'owngoals']
 positionColours = ['hotpink', 'salmon', 'teal', 'turquoise']
 barColours = ['hotpink', 'teal', 'salmon', 'turquoise']
 categories = ['Red Cards', 'Errors Leading to a Goal', 'Penalties Conceded', 'Own Goals']
-maxMins = round(players['minutes'].max(), -1)
-
+maxMins = round(totals['minutes'].max(), -1)
 axisMap = {
     'Minutes': 'minutes',
     'Total Mistakes': 'sumerrors',
@@ -53,17 +44,18 @@ axisMap = {
 }
 
 # text to display at the top of page
-desc = Div(text=open(join(dirname(__file__), 'my-application/description.html')).read(), sizing_mode="stretch_width")
+desc = Div(text=open('description.html').read(), sizing_mode="stretch_width")
 
 # widgets
 minutes = RangeSlider(title='Number of minutes', value=(0, maxMins), start=0, end=maxMins, step=10)
 x_axis = Select(title='X Axis', options=sorted(axisMap.keys()), value='Minutes')
 y_axis = Select(title='Y Axis', options=sorted(axisMap.keys()), value='Total Mistakes')
-playerName = AutocompleteInput(title='Highlighted player name:', value='Xhaka', completions=shortNames, restrict=True, case_sensitive=False)
+playerName = AutocompleteInput(title='Highlighted player name:', value='Xhaka', completions=playerShortNames,
+                               restrict=True, case_sensitive=False)
 playerID = Select(title='Highlighted player ID:', value='12136', options=idMap[playerName.value])
 
 # column data sources
-seasonal = ColumnDataSource(data=dict(seasons=[], redcards=[], pensconceded=[], errors=[]))
+seasonal = ColumnDataSource(data=dict(seasons=[], redcards=[], pensconceded=[], errors=[], owngoals=[]))
 positionData = dict(Goalkeeper=ColumnDataSource(data=dict(x=[], y=[])),
                     Defender=ColumnDataSource(data=dict(x=[], y=[])),
                     Midfielder=ColumnDataSource(data=dict(x=[], y=[])),
@@ -102,41 +94,46 @@ q.xgrid.grid_line_color = None
 q.axis.minor_tick_line_color = None
 q.outline_line_color = None
 q.yaxis.ticker = SingleIntervalTicker(interval=1)
+q.add_layout(q.legend[0], 'right')
 
 
 def selectPlayers():
-    selected = players[
-        (players.minutes >= minutes.value[0]) &
-        (players.minutes <= minutes.value[1])
+    selected = totals[
+        (totals.minutes >= minutes.value[0]) &
+        (totals.minutes <= minutes.value[1])
         ]
     return selected
 
 
-def getBarData(playerID):
-    data = {
-        'seasons': [],
-        'redcards': [],
-        'pensconceded': [],
-        'errors': [],
-        'owngoals': []
-    }
-    for i in range(8, 23):
-        df = pd.read_csv(f"minutes/{i}.csv")
-        if df[df['PlayerID'] == playerID]['PlayerID'].count() == 1:
+def updateBar():
+    try:
+        data = {
+            'seasons': [],
+            'redcards': [],
+            'pensconceded': [],
+            'errors': [],
+            'owngoals': []
+        }
+        ID = int(playerID.value)
+        for i in range(8, 23):
+            df = pd.read_csv(f"minutes/{i}.csv", index_col='PlayerID')
+            try:
+                df.loc[ID].index
+            except KeyError:
+                continue
             data['seasons'].append(f'{str(i - 1).zfill(2)}/{str(i).zfill(2)}')
             for directory in directories:
-                dfx = pd.read_csv(f"{directory}/{i}.csv")
-                if dfx[dfx['PlayerID'] == playerID][directory].count() == 1:
-                    data[directory].append(dfx[dfx['PlayerID'] == playerID][directory].iloc[0])
-                else:
-                    data[directory].append(0)
-    return data
-
-
-def updateBar():
-    seasonal.data = getBarData(int(playerID.value))
-    q.x_range.factors = seasonal.data['seasons']
-    q.title.text = '%s mistakes by season' % f'{fullNameMap[playerID.value]} ({positionMap[playerID.value]})'
+                try:
+                    x = pd.read_csv(f"{directory}/{i}.csv", index_col='PlayerID').loc[ID].values[0]
+                except KeyError:
+                    x = 0
+                data[directory].append(x)
+        seasonal.data = data
+        q.x_range.factors = seasonal.data['seasons']
+        temp = totals[totals.index == playerID.value][['PlayerName', 'Position']]
+        q.title.text = f"{temp['PlayerName'].values[0]} ({temp['Position'].values[0]}) mistakes by season"
+    except IndexError:
+        pass
 
 
 def updateScatter():
@@ -156,14 +153,14 @@ def updateScatter():
             pensconceded=dft['pensconceded'],
             errors=dft['errors'],
             owngoals=dft['owngoals'],
-            playerid=dft['PlayerID']
+            playerid=dft.index
         )
 
 
 def updateSize():
     size = 0
     df = selectPlayers()
-    for position in positions:
+    for position in playerPositions:
         if legend_items[position].visible:
             size += len(df[df['Position'] == position])
     p.title.text = '%d players selected' % size
@@ -173,7 +170,7 @@ def updateHighlighted():
     id = playerID.value
     position = positionMap[id]
     indice = positionData[position].data['playerid'].values.tolist().index(int(id))
-    for pos in positions:
+    for pos in playerPositions:
         positionData[pos].selected.indices = []
     positionData[position].selected.indices = [indice]
     updateBar()
@@ -181,32 +178,32 @@ def updateHighlighted():
 
 def goalkeeper(attr, old, new):
     try:
-        playerID.value = str(positionData['Goalkeeper'].data['playerid'].iloc[new[0]])
-        playerName.value = shortNameMap[playerID.value]
+        playerID.value = str(positionData['Goalkeeper'].data['playerid'][new[0]])
+        playerName.value = nameMap[playerID.value]
     except IndexError:
         pass
 
 
 def defender(attr, old, new):
     try:
-        playerID.value = str(positionData['Defender'].data['playerid'].iloc[new[0]])
-        playerName.value = shortNameMap[playerID.value]
+        playerID.value = str(positionData['Defender'].data['playerid'][new[0]])
+        playerName.value = nameMap[playerID.value]
     except IndexError:
         pass
 
 
 def midfielder(attr, old, new):
     try:
-        playerID.value = str(positionData['Midfielder'].data['playerid'].iloc[new[0]])
-        playerName.value = shortNameMap[playerID.value]
+        playerID.value = str(positionData['Midfielder'].data['playerid'][new[0]])
+        playerName.value = nameMap[playerID.value]
     except IndexError:
         pass
 
 
 def forward(attr, old, new):
     try:
-        playerID.value = str(positionData['Forward'].data['playerid'].iloc[new[0]])
-        playerName.value = shortNameMap[playerID.value]
+        playerID.value = str(positionData['Forward'].data['playerid'][new[0]])
+        playerName.value = nameMap[playerID.value]
     except IndexError:
         pass
 
@@ -216,35 +213,34 @@ def updateIdList():
     playerID.value = playerID.options[0]
 
 
+# on_change and on_event actions
+x_axis.on_change('value', lambda attr, old, new: updateScatter())
+y_axis.on_change('value', lambda attr, old, new: updateScatter())
+playerName.on_change('value', lambda attr, old, new: updateIdList())
+playerID.on_change('value', lambda attr, old, new: updateScatter())
+playerID.on_change('value', lambda attr, old, new: updateHighlighted())
+minutes.on_change('value', lambda attr, old, new: updateScatter())
+minutes.on_change('value', lambda attr, old, new: updateSize())
+minutes.on_change('value', lambda attr, old, new: updateHighlighted())
+
 renderers[0].data_source.selected.on_change('indices', goalkeeper)
 renderers[1].data_source.selected.on_change('indices', defender)
 renderers[2].data_source.selected.on_change('indices', midfielder)
 renderers[3].data_source.selected.on_change('indices', forward)
 
-controls = [minutes, x_axis, y_axis, playerName, playerID]
-for control in controls:
-    control.on_change('value', lambda attr, old, new: updateScatter())
-playerName.on_change('value', lambda attr, old, new: updateIdList())
-playerID.on_change('value', lambda attr, old, new: updateHighlighted())
-
-minutes.on_change('value', lambda attr, old, new: updateSize())
-
-for position in positions:
+for position in playerPositions:
     legend_items[position].on_change('visible', lambda attr, old, new: updateSize())
 
 p.on_event(events.Tap, updateHighlighted)
 
+controls = [minutes, x_axis, y_axis, playerName, playerID]
 inputs = column(*controls, width=250)
+layout = column(desc, row(inputs, p), q, sizing_mode='scale_both', max_width=1000)
 
-l = column(desc, row(inputs, p), q, sizing_mode='scale_both', max_width=1000)
-
-q.add_layout(q.legend[0], 'right')
-updateScatter()  # initial load of the scatter data
-updateBar()  # initial load of the bar data
+updateScatter()
+updateBar()
 updateSize()
-curdoc().add_root(l)
+updateHighlighted()
+
+curdoc().add_root(layout)
 curdoc().title = 'Players'
-
-positionData['Midfielder'].selected.indices = [0]
-
-show(l)
