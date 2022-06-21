@@ -130,8 +130,8 @@ def updateBar():
                 data[directory].append(x)
         seasonal.data = data
         q.x_range.factors = seasonal.data['seasons']
-        temp = totals[totals.index == playerID.value][['PlayerName', 'Position']]
-        q.title.text = f"{temp['PlayerName'].values[0]} ({temp['Position'].values[0]}) mistakes by season"
+        temp = totals.loc[ID]
+        q.title.text = f"{temp.PlayerName} ({temp.Position}) mistakes by season"
     except IndexError:
         pass
 
