@@ -210,11 +210,6 @@ def forward(attr, old, new):
 
 def updateIdList():
     playerID.options = idMap[playerName.value]
-    for pos in playerPositions:
-        if not positionData[pos].selected.indices:
-            continue
-        else:
-            return
     playerID.value = playerID.options[0]
 
 
