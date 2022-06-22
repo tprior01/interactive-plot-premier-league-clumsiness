@@ -1,5 +1,5 @@
 import pandas as pd
-from bokeh.io import curdoc
+from bokeh.io import curdoc, show
 from bokeh.layouts import column, row
 from bokeh.models import ColumnDataSource, Div, Select, AutocompleteInput, RangeSlider, DataRange1d, \
     SingleIntervalTicker, Circle
@@ -210,7 +210,9 @@ def forward(attr, old, new):
 
 def updateIdList():
     playerID.options = idMap[playerName.value]
-    playerID.value = playerID.options[0]
+    for pos in playerPositions:
+        if not positionData[pos].selected.indices[0]:
+            playerID.value = playerID.options[0]
 
 
 # on_change and on_event actions
@@ -244,3 +246,5 @@ updateHighlighted()
 
 curdoc().add_root(layout)
 curdoc().title = 'Players'
+
+show(layout)
