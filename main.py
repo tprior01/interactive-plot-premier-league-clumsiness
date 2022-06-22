@@ -211,8 +211,11 @@ def forward(attr, old, new):
 def updateIdList():
     playerID.options = idMap[playerName.value]
     for pos in playerPositions:
-        if not positionData[pos].selected.indices[0]:
-            playerID.value = playerID.options[0]
+        if not positionData[pos].selected.indices:
+            continue
+        else:
+            return
+    playerID.value = playerID.options[0]
 
 
 # on_change and on_event actions
