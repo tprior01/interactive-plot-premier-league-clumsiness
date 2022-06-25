@@ -14,7 +14,6 @@ totalsQuery = open('totalsquery.sql').read()
 seasonalQuery = open('seasonalquery.sql').read()
 totals = pd.read_sql(totalsQuery, conn, index_col='PlayerID')
 
-# create maps
 playerIDs = totals.index.values.tolist()
 playerShortNames = totals['PlayerShortName'].values.tolist()
 playerPositions = totals['Position'].values.tolist()

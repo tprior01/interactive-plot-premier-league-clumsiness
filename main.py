@@ -27,7 +27,6 @@ for i in range(len(playerIDs)):
 playerShortNames = list(set(playerShortNames))
 playerShortNames.sort()
 
-# more data
 playerPositions = ['Goalkeeper', 'Defender', 'Midfielder', 'Forward']
 directories = ['redcards', 'errors', 'pensconceded', 'owngoals']
 positionColours = ['hotpink', 'salmon', 'teal', 'turquoise']
